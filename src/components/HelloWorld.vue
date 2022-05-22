@@ -21,8 +21,8 @@ export default {
     let res = new Request("http://127.0.0.1:8000/api/laravel", {
       method: "get",
     });
-    fetch(res).then((response)=> {
-      for(let donnee of response.headers.entries()) {
+    fetch(res).then((response) => {
+      for (let donnee of response.headers.entries()) {
         console.log(donnee[0] + ":" + donnee[1]);
       }
     });
