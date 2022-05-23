@@ -13,14 +13,27 @@
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center" id="link">
-                <router-link to="/register">Creer un compte?</router-link>
+                <router-link to="/login">Avez-vous un compte?</router-link>
               </h3>
               <form action="#" class="signin-form">
+                <div class="form-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="email"
+                    v-model="email"
+                    required
+                  />
+                  <i
+                    class="bi bi-envelope field-icon"
+                  ></i>
+                </div>
                 <div class="form-group">
                   <input
                     type="text"
                     class="form-control"
                     placeholder="login"
+                    v-model="login"
                     required
                   />
                   <i
@@ -33,6 +46,20 @@
                     type="password"
                     class="form-control"
                     placeholder="Password"
+                    v-model="password"
+                    required
+                  />
+                  <i
+                    class="bi bi-eye field-icon"
+                  ></i>
+                </div>
+                <div class="form-group">
+                  <input
+                    id="password-field"
+                    type="password"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                    v-model="confirm_password"
                     required
                   />
                   <i
@@ -47,7 +74,7 @@
                     Sign In
                   </button>
                 </div>
-                <div class="form-group d-md-flex">
+                <!--div class="form-group d-md-flex">
                   <div class="w-50">
                     <label for="remember" class="checkbox-wrap">
                       <input
@@ -60,9 +87,9 @@
                     </label>
                   </div>
                   <div class="w-50 text-md-right">
-                    <router-link to="/resetPassword">Forgot Password</router-link>
+                    <router-link to="/reinitialise">Forgot Password</router-link>
                   </div>
-                </div>
+                </div-->
               </form>
               <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
               <div class="social d-flex text-center">
@@ -83,9 +110,17 @@
 
 <script>
 export default {
-  name: "LoginComponnent",
+  name: "RegisterComponent",
   props: {
     msg: String,
+  },
+  data() {
+    return {
+      email: "",
+      login: "",
+      password: "",
+      confirm_password: "",
+    }
   },
   mounted() {},
 };

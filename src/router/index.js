@@ -2,6 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import LoginPage from "../views/Authentification/Login.vue";
+import RegisterPage from "../views/Authentification/Register.vue";
+import ResetPasswordPage from "../views/Authentification/ResetPassword.vue";
+
 
 Vue.use(VueRouter);
 
@@ -24,6 +27,16 @@ const routes = [
     path: "/login",
     name: "LoginPage",
     component: LoginPage,
+  },
+  {
+    path: "/register",
+    name: "RegisterPage",
+    component: RegisterPage,
+  },
+  {
+    path: "/resetPassword",
+    name: "ResetPasswordPage",
+    component: ResetPasswordPage,
   },
 ];
 

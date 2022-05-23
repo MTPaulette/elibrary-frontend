@@ -13,30 +13,18 @@
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center" id="link">
-                <router-link to="/register">Creer un compte?</router-link>
+                <router-link to="/register">Reinitialiser votre mot de passe?</router-link>
               </h3>
               <form action="#" class="signin-form">
                 <div class="form-group">
                   <input
-                    type="text"
+                    type="email"
                     class="form-control"
-                    placeholder="login"
+                    placeholder="email"
                     required
                   />
                   <i
-                    class="bi bi-person field-icon"
-                  ></i>
-                </div>
-                <div class="form-group">
-                  <input
-                    id="password-field"
-                    type="password"
-                    class="form-control"
-                    placeholder="Password"
-                    required
-                  />
-                  <i
-                    class="bi bi-eye field-icon"
+                    class="bi bi-envelope field-icon"
                   ></i>
                 </div>
                 <div class="form-group">
@@ -47,32 +35,7 @@
                     Sign In
                   </button>
                 </div>
-                <div class="form-group d-md-flex">
-                  <div class="w-50">
-                    <label for="remember" class="checkbox-wrap">
-                      <input
-                        type="checkbox"
-                        name="remember"
-                        id=""
-                        class="mx-3"
-                      />
-                      <span class="rememberme">Remember Me</span>
-                    </label>
-                  </div>
-                  <div class="w-50 text-md-right">
-                    <router-link to="/resetPassword">Forgot Password</router-link>
-                  </div>
-                </div>
               </form>
-              <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-              <div class="social d-flex text-center">
-                <a href="#" class="px-2 py-2 m-1 rounded facebook"
-                  ><i class="bi bi-facebook mr-2"></i> Facebook</a
-                >
-                <a href="#" class="px-2 py-2 m-1 rounded twitter"
-                  ><i class="bi bi-twitter mr-2"></i> Twitter</a
-                >
-              </div>
             </div>
           </div>
         </div>
@@ -83,7 +46,7 @@
 
 <script>
 export default {
-  name: "LoginComponnent",
+  name: "ResetPasswordComponnent",
   props: {
     msg: String,
   },
