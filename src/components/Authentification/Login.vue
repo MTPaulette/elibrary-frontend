@@ -5,7 +5,12 @@
         <div class="row justify-content-center">
           <div class="col-md-6 text-center mb-5 mt-11">
             <h2 class="heading-section">
-              <img alt="speed learn logo" width="20%" height="20%" src="../../assets/fille-logo.jpg" />
+              <img
+                alt="speed learn logo"
+                width="20%"
+                height="20%"
+                src="../../assets/fille-logo.jpg"
+              />
             </h2>
           </div>
         </div>
@@ -13,19 +18,23 @@
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center" id="link">
-                <router-link to="/register">Creer un compte?</router-link>
+                <router-link to="/register" v-if="isLoggedIn"
+                  >Creer un compte?</router-link
+                >
               </h3>
-              <form action="#" class="signin-form">
+              <form action="#" class="signin-form" @submit.prevent="toLogin">
                 <div class="form-group">
                   <input
-                    type="text"
+                    type="email"
                     class="form-control"
-                    placeholder="login"
+                    v-model="email"
+                    placeholder="email"
+                    name="email"
+                    autocomplete="email"
+                    autofocus
                     required
                   />
-                  <i
-                    class="bi bi-person field-icon"
-                  ></i>
+                  <i class="bi bi-envelope field-icon"></i>
                 </div>
                 <div class="form-group">
                   <input
@@ -33,17 +42,13 @@
                     type="password"
                     class="form-control"
                     placeholder="Password"
+                    v-model="password"
                     required
                   />
-                  <i
-                    class="bi bi-eye field-icon"
-                  ></i>
+                  <i class="bi bi-eye field-icon"></i>
                 </div>
                 <div class="form-group">
-                  <button
-                    type="submit"
-                    class="form-control submit px-3 signin"
-                  >
+                  <button type="submit" class="form-control submit px-3 signin">
                     Sign In
                   </button>
                 </div>
@@ -53,6 +58,7 @@
                       <input
                         type="checkbox"
                         name="remember"
+                        v-model="rememberMe"
                         id=""
                         class="mx-3"
                       />
@@ -60,7 +66,9 @@
                     </label>
                   </div>
                   <div class="w-50 text-md-right">
-                    <router-link to="/resetPassword">Forgot Password</router-link>
+                    <router-link to="/resetPassword"
+                      >Forgot Password</router-link
+                    >
                   </div>
                 </div>
               </form>
@@ -82,12 +90,46 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "LoginComponnent",
+  data() {
+    return {
+      email: "",
+      password: "",
+      rememberMe: "",
+    };
+  },
   props: {
     msg: String,
   },
-  mounted() {},
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
+  methods: {
+    ...mapActions(["loginAuth"]),
+    toLogin() {
+      let user = {
+        email: this.email,
+        password: this.password,
+      };
+      this.loginAuth(user)
+        .then((res) => {
+          if (!res.data.email || !res.data.password) {
+            console.log("erreur de email:" +res.data.msg);
+          }
+
+          if (res.data.success) {
+            console.log("message de backend true:" +res.data.msg);
+            this.$router.push("/resetPassword");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
@@ -261,14 +303,14 @@ textarea.form-control {
 
 /*BUTTON*/
 .signin {
-	background: #fbceb5;
-	border: 1px solid #fbceb5;
-	color: #000;	
+  background: #fbceb5;
+  border: 1px solid #fbceb5;
+  color: #000;
 }
 
 .signin:hover {
-	border: 1px solid #fbceb5;
-	background: transparent;
-	color :#fbceb5;
+  border: 1px solid #fbceb5;
+  background: transparent;
+  color: #fbceb5;
 }
 </style>

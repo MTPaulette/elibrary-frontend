@@ -5,7 +5,12 @@
         <div class="row justify-content-center">
           <div class="col-md-6 text-center mb-5 mt-11">
             <h2 class="heading-section">
-              <img alt="speed learn logo" width="20%" height="20%" src="../../assets/fille-logo.jpg" />
+              <img
+                alt="speed learn logo"
+                width="20%"
+                height="20%"
+                src="../../assets/fille-logo.jpg"
+              />
             </h2>
           </div>
         </div>
@@ -13,7 +18,9 @@
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center" id="link">
-                <router-link to="/register">Reinitialiser votre mot de passe?</router-link>
+                <router-link to="/register"
+                  >Reinitialiser votre mot de passe?</router-link
+                >
               </h3>
               <form action="#" class="signin-form">
                 <div class="form-group">
@@ -21,17 +28,13 @@
                     type="email"
                     class="form-control"
                     placeholder="email"
+                    v-model="email"
                     required
                   />
-                  <i
-                    class="bi bi-envelope field-icon"
-                  ></i>
+                  <i class="bi bi-envelope field-icon"></i>
                 </div>
                 <div class="form-group">
-                  <button
-                    type="submit"
-                    class="form-control submit px-3 signin"
-                  >
+                  <button type="submit" class="form-control submit px-3 signin">
                     Sign In
                   </button>
                 </div>
@@ -47,6 +50,11 @@
 <script>
 export default {
   name: "ResetPasswordComponnent",
+  data() {
+    return {
+      email: "",
+    };
+  },
   props: {
     msg: String,
   },
@@ -224,14 +232,14 @@ textarea.form-control {
 
 /*BUTTON*/
 .signin {
-	background: #fbceb5;
-	border: 1px solid #fbceb5;
-	color: #000;	
+  background: #fbceb5;
+  border: 1px solid #fbceb5;
+  color: #000;
 }
 
 .signin:hover {
-	border: 1px solid #fbceb5;
-	background: transparent;
-	color :#fbceb5;
+  border: 1px solid #fbceb5;
+  background: transparent;
+  color: #fbceb5;
 }
 </style>

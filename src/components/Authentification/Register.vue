@@ -5,7 +5,12 @@
         <div class="row justify-content-center">
           <div class="col-md-6 text-center mb-5 mt-11">
             <h2 class="heading-section">
-              <img alt="speed learn logo" width="20%" height="20%" src="../../assets/fille-logo.jpg" />
+              <img
+                alt="speed learn logo"
+                width="20%"
+                height="20%"
+                src="../../assets/fille-logo.jpg"
+              />
             </h2>
           </div>
         </div>
@@ -15,30 +20,31 @@
               <h3 class="mb-4 text-center" id="link">
                 <router-link to="/login">Avez-vous un compte?</router-link>
               </h3>
-              <form action="#" class="signin-form">
+              <form action="#" class="signin-form" @submit.prevent="register">
                 <div class="form-group">
                   <input
                     type="email"
                     class="form-control"
                     placeholder="email"
+                    name="email"
+                    autocomplete="email"
+                    autofocus
                     v-model="email"
                     required
                   />
-                  <i
-                    class="bi bi-envelope field-icon"
-                  ></i>
+                  <i class="bi bi-envelope field-icon"></i>
                 </div>
                 <div class="form-group">
                   <input
                     type="text"
                     class="form-control"
+                    name="login"
                     placeholder="login"
+                    autocomplete="login"
                     v-model="login"
                     required
                   />
-                  <i
-                    class="bi bi-person field-icon"
-                  ></i>
+                  <i class="bi bi-person field-icon"></i>
                 </div>
                 <div class="form-group">
                   <input
@@ -49,9 +55,7 @@
                     v-model="password"
                     required
                   />
-                  <i
-                    class="bi bi-eye field-icon"
-                  ></i>
+                  <i class="bi bi-eye field-icon"></i>
                 </div>
                 <div class="form-group">
                   <input
@@ -62,15 +66,10 @@
                     v-model="confirm_password"
                     required
                   />
-                  <i
-                    class="bi bi-eye field-icon"
-                  ></i>
+                  <i class="bi bi-eye field-icon"></i>
                 </div>
                 <div class="form-group">
-                  <button
-                    type="submit"
-                    class="form-control submit px-3 signin"
-                  >
+                  <button type="submit" class="form-control submit px-3 signin">
                     Sign In
                   </button>
                 </div>
@@ -109,6 +108,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "RegisterComponent",
   props: {
@@ -120,7 +120,28 @@ export default {
       login: "",
       password: "",
       confirm_password: "",
-    }
+    };
+  },
+  methods: {
+    ...mapActions(["registerAuth"]),
+    register() {
+      let user = {
+        email: this.email,
+        login: this.login,
+        password: this.password,
+        confirm_password: this.confirm_password
+      };
+      this.registerAuth(user)
+        .then((res) => {
+          if (res.data.success) {
+            console.log("message de backend register:" +res.data.msg);
+            this.$router.push("/login");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
   mounted() {},
 };
@@ -296,14 +317,14 @@ textarea.form-control {
 
 /*BUTTON*/
 .signin {
-	background: #fbceb5;
-	border: 1px solid #fbceb5;
-	color: #000;	
+  background: #fbceb5;
+  border: 1px solid #fbceb5;
+  color: #000;
 }
 
 .signin:hover {
-	border: 1px solid #fbceb5;
-	background: transparent;
-	color :#fbceb5;
+  border: 1px solid #fbceb5;
+  background: transparent;
+  color: #fbceb5;
 }
 </style>

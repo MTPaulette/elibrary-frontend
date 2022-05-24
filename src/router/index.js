@@ -5,7 +5,6 @@ import LoginPage from "../views/Authentification/Login.vue";
 import RegisterPage from "../views/Authentification/Register.vue";
 import ResetPasswordPage from "../views/Authentification/ResetPassword.vue";
 
-
 Vue.use(VueRouter);
 
 const routes = [
