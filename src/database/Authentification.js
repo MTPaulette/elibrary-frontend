@@ -24,7 +24,7 @@ const actions = {
   //login action
   async loginAuth({ commit }, user) {
     commit("auth_request");
-    let res = await axios.post("http://localhost:5000/api/users/login", user);
+    let res = await axios.post("http://localhost:5000/api/admins/login", user);
     if (res.data.success) {
       const token = res.data.token;
       user = res.data.user;
@@ -47,6 +47,17 @@ const actions = {
     if (res.data.success) {
       commit("register_success", user);
     }
+    return res;
+  },
+
+  //ccccccchhhhhhhhhhheeeeeeeeeeeeeeeeeeeecccccccccccccccckkkkkkkkkkkkkkk
+  async check({ commit }, user) {
+    commit("auth_request");
+    let res = await axios.post("http://localhost:5000/api/admins/check", user);
+    if (res.data.success) {
+      commit("register_success", user);
+    }
+    console.log(res);
     return res;
   },
 };

@@ -122,7 +122,7 @@ export default {
 
           if (res.data.success) {
             console.log("message de backend true:" + res.data.msg);
-            this.$router.push("/resetPassword");
+            //this.$router.push("/resetPassword");
           }
         })
         .catch((err) => {

@@ -69,35 +69,62 @@
                   />
                   <i class="bi bi-eye field-icon"></i>
                 </div>
-                
+
                 <div class="form-group">
                   <select name="faculte" class="form-control" v-model="faculte">
-                    <option v-for="faculte in facultes" :key="faculte.id" :value="faculte.val">{{ faculte.val }}</option>
+                    <option
+                      v-for="faculte in facultes"
+                      :key="faculte.id"
+                      :nomue="faculte.nom"
+                    >
+                      {{ faculte.nom }}
+                    </option>
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
                 </div>
 
                 <div class="form-group">
                   <select name="filiere" class="form-control" v-model="filiere">
-                    <option v-for="filiere in filieres" :key="filiere.id" :value="filiere.val">{{ filiere.val }}</option>
+                    <option
+                      v-for="filiere in filieres"
+                      :key="filiere.id"
+                      :nomue="filiere.nom"
+                    >
+                      {{ filiere.nom }}
+                    </option>
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
                 </div>
 
                 <div class="form-group">
                   <select name="niveau" class="form-control" v-model="niveau">
-                    <option v-for="niveau in niveaux" :key="niveau.id" :value="niveau.val">{{ niveau.val }}</option>
+                    <option
+                      v-for="niveau in niveaux"
+                      :key="niveau.id"
+                      :nomue="niveau.nom"
+                    >
+                      {{ niveau.nom }}
+                    </option>
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
                 </div>
 
                 <div class="form-group">
-                  <select name="specialite" class="form-control" v-model="specialite">
-                    <option v-for="specialite in specialites" :key="specialite.id" :value="specialite.val">{{ specialite.val }}</option>
+                  <select
+                    name="specialite"
+                    class="form-control"
+                    v-model="specialite"
+                  >
+                    <option
+                      v-for="specialite in specialites"
+                      :key="specialite.id"
+                      :nomue="specialite.nom"
+                    >
+                      {{ specialite.nom }}
+                    </option>
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
                 </div>
-
 
                 <div class="form-group">
                   <button type="submit" class="form-control submit px-3 signin">
@@ -150,21 +177,69 @@ export default {
       name: "",
       email: "",
       faculte: "facscience",
-      filiere: "informatiue",
+      filiere: "Filiere",
       niveau: "L3",
       specialite: "Genie Logiciel",
       password: "",
       confirm_password: "",
 
-      //valeurs issues de la bd
-      facultes: [{id: '1', val:'facscience'}, {id: '2', val:'faclettre'}],
-      filieres: [{id: '1', val:'chimie'}, {id: '2', val:'lette bilingue'}, {id: '3', val:'informatiue'}],
-      niveaux: [{id: '1', val:'L1'}, {id: '2', val:'L2'}, {id: '3', val:'L3'}],
-      specialites: [{id: '1', val:'Genie Logiciel'}, {id: '2', val:'boa'}, {id: '3', val:'algebre'}],
+      //nomeurs issues de la bd
+      /*
+      facultes: [{id: '1', nom:'facscience'}, {id: '2', nom:'faclettre'}],
+      filieres: [{id: '1', nom:'chimie'}, {id: '2', nom:'lette bilingue'}, {id: '3', nom:'informatiue'}],
+      niveaux: [{id: '1', nom:'L1'}, {id: '2', nom:'L2'}, {id: '3', nom:'L3'}],
+      specialites: [{id: '1', nom:'Genie Logiciel'}, {id: '2', nom:'boa'}, {id: '3', nom:'algebre'}],
+      */
+
+      //************dynamic loading of filiere*******/
+      loading: false,
+      error: null,
+      facultes: null,
+      filieres: null,
+      niveaux: null,
+      specialites: null,
     };
   },
+
+  created() {
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.fetchData();
+      },
+      { immediate: true }
+    );
+  },
+
   methods: {
-    ...mapActions(["registerAuth"]),
+    ...mapActions(["registerAuth", "getFacultes", "getFilieres", "getNiveaux"]),
+
+    //********************************** */
+    fetchData() {
+      this.error = this.post = null;
+      (this.loading = true),
+        this.getFacultes().then((res) => {
+          this.loading = false;
+          this.facultes = res.data.facultes;
+          console.log(res.data.facultes[1].nom);
+        });
+
+      this.getFilieres().then((res) => {
+        this.loading = false;
+        this.filieres = res.data.filieres;
+        if (this.filieres != null) {
+          this.filiere = res.data.filieres[0].nom;
+        }
+        console.log(res.data.filieres[1].nom);
+      });
+
+      this.getNiveaux().then((res) => {
+        this.loading = false;
+        this.niveaux = res.data.niveaux;
+        console.log(res.data.niveaux[1].nom);
+      });
+    },
+
     register() {
       let user = {
         email: this.email,

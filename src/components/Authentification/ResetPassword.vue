@@ -22,13 +22,16 @@
                   >Reinitialiser votre mot de passe?</router-link
                 >
               </h3>
-              <form action="#" class="signin-form">
+              <form action="#" class="signin-form" @submit.prevent="toCheck">
                 <div class="form-group">
                   <input
                     type="email"
                     class="form-control"
-                    placeholder="email"
                     v-model="email"
+                    placeholder="email"
+                    name="email"
+                    autocomplete="email"
+                    autofocus
                     required
                   />
                   <i class="bi bi-envelope field-icon"></i>
@@ -48,6 +51,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "ResetPasswordComponnent",
   data() {
@@ -58,7 +63,24 @@ export default {
   props: {
     msg: String,
   },
-  mounted() {},
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
+  methods: {
+    ...mapActions(["check"]),
+    toCheck() {
+      let user = {
+        email: this.email,
+      };
+      this.check(user)
+        .then((res) => {
+          console.log("message de backend true:" + res.data.msg);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
