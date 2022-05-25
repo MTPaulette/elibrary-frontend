@@ -3,12 +3,12 @@
     <section class="img js-fullheight">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-6 text-center mb-5 mt-11">
+          <div class="col-md-6 text-center mb-2 mt-2">
             <h2 class="heading-section">
               <img
                 alt="speed learn logo"
-                width="20%"
-                height="20%"
+                width="15%"
+                height="15%"
                 src="../../assets/fille-logo.jpg"
               />
             </h2>
@@ -23,29 +23,30 @@
               <form action="#" class="signin-form" @submit.prevent="register">
                 <div class="form-group">
                   <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="name"
+                    autocomplete="name"
+                    autofocus
+                    v-model="name"
+                    required
+                  />
+                  <i class="bi bi-person field-icon"></i>
+                </div>
+                <div class="form-group">
+                  <input
                     type="email"
                     class="form-control"
                     placeholder="email"
                     name="email"
                     autocomplete="email"
-                    autofocus
                     v-model="email"
                     required
                   />
                   <i class="bi bi-envelope field-icon"></i>
                 </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="login"
-                    placeholder="login"
-                    autocomplete="login"
-                    v-model="login"
-                    required
-                  />
-                  <i class="bi bi-person field-icon"></i>
-                </div>
+
                 <div class="form-group">
                   <input
                     id="password-field"
@@ -68,6 +69,36 @@
                   />
                   <i class="bi bi-eye field-icon"></i>
                 </div>
+                
+                <div class="form-group">
+                  <select name="faculte" class="form-control" v-model="faculte">
+                    <option v-for="faculte in facultes" :key="faculte.id" :value="faculte.val">{{ faculte.val }}</option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <select name="filiere" class="form-control" v-model="filiere">
+                    <option v-for="filiere in filieres" :key="filiere.id" :value="filiere.val">{{ filiere.val }}</option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <select name="niveau" class="form-control" v-model="niveau">
+                    <option v-for="niveau in niveaux" :key="niveau.id" :value="niveau.val">{{ niveau.val }}</option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <select name="specialite" class="form-control" v-model="specialite">
+                    <option v-for="specialite in specialites" :key="specialite.id" :value="specialite.val">{{ specialite.val }}</option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+
+
                 <div class="form-group">
                   <button type="submit" class="form-control submit px-3 signin">
                     Sign In
@@ -116,10 +147,20 @@ export default {
   },
   data() {
     return {
+      name: "",
       email: "",
-      login: "",
+      faculte: "facscience",
+      filiere: "informatiue",
+      niveau: "L3",
+      specialite: "Genie Logiciel",
       password: "",
       confirm_password: "",
+
+      //valeurs issues de la bd
+      facultes: [{id: '1', val:'facscience'}, {id: '2', val:'faclettre'}],
+      filieres: [{id: '1', val:'chimie'}, {id: '2', val:'lette bilingue'}, {id: '3', val:'informatiue'}],
+      niveaux: [{id: '1', val:'L1'}, {id: '2', val:'L2'}, {id: '3', val:'L3'}],
+      specialites: [{id: '1', val:'Genie Logiciel'}, {id: '2', val:'boa'}, {id: '3', val:'algebre'}],
     };
   },
   methods: {
@@ -129,12 +170,12 @@ export default {
         email: this.email,
         login: this.login,
         password: this.password,
-        confirm_password: this.confirm_password
+        confirm_password: this.confirm_password,
       };
       this.registerAuth(user)
         .then((res) => {
           if (res.data.success) {
-            console.log("message de backend register:" +res.data.msg);
+            console.log("message de backend register:" + res.data.msg);
             this.$router.push("/login");
           }
         })
@@ -160,7 +201,7 @@ primary = #fbceb5
   position: relative;
   z-index: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .body:after {
@@ -203,7 +244,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 100%;
+  min-height: 100vh;
 }
 
 .login-wrap {
@@ -275,7 +316,7 @@ a:hover {
 .form-control {
   background: transparent;
   border: none;
-  height: 50px;
+  height: 40px;
   color: rgba(255, 255, 255, 1) !important;
   border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.4);

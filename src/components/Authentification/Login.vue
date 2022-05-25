@@ -117,11 +117,11 @@ export default {
       this.loginAuth(user)
         .then((res) => {
           if (!res.data.email || !res.data.password) {
-            console.log("erreur de email:" +res.data.msg);
+            console.log("erreur de email:" + res.data.msg);
           }
 
           if (res.data.success) {
-            console.log("message de backend true:" +res.data.msg);
+            console.log("message de backend true:" + res.data.msg);
             this.$router.push("/resetPassword");
           }
         })

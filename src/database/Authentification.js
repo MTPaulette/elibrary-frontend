@@ -24,7 +24,7 @@ const actions = {
   //login action
   async loginAuth({ commit }, user) {
     commit("auth_request");
-    let res = await axios.post("http://localhost:5000/api/users/login", user)
+    let res = await axios.post("http://localhost:5000/api/users/login", user);
     if (res.data.success) {
       const token = res.data.token;
       user = res.data.user;
@@ -40,7 +40,10 @@ const actions = {
   //register action
   async registerAuth({ commit }, user) {
     commit("auth_request");
-    let res = await axios.post("http://localhost:5000/api/users/register", user)
+    let res = await axios.post(
+      "http://localhost:5000/api/users/register",
+      user
+    );
     if (res.data.success) {
       commit("register_success", user);
     }
@@ -53,12 +56,10 @@ const mutations = {
     state.status = "loading";
   },
   auth_success(state, token, user) {
-    state.token = token,
-    state.user = user,
-    state.status = state;
+    (state.token = token), (state.user = user), (state.status = state);
   },
   register_success(state, user) {
-    state.user = user
+    state.user = user;
   },
 };
 
