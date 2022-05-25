@@ -13,16 +13,16 @@
 <script>
 // @ is an alias to /src
 import Navbar from "@/components/Acceuil/Navbar.vue";
-//import Carousel from "@/components/Acceuil/Carousel.vue";
-//import Livres from "@/components/Acceuil/Livres.vue";
+import Carousel from "@/components/Acceuil/Carousel.vue";
+import Livres from "@/components/Acceuil/Livres.vue";
 
 
 export default {
    name: "Home",
    components: {
     'navbar' : Navbar,
-    // 'carousel' : Carousel,
-    // 'afficheLivre' : Livres
+    'carousel' : Carousel,
+    'afficheLivre' : Livres
   },
  };
 </script>
