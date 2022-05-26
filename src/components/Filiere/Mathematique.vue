@@ -2,7 +2,7 @@
     <div>
         <div class="all-title-box">
 		<div class="container text-center">
-			<h1><strong>Informatique</strong><span class="m_1">Le meilleur choix pour tous les amoureux du code</span></h1>
+			<h1><strong>Mathématiques</strong><span class="m_1">Le meilleur choix pour tous les amoureux du code</span></h1>
 		</div>
 	    </div>
         <div id="overviews" class="section wb">
@@ -26,7 +26,7 @@
 								<h2><a href="#" title="">Licence 1</a></h2>
 							</div>
 							<div class="course-desc">
-								<p>Vous trouverez les bases de l'informatiques dans ses différents domaines: Réseaux, Sécurité, Programmation, etc...</p>
+								<p>Vous trouverez les bases de la mathématique algébrique et analytique</p>
 							</div>
 							<div class="course-rating">
 								<i class="fa fa-star"></i>	
@@ -88,7 +88,7 @@
 								<h2><a href="#" title="">Licence 3</a></h2>
 							</div>
 							<div class="course-desc">
-								<p>En fonction de votre préférence vous trouverez des documents portant sur des domaines de spécialite: <strong>Génie logiciel, Sciences de données,Réseaux et sécurité informatique</strong></p>
+								<p>En fonction de votre préférence vous trouverez des documents portant sur des domaines de spécialite: <strong>Géométrie, Analyse, Statistique et probabilités, Algèbre</strong></p>
 							</div>
 							<div class="course-rating">
 								<i class="fa fa-star"></i>	
@@ -204,7 +204,7 @@
 
 <script>
 export default {
-    name:'Informatique',
+    name:'Mathematique',
 }
 </script>
 

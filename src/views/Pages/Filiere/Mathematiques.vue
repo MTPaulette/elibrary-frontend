@@ -1,18 +1,18 @@
 <template>
     <div>
         <navbar></navbar>
-        <informatique></informatique>
+        <maths></maths>
     </div>
 </template>
 
 <script>
-import Informatique from "@/components/Filiere/Informatique.vue";
+import Mathematique from "@/components/Filiere/Mathematique.vue";
 import Navbar from "@/components/Acceuil/Navbar.vue";
 
 export default {
-    name : 'Informatique',
+    name : 'Mathematiques',
     components:{
-        'informatique' : Informatique,
+        'maths' : Mathematique,
         'navbar' : Navbar,
     }
 }

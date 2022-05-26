@@ -6,7 +6,7 @@
         <header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="index.html">
+				<a class="navbar-brand" href="/">
 					<img src="../../../public/static/homePage/images/logo.png" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,13 +16,13 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-host">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="index.html">Acceuil</a></li>
+						<li class="nav-item active"><a class="nav-link" href="/">Acceuil</a></li>
 						<!-- <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li> -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Faculté des Sciences </a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="course-grid-4.html">Informatique</a>
-								<a class="dropdown-item" href="course-grid-2.html">Mathématiques </a>
+								<a class="dropdown-item" href="/informatiques">Informatique</a>
+								<a class="dropdown-item" href="/mathematiques">Mathématiques </a>
 								<a class="dropdown-item" href="course-grid-3.html">Physique</a>
                                 <a class="dropdown-item" href="course-grid-4.html">Chimie</a>
                                 <a class="dropdown-item" href="course-grid-4.html">Biologie</a>
