@@ -37,7 +37,7 @@
                                 <a class="dropdown-item" href="course-grid-4.html">Lettres Bilingue</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="teachers.html">Enseignant</a></li>
+						<li class="nav-item"><a class="nav-link" href="/enseignants">Enseignant</a></li>
 						<!-- <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li> -->
 						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 					</ul>
