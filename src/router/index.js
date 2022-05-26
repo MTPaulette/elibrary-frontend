@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import LoginPage from "../views/Authentification/Login.vue";
 import Informatiques from "../views/Pages/Filiere/Informatiques.vue";
 import Mathematiques from "../views/Pages/Filiere/Mathematiques.vue";
+import Physiques from "../views/Pages/Filiere/Physiques.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes = [
     path: "/mathematiques",
     name: "mathematiques",
     component: Mathematiques,
+  },
+  {
+    path: "/physiques",
+    name: "physique",
+    component: Physiques,
   },
 
   {
