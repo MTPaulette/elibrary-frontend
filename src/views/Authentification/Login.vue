@@ -1,18 +1,22 @@
 <template>
   <div class="home">
-    <!--img alt="Vue logo" src="../assets/logo.png" /-->
-    <Login />
+    <navbar></navbar>
+    <log></log>
+    <foot></foot>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import Navbar from "@/components/Acceuil/Navbar.vue";
+import Footer from "@/components/Acceuil/Footer.vue";
 import Login from "@/components/Authentification/Login.vue";
 
 export default {
   name: "LoginPage",
   components: {
-    Login,
+    'log':Login,
+    'navbar':Navbar,
+    'foot':Footer
   },
 };
 </script>

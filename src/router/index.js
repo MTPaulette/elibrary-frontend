@@ -6,6 +6,7 @@ import Informatiques from "../views/Pages/Filiere/Informatiques.vue";
 import Mathematiques from "../views/Pages/Filiere/Mathematiques.vue";
 import Physiques from "../views/Pages/Filiere/Physiques.vue";
 import Chimies from "../views/Pages/Filiere/Chimies.vue";
+import Biologies from "../views/Pages/Filiere/Biologies.vue";
 import Enseignants from "../views/Pages/Enseignants/Enseignants.vue";
 
 Vue.use(VueRouter);
@@ -35,6 +36,11 @@ const routes = [
     path: "/chimies",
     name: "chimies",
     component: Chimies,
+  },
+  {
+    path: "/biologies",
+    name: "biologies",
+    component: Biologies,
   },
   {
     path: "/enseignants",
