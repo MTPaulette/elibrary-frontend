@@ -5,6 +5,7 @@
 
 
     <afficheLivre></afficheLivre>
+    <foot></foot>
     <!---<img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />--->
   </div>
@@ -15,6 +16,7 @@
 import Navbar from "@/components/Acceuil/Navbar.vue";
 import Carousel from "@/components/Acceuil/Carousel.vue";
 import Livres from "@/components/Acceuil/Livres.vue";
+import Footer from "@/components/Acceuil/Footer.vue";
 
 
 export default {
@@ -22,7 +24,8 @@ export default {
    components: {
     'navbar' : Navbar,
     'carousel' : Carousel,
-    'afficheLivre' : Livres
+    'afficheLivre' : Livres,
+    'foot' : Footer
   },
  };
 </script>
