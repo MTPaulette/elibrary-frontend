@@ -24,7 +24,7 @@
 								<a class="dropdown-item" href="/informatiques">Informatique</a>
 								<a class="dropdown-item" href="/mathematiques">Mathématiques </a>
 								<a class="dropdown-item" href="/physiques">Physique</a>
-                                <a class="dropdown-item" href="course-grid-4.html">Chimie</a>
+                                <a class="dropdown-item" href="/chimies">Chimie</a>
                                 <a class="dropdown-item" href="course-grid-4.html">Biologie</a>
 							</div>
 						</li>

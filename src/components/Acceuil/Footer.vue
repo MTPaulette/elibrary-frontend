@@ -26,7 +26,7 @@
                             <li><a href="/">Acceuil</a></li>
                             <li><a href="/informatiques">Faculté des sciences</a></li>
                             <li><a href="/géographies">Facultés des lettres</a></li>
-							<li><a href="/contact">Contact</a></li>
+							<li><a href="/enseignants">Enseignants</a></li>
                         </ul><!-- end links -->
                     </div><!-- end clearfix -->
                 </div><!-- end col -->
@@ -38,11 +38,11 @@
                         </div>
 
                         <ul class="footer-links">
-                            <li><a href="mailto:#">paulette.mayogue@facsciences-uy1.cm</a></li>
-                            <li><a href="mailto:#">jordan.ouabo@facsciences-uy1.cm</a></li>
-                            <li><a href="mailto:#">nsangou.adamou20249@facsciences-uy1.cm</a></li>
-                            <li><a href="mailto:#">junior.tchinde@facsciences-uy1.cm</a></li>
-                            <li><a href="mailto:#">luther.kogne@facsciences-uy1.cm</a></li>
+                            <li><a href="#">paulette.mayogue@facsciences-uy1.cm</a></li>
+                            <li><a href="#">jordan.ouabo@facsciences-uy1.cm</a></li>
+                            <li><a href="#">nsangou.adamou20249@facsciences-uy1.cm</a></li>
+                            <li><a href="#">junior.tchinde@facsciences-uy1.cm</a></li>
+                            <li><a href="#">luther.kogne@facsciences-uy1.cm</a></li>
                             
                         </ul><!-- end links -->
                     </div><!-- end clearfix -->
