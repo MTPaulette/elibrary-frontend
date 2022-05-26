@@ -68,7 +68,7 @@ export default {
 primary = #fbceb5
 */
 .imgBg {
-    background-image: url("../../../public/static/images/bg_book_noir_et_blanc.jpeg");
+    background-image: url("../../../public/static/images/bg2.jpg");
 }
 
 .body{
@@ -267,10 +267,12 @@ textarea.form-control {
 
 .checkbox-primary{
   color: #fbceb5;
-  input:checked ~ .checkmark:after {
-	  color: #fbceb5;
-	}
+  input:checked ; 
 }
+.checkmark:after {
+  color: #fbceb5;
+}
+
 
 
 /*BUTTON*/
