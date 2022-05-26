@@ -24,19 +24,8 @@
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Se connecter</button>
 	            </div>
-	            <div class="form-group d-md-flex">
-	            	<div class="w-50">
-		            	<label class="checkbox-wrap checkbox-primary">Se souvenir de moi
-									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
-									</label>
-								</div>
-								<div class="w-50 text-md-right">
-									<a href="#" style="color: #fff">Mot de passe oublié ?</a>
-								</div>
-	            </div>
 	          </form>
-	          <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+	          <p class="w-100 text-center">&mdash; Se connecter avec &mdash;</p>
 	          <div class="social d-flex text-center">
 	          	<a href="#" class="px-2 py-2 m-1 bg-info rounded"><i class="bi bi-facebook mr-2"></i> Facebook</a>
 	          	<a href="#" class="px-2 py-2 m-1 bg-danger rounded"><span class="bi bi-twitter mr-2"></span> Twitter</a>
