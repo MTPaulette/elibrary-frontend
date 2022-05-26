@@ -17,7 +17,7 @@
 									<div class="big-tagline">
 										<h2><strong>E-Library </strong>Université de Yaoundé 1</h2>
 										<p class="lead">Ici vous pouvez trouvez tous les livres, documents et supports de cours pour votre épanouissement intellectuel </p>
-											<a href="#" class="hover-btn-new"><span>Se connecter</span></a>
+											<a href="/login" class="hover-btn-new"><span>Se connecter</span></a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<a href="#" class="hover-btn-new"><span>S'authentifier</span></a>
 									</div>
