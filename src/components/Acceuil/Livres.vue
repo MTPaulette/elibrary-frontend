@@ -114,7 +114,7 @@
 <style scoped>
     @import '../../../public/static/homePage2/css/animate.css';
     /*@import '../../../public/static/homePage2/css/icomoon.css';*/
-    @import '../../../public/static/homePage2/css/bootstrap.css';
+    /*@import '../../../public/static/homePage2/css/bootstrap.css';*/
     @import '../../../public/static/homePage2/css/magnific-popup.css';
     /*@import '../../../public/static/homePage2/css/owl.carousel.min.css';
     @import '../../../public/static/homePage2/css/owl.theme.default.min.css';*/
