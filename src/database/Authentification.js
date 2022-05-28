@@ -24,7 +24,7 @@ const actions = {
   //login action
   async loginAuth({ commit }, user) {
     commit("auth_request");
-    let res = await axios.post("http://localhost:5000/api/admins/login", user);
+    let res = await axios.post("http://localhost:5000/api/users/login", user);
     if (res.data.success) {
       const token = res.data.token;
       user = res.data.user;

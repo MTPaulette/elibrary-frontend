@@ -29,7 +29,7 @@
                     placeholder="name"
                     autocomplete="name"
                     autofocus
-                    v-model="name"
+                    v-model="nom"
                     required
                   />
                   <i class="bi bi-person field-icon"></i>
@@ -72,25 +72,27 @@
 
                 <div class="form-group">
                   <select name="faculte" class="form-control" v-model="faculte">
+                    <option disabled value="">Faculte...</option>
                     <option
                       v-for="faculte in facultes"
                       :key="faculte.id"
-                      :nomue="faculte.nom"
+                      :nom="faculte" 
+                      v-bind:value="faculte.id"
                     >
                       {{ faculte.nom }}
                     </option>
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
                 </div>
-
+                <p class="bg-info">{{filiere}}</p>
                 <div class="form-group">
                   <select name="filiere" class="form-control" v-model="filiere">
+                    <option disabled value="">Filiere...</option>
                     <option
                       v-for="filiere in filieres"
-                      :key="filiere.id"
-                      :nomue="filiere.nom"
+                      :key="filiere.id" v-bind:value="filiere.id"
                     >
-                      {{ filiere.nom }}
+                    {{ filiere.nom }}
                     </option>
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
@@ -98,10 +100,11 @@
 
                 <div class="form-group">
                   <select name="niveau" class="form-control" v-model="niveau">
+                    <option disabled value="">Niveau...</option>
                     <option
                       v-for="niveau in niveaux"
                       :key="niveau.id"
-                      :nomue="niveau.nom"
+                      :value="niveau.id"
                     >
                       {{ niveau.nom }}
                     </option>
@@ -115,10 +118,11 @@
                     class="form-control"
                     v-model="specialite"
                   >
+                    <option disabled value="">Specialité...</option>
                     <option
                       v-for="specialite in specialites"
                       :key="specialite.id"
-                      :nomue="specialite.nom"
+                      :value="specialite.id"
                     >
                       {{ specialite.nom }}
                     </option>
@@ -174,26 +178,20 @@ export default {
   },
   data() {
     return {
-      name: "",
+      nom: "",
       email: "",
-      faculte: "facscience",
-      filiere: "Filiere",
-      niveau: "L3",
-      specialite: "Genie Logiciel",
       password: "",
       confirm_password: "",
-
-      //nomeurs issues de la bd
-      /*
-      facultes: [{id: '1', nom:'facscience'}, {id: '2', nom:'faclettre'}],
-      filieres: [{id: '1', nom:'chimie'}, {id: '2', nom:'lette bilingue'}, {id: '3', nom:'informatiue'}],
-      niveaux: [{id: '1', nom:'L1'}, {id: '2', nom:'L2'}, {id: '3', nom:'L3'}],
-      specialites: [{id: '1', nom:'Genie Logiciel'}, {id: '2', nom:'boa'}, {id: '3', nom:'algebre'}],
-      */
 
       //************dynamic loading of filiere*******/
       loading: false,
       error: null,
+
+      faculte: "",
+      filiere: "",
+      niveau: "",
+      specialite: "",
+
       facultes: null,
       filieres: null,
       niveaux: null,
@@ -212,7 +210,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["registerAuth", "getFacultes", "getFilieres", "getNiveaux"]),
+    ...mapActions(["registerAuth", "getFacultes", "getFilieres", "getNiveaux", "getSpecialites"]),
 
     //********************************** */
     fetchData() {
@@ -221,32 +219,41 @@ export default {
         this.getFacultes().then((res) => {
           this.loading = false;
           this.facultes = res.data.facultes;
-          console.log(res.data.facultes[1].nom);
+          //if (this.facultes != null) {
+            //this.faculte = res.data.facultes[0].nom;
+          //}
+          console.log(res.data.facultes);
         });
 
       this.getFilieres().then((res) => {
         this.loading = false;
         this.filieres = res.data.filieres;
-        if (this.filieres != null) {
-          this.filiere = res.data.filieres[0].nom;
-        }
-        console.log(res.data.filieres[1].nom);
       });
 
       this.getNiveaux().then((res) => {
         this.loading = false;
         this.niveaux = res.data.niveaux;
-        console.log(res.data.niveaux[1].nom);
+      });
+
+      this.getSpecialites().then((res) => {
+        this.loading = false;
+        this.specialites = res.data.specialites;
       });
     },
 
     register() {
       let user = {
+        nom: this.nom,
         email: this.email,
         login: this.login,
         password: this.password,
         confirm_password: this.confirm_password,
+        FaculteId: this.faculte,
+        FiliereId: this.filiere,
+        NiveauId: this.niveau,
+        SpecialiteId: this.specialite
       };
+      console.log(user)
       this.registerAuth(user)
         .then((res) => {
           if (res.data.success) {
