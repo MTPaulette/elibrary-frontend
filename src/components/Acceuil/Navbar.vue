@@ -31,10 +31,10 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">Faculté des Lettres </a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="course-grid-2.html">Géographie</a>
-								<a class="dropdown-item" href="course-grid-3.html">Germanistique</a>
-								<a class="dropdown-item" href="course-grid-4.html">Lettres Françaises</a>
-                                <a class="dropdown-item" href="course-grid-4.html">Lettres Bilingue</a>
+								<a class="dropdown-item" href="#">Géographie</a>
+								<a class="dropdown-item" href="#">Germanistique</a>
+								<a class="dropdown-item" href="#">Lettres Françaises</a>
+                                <a class="dropdown-item" href="#">Lettres Bilingue</a>
 							</div>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="/enseignants">Enseignant</a></li>

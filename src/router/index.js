@@ -8,19 +8,55 @@ import Physiques from "../views/Pages/Filiere/Physiques.vue";
 import Chimies from "../views/Pages/Filiere/Chimies.vue";
 import Biologies from "../views/Pages/Filiere/Biologies.vue";
 import Enseignants from "../views/Pages/Enseignants/Enseignants.vue";
+import InfosDocL1s from "../views/Pages/Filiere/InfosDocL1s.vue";
+import InfosDocL2s from "../views/Pages/Filiere/InfosDocL2s.vue";
+import InfosDocL3s from "../views/Pages/Filiere/InfosDocL3s.vue";
+import InfosDocM1s from "../views/Pages/Filiere/InfosDocM1s.vue";
+import InfosDocM2s from "../views/Pages/Filiere/InfosDocM2s.vue";
+import InfosDoctorats from "../views/Pages/Filiere/InfosDoctorats.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "LoginPage",
+    component: LoginPage,
   },
   {
     path: "/informatiques",
     name: "Informatiques",
     component: Informatiques,
+  },
+  {
+    path: "/informatiques/infosL1",
+    name: "InfosL1",
+    component: InfosDocL1s,
+  },
+  {
+    path: "/informatiques/infosL2",
+    name: "InfosL2",
+    component: InfosDocL2s,
+  },
+  {
+    path: "/informatiques/infosL3",
+    name: "InfosL3",
+    component: InfosDocL3s,
+  },
+  {
+    path: "/informatiques/infosM1",
+    name: "InfosM1",
+    component: InfosDocM1s,
+  },
+  {
+    path: "/informatiques/infosM2",
+    name: "InfosM2",
+    component: InfosDocM2s,
+  },
+  {
+    path: "/informatiques/infosDoctorat",
+    name: "infosDoctorat",
+    component: InfosDoctorats,
   },
   {
     path: "/mathematiques",
@@ -58,9 +94,9 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: "/login",
-    name: "LoginPage",
-    component: LoginPage,
+     path: "/home",
+    name: "Home",
+     component: Home,
   },
 ];
 
