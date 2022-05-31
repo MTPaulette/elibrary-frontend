@@ -9,11 +9,13 @@ import Chimies from "../views/Pages/Filiere/Chimies.vue";
 import Biologies from "../views/Pages/Filiere/Biologies.vue";
 import Enseignants from "../views/Pages/Enseignants/Enseignants.vue";
 import InfosDocL1s from "../views/Pages/Filiere/InfosDocL1s.vue";
+import MatiereInfL1s from "../views/Pages/Filiere/MatiereInfL1s.vue";
 import InfosDocL2s from "../views/Pages/Filiere/InfosDocL2s.vue";
 import InfosDocL3s from "../views/Pages/Filiere/InfosDocL3s.vue";
 import InfosDocM1s from "../views/Pages/Filiere/InfosDocM1s.vue";
 import InfosDocM2s from "../views/Pages/Filiere/InfosDocM2s.vue";
 import InfosDoctorats from "../views/Pages/Filiere/InfosDoctorats.vue";
+import DocEnseignants from "../views/Pages/Enseignants/DocEnseignants.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +29,11 @@ const routes = [
     path: "/informatiques",
     name: "Informatiques",
     component: Informatiques,
+  },
+  {
+    path: "/informatiques/matiereInfL1",
+    name: "MatiereInfL1s",
+    component: MatiereInfL1s,
   },
   {
     path: "/informatiques/infosL1",
@@ -82,6 +89,11 @@ const routes = [
     path: "/enseignants",
     name: "enseignants",
     component: Enseignants,
+  },
+  {
+    path: "/enseignants/docEnseignant",
+    name: "docEnseignant",
+    component: DocEnseignants,
   },
 
   {

@@ -23,7 +23,7 @@
 						</div>
 						<div class="course-br">
 							<div class="course-title">
-								<h2><a href="/informatiques/infosL1" title="">Licence 1</a></h2>
+								<h2><a href="/informatiques/matiereInfL1" title="">Licence 1</a></h2>
 							</div>
 							<div class="course-desc">
 								<p>Vous trouverez les bases de l'informatiques dans ses différents domaines: Réseaux, Sécurité, Programmation, etc...</p>

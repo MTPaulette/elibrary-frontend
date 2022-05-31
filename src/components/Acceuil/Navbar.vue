@@ -16,7 +16,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-host">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="/">Acceuil</a></li>
+						<li class="nav-item active"><a class="nav-link" href="/home">Acceuil</a></li>
 						<!-- <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li> -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle"  id="dropdown-a" data-toggle="dropdown">Faculté des Sciences </a>
@@ -39,11 +39,22 @@
 						</li>
 						<li class="nav-item"><a class="nav-link" href="/enseignants">Enseignant</a></li>
 						<!-- <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li> -->
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Profil</a></li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					 <div id="header">
+    					<form action="#" method="post" id="search">
+     					 <p>
+        					<input type="text" onfocus="defaultInput(this)" onblur="clearInput(this)" name="keyword" id="keyword" value="" />
+      					</p>
+      					<p>
+        					<input type="submit" id="go" value="" />
+      					</p>
+      					<!-- <div class="clear"></div> -->
+    					</form>
+  					</div>
+					<!-- <ul class="nav navbar-nav navbar-right">
                         <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Rechercher</span></a></li>
-                    </ul>
+                    </ul> -->
 				</div>
 			</div>
 		</nav>
@@ -64,4 +75,7 @@ export default {
     @import '../../../public/static/homePage/css/versions.css';
     @import '../../../public/static/homePage/css/responsive.css';
     @import '../../../public/static/homePage/css/custom.css';
+
+
+	@import '../../../public/static/recherche/css/style.css';
 </style>

@@ -17,6 +17,7 @@
 							<h3><a href="#">Titre &amp; Auteur</a></h3>
 							<p>Description du livre</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course ">Signaler</a></span>
 						</div>
 					</div>
 				</div>
@@ -28,6 +29,7 @@
 							<h3><a href="#">Titre &amp; Auteur</a></h3>
 							<p>Description du livre</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
 						</div>
 					</div>
 				</div>
@@ -39,6 +41,7 @@
 							<h3><a href="#">Titre &amp; Auteur</a></h3>
 							<p>Description du livre</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
 						</div>
 					</div>
 				</div>
@@ -50,6 +53,7 @@
 							<h3><a href="#">Titre &amp; Auteur</a></h3>
 							<p>Description du livre</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
 						</div>
 					</div>
 				</div>
@@ -63,6 +67,7 @@
 							<h3><a href="#">Titre &amp; Auteur</a></h3>
 							<p>Description du livre</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
 						</div>
 					</div>
 				</div>
@@ -74,6 +79,7 @@
 							<h3><a href="#">Titre &amp; Auteur</a></h3>
 							<p>Description du livre</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
 						</div>
 					</div>
 				</div>
@@ -85,6 +91,7 @@
 							<h3><a href="#">Titre &amp; Auteur</a></h3>
 							<p>Description du livre</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
 						</div>
 					</div>
 				</div>
@@ -96,6 +103,107 @@
 							<h3><a href="#">Titre &amp; Auteur</a></h3>
 							<p>Description du livre</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 animate-box">
+					<div class="course">
+						<a href="#" class="course-img">
+						</a>
+						<div class="desc">
+							<h3><a href="#">Titre &amp; Auteur</a></h3>
+							<p>Description du livre</p>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 animate-box">
+					<div class="course">
+						<a href="#" class="course-img" >
+						</a>
+						<div class="desc">
+							<h3><a href="#">Titre &amp; Auteur</a></h3>
+							<p>Description du livre</p>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 animate-box">
+					<div class="course">
+						<a href="#" class="course-img" >
+						</a>
+						<div class="desc">
+							<h3><a href="#">Titre &amp; Auteur</a></h3>
+							<p>Description du livre</p>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 animate-box">
+					<div class="course">
+						<a href="#" class="course-img" >
+						</a>
+						<div class="desc">
+							<h3><a href="#">Titre &amp; Auteur</a></h3>
+							<p>Description du livre</p>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+            <div class="row">
+				<div class="col-md-6 animate-box">
+					<div class="course">
+						<a href="#" class="course-img">
+						</a>
+						<div class="desc">
+							<h3><a href="#">Titre &amp; Auteur</a></h3>
+							<p>Description du livre</p>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 animate-box">
+					<div class="course">
+						<a href="#" class="course-img" >
+						</a>
+						<div class="desc">
+							<h3><a href="#">Titre &amp; Auteur</a></h3>
+							<p>Description du livre</p>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 animate-box">
+					<div class="course">
+						<a href="#" class="course-img" >
+						</a>
+						<div class="desc">
+							<h3><a href="#">Titre &amp; Auteur</a></h3>
+							<p>Description du livre</p>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 animate-box">
+					<div class="course">
+						<a href="#" class="course-img" >
+						</a>
+						<div class="desc">
+							<h3><a href="#">Titre &amp; Auteur</a></h3>
+							<p>Description du livre</p>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Télécharger</a></span>
+							<span><a href="#" class="btn btn-primary btn-sm btn-course">Signaler</a></span>
 						</div>
 					</div>
 				</div>

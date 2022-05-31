@@ -11,7 +11,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<a href="#"><img src="#">
+							<a href="/enseignants/docEnseignant"><img src="#">
 							<div class="social">
                                 <a href="#" >Contacter</a>
 							</div></a>
@@ -26,7 +26,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<a href="#"><img src="#">
+							<a href="/enseignants/docEnseignant"><img src="#">
 							<div class="social">
                                 <a href="#" >Contacter</a>
 							</div></a>
@@ -41,7 +41,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<a href="#"><img src="#">
+							<a href="/enseignants/docEnseignant"><img src="#">
 							<div class="social">
                                 <a href="#" >Contacter</a>
 							</div></a>
@@ -56,7 +56,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<a href="#"><img src="#">
+							<a href="/enseignants/docEnseignant"><img src="#">
 							<div class="social">
                                 <a href="#" >Contacter</a>
 							</div></a>
@@ -71,7 +71,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<a href="#"><img src="#">
+							<a href="/enseignants/docEnseignant"><img src="#">
 							<div class="social">
                                 <a href="#" >Contacter</a>
 							</div></a>
@@ -86,7 +86,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<a href="#"><img src="#">
+							<a href="/enseignants/docEnseignant"><img src="#">
 							<div class="social">
                                 <a href="#" >Contacter</a>
 							</div></a>
@@ -101,7 +101,7 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<a href="#"><img src="#">
+							<a href="/enseignants/docEnseignant"><img src="#">
 							<div class="social">
                                 <a href="#" >Contacter</a>
 							</div></a>
@@ -116,7 +116,130 @@
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="our-team">
 						<div class="team-img">
-							<a href="#"><img src="#">
+							<a href="/enseignants/docEnseignant"><img src="#">
+							<div class="social">
+                                <a href="#" >Contacter</a>
+							</div></a>
+						</div>
+						<div class="team-content">
+							<h3 class="title">Nom de l'enseignant</h3>
+							<span class="post">Matière enseignée</span>
+						</div>
+					</div>
+				</div>
+            </div><!-- end row -->
+        </div>
+		<div class="container">
+            <div class="row">
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<a href="/enseignants/docEnseignant"><img src="#">
+							<div class="social">
+                                <a href="#" >Contacter</a>
+							</div></a>
+						</div>
+						<div class="team-content">
+							<h3 class="title">Dr Jiomekong Azanzi</h3>
+							<span class="post">Lecturer in Computer Science</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<a href="/enseignants/docEnseignant"><img src="#">
+							<div class="social">
+                                <a href="#" >Contacter</a>
+							</div></a>
+						</div>
+						<div class="team-content">
+							<h3 class="title">Nom de l'enseignant</h3>
+							<span class="post">Matière enseignée</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<a href="/enseignants/docEnseignant"><img src="#">
+							<div class="social">
+                                <a href="#" >Contacter</a>
+							</div></a>
+						</div>
+						<div class="team-content">
+							<h3 class="title">Nom de l'enseignant</h3>
+							<span class="post">Matière enseignée</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<a href="/enseignants/docEnseignant"><img src="#">
+							<div class="social">
+                                <a href="#" >Contacter</a>
+							</div></a>
+						</div>
+						<div class="team-content">
+							<h3 class="title">Nom de l'enseignant</h3>
+							<span class="post">Matière enseignée</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<a href="/enseignants/docEnseignant"><img src="#">
+							<div class="social">
+                                <a href="#" >Contacter</a>
+							</div></a>
+						</div>
+						<div class="team-content">
+							<h3 class="title">Nom de l'enseignant</h3>
+							<span class="post">Matière enseignée</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<a href="/enseignants/docEnseignant"><img src="#">
+							<div class="social">
+                                <a href="#" >Contacter</a>
+							</div></a>
+						</div>
+						<div class="team-content">
+							<h3 class="title">Nom de l'enseignant</h3>
+							<span class="post">Matière enseignée</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<a href="/enseignants/docEnseignant"><img src="#">
+							<div class="social">
+                                <a href="#" >Contacter</a>
+							</div></a>
+						</div>
+						<div class="team-content">
+							<h3 class="title">Nom de l'enseignant</h3>
+							<span class="post">Matière enseignée</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<a href="/enseignants/docEnseignant"><img src="#">
 							<div class="social">
                                 <a href="#" >Contacter</a>
 							</div></a>
