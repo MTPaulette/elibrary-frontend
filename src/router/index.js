@@ -1,41 +1,53 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import LoginPage from "../views/Authentification/Login.vue";
-import RegisterPage from "../views/Authentification/Register.vue";
-import ResetPasswordPage from "../views/Authentification/ResetPassword.vue";
+
+import Authentification from "../views/Authentification.vue";
+import Login from "../components/Authentification/Login.vue";
+import Register from "../components/Authentification/Register.vue";
+import ResetPassword from "../components/Authentification/ResetPassword.vue";
+
+import Chat from "../views/Chat.vue";
+import ChatComponent from "../components/Chat.vue";
+
+
 
 Vue.use(VueRouter);
 
 const routes = [
+
+  { 
+    path: '', component: Authentification,
+    children: [
+      {
+        path: '/register',
+        component: Register
+      },
+      {
+        path: 'login',
+        component: Login
+      },
+      {
+        path: 'resetPassword',
+        component: ResetPassword
+      }
+    ]
+  },
+
   {
     path: "/",
     name: "Home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Home.vue"),
   },
-  {
-    path: "/login",
-    name: "LoginPage",
-    component: LoginPage,
-  },
-  {
-    path: "/register",
-    name: "RegisterPage",
-    component: RegisterPage,
-  },
-  {
-    path: "/resetPassword",
-    name: "ResetPasswordPage",
-    component: ResetPasswordPage,
+
+  { 
+    path: '/chat', component: Chat,
+    children: [
+      {
+        path: '/',
+        component: ChatComponent
+      },
+    ]
   },
 ];
 

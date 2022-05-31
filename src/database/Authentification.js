@@ -60,6 +60,15 @@ const actions = {
     console.log(res);
     return res;
   },
+  /************************************************************************ */
+  async createDocument({ commit }, document) {
+    commit("auth_request");
+    let res = await axios.post("http://localhost:5000/api/documents/createDocument", document);
+    //let res = await axios.post("http://localhost:5000/wanda/uploadFile", document);
+    return res;
+  }
+
+
 };
 
 const mutations = {
