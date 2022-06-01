@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Documents d'informatique Licence 1 filière X</h2>
+					<h2>Documents d'informatique Licence 1 de l'Unité d'enseignement X</h2>
 					<p>Disponibles pour vous 7J/7, 24h/24</p>
 				</div>
 			</div>

@@ -37,9 +37,7 @@
 //import Login from "@/components/Authentification/Login.vue";
 export default {
     name: 'Caroussel',
-    components: {
-        // 'login':Login
-    }
+    
 }
 </script>
 
@@ -49,4 +47,5 @@ export default {
     @import '../../../public/static/homePage/css/versions.css';
     @import '../../../public/static/homePage/css/responsive.css';
     @import '../../../public/static/homePage/css/custom.css'; 
+	
 </style>

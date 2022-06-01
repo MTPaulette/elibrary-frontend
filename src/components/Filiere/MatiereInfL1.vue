@@ -31,7 +31,7 @@
 											<span class="mu-book-overview-icon-box">
 												<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 											</span>
-											<h4>Nom de L'UE</h4>
+											<a href="/informatiques/infosL1"><h4>Nom de L'UE</h4></a>
 											<p>Description de l'UE</p>
 										</div>
 									</div>
@@ -43,7 +43,7 @@
 											<span class="mu-book-overview-icon-box">
 												<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 											</span>
-											<h4>Nom de L'UE</h4>
+											<a href="/informatiques/infosL1"><h4>Nom de L'UE</h4></a>
 											<p>Description de l'UE</p>
 										</div>
 									</div>
@@ -55,7 +55,7 @@
 											<span class="mu-book-overview-icon-box">
 												<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 											</span>
-											<h4>Nom de L'UE</h4>
+											<a href="/informatiques/infosL1"><h4>Nom de L'UE</h4></a>
 											<p>Description de l'UE</p>
 										</div>
 									</div>
@@ -67,7 +67,7 @@
 											<span class="mu-book-overview-icon-box">
 												<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 											</span>
-											<h4>Nom de L'UE</h4>
+											<a href="/informatiques/infosL1"><h4>Nom de L'UE</h4></a>
 											<p>Description de l'UE</p>
 										</div>
 									</div>
@@ -79,7 +79,7 @@
 											<span class="mu-book-overview-icon-box">
 												<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 											</span>
-											<h4>Nom de L'UE</h4>
+											<a href="/informatiques/infosL1"><h4>Nom de L'UE</h4></a>
 											<p>Description de l'UE</p>
 										</div>
 									</div>
@@ -89,9 +89,9 @@
 									<div class="col-md-3 col-sm-6">
 										<div class="mu-book-overview-single">
 											<span class="mu-book-overview-icon-box">
-												<i class="fa fa-gg" aria-hidden="true"></i>
+												<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 											</span>
-											<h4>Nom de L'UE</h4>
+											<a href="/informatiques/infosL1"><h4>Nom de L'UE</h4></a>
 											<p>Description de l'UE</p>
 										</div>
 									</div>
@@ -101,9 +101,9 @@
 									<div class="col-md-3 col-sm-6">
 										<div class="mu-book-overview-single">
 											<span class="mu-book-overview-icon-box">
-												<i class="fa fa-wpforms" aria-hidden="true"></i>
+												<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 											</span>
-											<h4>Nom de L'UE</h4>
+											<a href="/informatiques/infosL1"><h4>Nom de L'UE</h4></a>
 											<p>Description de l'UE</p>
 										</div>
 									</div>
@@ -115,6 +115,7 @@
 
 						</div>
 					</div>
+        
     </div>
 </template>
 
@@ -125,5 +126,7 @@ export default {
 </script>
 
 <style scoped>
+
+
 @import '../../../public/static/homePage3/style.css';
 </style>

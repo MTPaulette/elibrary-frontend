@@ -52,7 +52,7 @@
 						</div>
 						<div class="course-br">
 							<div class="course-title">
-								<h2><a href="/informatiques/infosL2" title="">Licence 2</a></h2>
+								<h2><a href="/informatiques/matiereInfL1" title="">Licence 2</a></h2>
 							</div>
 							<div class="blog-desc">
 								<p>Ce niveau correspond à des compétentes moyennes et générales </p>
@@ -85,7 +85,7 @@
 						</div>
 						<div class="course-br">
 							<div class="course-title">
-								<h2><a href="/informatiques/infosL3" title="">Licence 3</a></h2>
+								<h2><a href="/informatiques/matiereInfL1" title="">Licence 3</a></h2>
 							</div>
 							<div class="course-desc">
 								<p>En fonction de votre préférence vous trouverez des documents portant sur des domaines de spécialite: <strong>Génie logiciel, Sciences de données,Réseaux et sécurité informatique</strong></p>
@@ -113,7 +113,7 @@
 						</div>
 						<div class="course-br">
 							<div class="course-title">
-								<h2><a href="/informatiques/infosM1" title="">Master 1</a></h2>
+								<h2><a href="/informatiques/matiereInfL1" title="">Master 1</a></h2>
 							</div>
 							<div class="course-desc">
 								<p>Faites des recherches pour préparer votre maîtrise</p>
@@ -146,7 +146,7 @@
 						</div>		
 						<div class="course-br">
 							<div class="course-title">
-								<h2><a href="/informatiques/infosM2" title="">Master 2</a></h2>
+								<h2><a href="/informatiques/matiereInfL1" title="">Master 2</a></h2>
 							</div>
 							<div class="course-desc">
 								<p>Retrouvez des anciennes thèses de Master pour vous inspirer</p>
@@ -175,7 +175,7 @@
 						</div>
 						<div class="course-br">
 							<div class="course-title">
-								<h2><a href="/informatiques/infosDoctorat" title="">Doctorant</a></h2>
+								<h2><a href="/informatiques/matiereInfL1" title="">Doctorant</a></h2>
 							</div>
 							<div class="course-desc">
 								<p>Retrouvez des anciennes thèses de Doctorat pour vous inspirer</p>

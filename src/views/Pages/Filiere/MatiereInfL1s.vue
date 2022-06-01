@@ -1,7 +1,7 @@
 <template>
     <div>
         <navbar></navbar>
-        <matiere-infos-l1></matiere-infos-l1>
+        <matiereInfosL1></matiereInfosL1>
         <foot></foot>
     </div>
 </template>
@@ -14,7 +14,7 @@ import Footer from "@/components/Acceuil/Footer.vue";
 export default {
     name : 'Informatique',
     components:{
-        'matiere-infos-l1' : MatiereInfL1,
+        'matiereInfosL1' : MatiereInfL1,
         'navbar' : Navbar,
         'foot' : Footer,
     }
