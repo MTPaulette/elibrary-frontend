@@ -1,0 +1,35 @@
+main{
+    margin:0px;
+    padding: 2rem 1.5rem;
+    background: #ffffff;
+ }
+
+ .card-single{
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 2px;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    -ms-border-radius:;
+    -o-border-radius:;
+}
+ 
+ .card-single span:last-child{
+    color: #8390A2;
+ 
+ }
+ 
+ .card-single span:first-child{
+    font-size: 4rem;
+ }
+.recent-grid{
+    margin-top: 3.5rem;
+    display: grid;
+    padding: 2rem;
+ }
+table{
+   padding: 1rem;
+   border-collapse: collapse;
+}
