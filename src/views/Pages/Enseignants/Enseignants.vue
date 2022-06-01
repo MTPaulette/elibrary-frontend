@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <navbar></navbar>
-        <enseignants></enseignants>
-        <foot></foot>
-    </div>
+  <div>
+    <navbar></navbar>
+    <enseignants></enseignants>
+    <foot></foot>
+  </div>
 </template>
 
 <script>
@@ -12,15 +12,13 @@ import Navbar from "@/components/Acceuil/Navbar.vue";
 import Footer from "@/components/Acceuil/Footer.vue";
 
 export default {
-    name : 'Enseignants',
-    components:{
-        'enseignants' : Enseignant,
-        'navbar' : Navbar,
-        'foot' : Footer
-    }
-}
+  name: "Enseignants",
+  components: {
+    enseignants: Enseignant,
+    navbar: Navbar,
+    foot: Footer,
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

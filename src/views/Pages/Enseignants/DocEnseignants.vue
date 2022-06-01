@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <navbar></navbar>
-        <docEnseignants></docEnseignants>
-        <foot></foot>
-    </div>
+  <div>
+    <navbar></navbar>
+    <docEnseignants></docEnseignants>
+    <foot></foot>
+  </div>
 </template>
 
 <script>
@@ -13,15 +13,13 @@ import Footer from "@/components/Acceuil/Footer.vue";
 // import DocEnseignant from '../../../components/Enseignants/DocEnseignant.vue';
 
 export default {
-    name : 'DocEnseignants',
-    components:{
-        'docEnseignants' : DocEnseignant,
-        'navbar' : Navbar,
-        'foot' : Footer
-    }
-}
+  name: "DocEnseignants",
+  components: {
+    docEnseignants: DocEnseignant,
+    navbar: Navbar,
+    foot: Footer,
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
