@@ -84,7 +84,6 @@
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
                 </div>
-                <p class="bg-info">{{filiere}}</p>
                 <div class="form-group">
                   <select name="filiere" class="form-control" v-model="filiere">
                     <option disabled value="">Filiere...</option>

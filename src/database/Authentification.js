@@ -50,17 +50,7 @@ const actions = {
     return res;
   },
 
-  //ccccccchhhhhhhhhhheeeeeeeeeeeeeeeeeeeecccccccccccccccckkkkkkkkkkkkkkk
-  async check({ commit }, user) {
-    commit("auth_request");
-    let res = await axios.post("http://localhost:5000/api/admins/check", user);
-    if (res.data.success) {
-      commit("register_success", user);
-    }
-    console.log(res);
-    return res;
-  },
-  /************************************************************************ */
+  //upload de fichier
   async createDocument({ commit }, document) {
     commit("auth_request");
     let res = await axios.post("http://localhost:5000/api/documents/createDocument", document);

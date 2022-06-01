@@ -80,8 +80,67 @@
                   />
                   <i class="bi bi-envelope field-icon"></i>
                 </div>
+                <!---------------------------------------------------------------->
+                <div class="form-group">
+                  <select name="faculte" class="form-control" v-model="faculte">
+                    <option disabled value="">Faculte...</option>
+                    <option
+                      v-for="faculte in facultes"
+                      :key="faculte.id"
+                      :nom="faculte" 
+                      v-bind:value="faculte.id"
+                    >
+                      {{ faculte.nom }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+                <div class="form-group">
+                  <select name="filiere" class="form-control" v-model="filiere">
+                    <option disabled value="">Filiere...</option>
+                    <option
+                      v-for="filiere in filieres"
+                      :key="filiere.id" v-bind:value="filiere.id"
+                    >
+                    {{ filiere.nom }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
 
+                <div class="form-group">
+                  <select name="niveau" class="form-control" v-model="niveau">
+                    <option disabled value="">Niveau...</option>
+                    <option
+                      v-for="niveau in niveaux"
+                      :key="niveau.id"
+                      :value="niveau.id"
+                    >
+                      {{ niveau.nom }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
 
+                <div class="form-group">
+                  <select
+                    name="specialite"
+                    class="form-control"
+                    v-model="specialite"
+                  >
+                    <option disabled value="">Specialité...</option>
+                    <option
+                      v-for="specialite in specialites"
+                      :key="specialite.id"
+                      :value="specialite.id"
+                    >
+                      {{ specialite.nom }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+
+                <!---------------------------------------------------------------->
 
                 <div class="form-group">
                   <button type="submit" class="form-control submit px-3 signin">
@@ -119,7 +178,17 @@ export default {
       auteur: "",
       type: "",
       file: "",
-      contenu: {}
+      contenu: {},
+
+      faculte: "",
+      filiere: "",
+      niveau: "",
+      specialite: "",
+
+      facultes: null,
+      filieres: null,
+      niveaux: null,
+      specialites: null,
     };
   },
   props: {
@@ -128,8 +197,49 @@ export default {
   computed: {
     ...mapGetters(["isLoggedIn"]),
   },
+
+  created() {
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.fetchData();
+      },
+      { immediate: true }
+    );
+  },
+
   methods: {
-    ...mapActions(["createDocument"]),
+    ...mapActions(["createDocument", "getFacultes", "getFilieres", "getNiveaux", "getSpecialites"]),
+
+    //********************************** */
+    fetchData() {
+      this.error = this.post = null;
+      (this.loading = true),
+        this.getFacultes().then((res) => {
+          this.loading = false;
+          this.facultes = res.data.facultes;
+          //if (this.facultes != null) {
+            //this.faculte = res.data.facultes[0].nom;
+          //}
+          console.log(res.data.facultes);
+        });
+
+      this.getFilieres().then((res) => {
+        this.loading = false;
+        this.filieres = res.data.filieres;
+      });
+
+      this.getNiveaux().then((res) => {
+        this.loading = false;
+        this.niveaux = res.data.niveaux;
+      });
+
+      this.getSpecialites().then((res) => {
+        this.loading = false;
+        this.specialites = res.data.specialites;
+      });
+    },
+
     processFile(event){
       this.file = event.target.files[0];
     },
@@ -140,23 +250,16 @@ export default {
       formData.append('auteur', this.auteur);
       formData.append('resume', this.resume);
       formData.append('type', this.type);
-      let document = {
-        titre: this.titre,
-        resume: this.resume,
-        auteur: this.auteur,
-        type: this.type,
-        contenu: formData
-        //contenu: this.contenu,
-      };
+
+      formData.append('FaculteId', this.faculte);
+      formData.append('FiliereId', this.filiere);
+      formData.append('NiveauId', this.niveau);
+      formData.append('SpecialiteId', this.specialite);
       //console.log(document);
       this.createDocument(formData)
         .then((res) => {
             console.log("message de backend");
             console.log(res.data);
-            console.log('do umen************')
-            console.log(document)
-
-
 
           if (!res.data.success) {
             console.log("fin  de backend");
