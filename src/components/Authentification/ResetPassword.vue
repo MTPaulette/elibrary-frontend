@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <section class="img js-fullheight">
+    <section class="img js-fullheight" v-if="isLoggedIn">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-6 text-center mb-5 mt-11">

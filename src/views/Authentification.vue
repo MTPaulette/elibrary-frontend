@@ -1,13 +1,9 @@
 <template lang="">
-    <div>
-        <router-view /> 
-    </div>
+  <div>
+    <router-view />
+  </div>
 </template>
 <script>
-export default {
-    
-}
+export default {};
 </script>
-<style lang="">
-    
-</style>
+<style lang=""></style>

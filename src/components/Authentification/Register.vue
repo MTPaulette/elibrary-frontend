@@ -76,7 +76,7 @@
                     <option
                       v-for="faculte in facultes"
                       :key="faculte.id"
-                      :nom="faculte" 
+                      :nom="faculte"
                       v-bind:value="faculte.id"
                     >
                       {{ faculte.nom }}
@@ -89,9 +89,10 @@
                     <option disabled value="">Filiere...</option>
                     <option
                       v-for="filiere in filieres"
-                      :key="filiere.id" v-bind:value="filiere.id"
+                      :key="filiere.id"
+                      v-bind:value="filiere.id"
                     >
-                    {{ filiere.nom }}
+                      {{ filiere.nom }}
                     </option>
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
@@ -209,7 +210,13 @@ export default {
   },
 
   methods: {
-    ...mapActions(["registerAuth", "getFacultes", "getFilieres", "getNiveaux", "getSpecialites"]),
+    ...mapActions([
+      "registerAuth",
+      "getFacultes",
+      "getFilieres",
+      "getNiveaux",
+      "getSpecialites",
+    ]),
 
     //********************************** */
     fetchData() {
@@ -219,7 +226,7 @@ export default {
           this.loading = false;
           this.facultes = res.data.facultes;
           //if (this.facultes != null) {
-            //this.faculte = res.data.facultes[0].nom;
+          //this.faculte = res.data.facultes[0].nom;
           //}
           console.log(res.data.facultes);
         });
@@ -250,9 +257,9 @@ export default {
         FaculteId: this.faculte,
         FiliereId: this.filiere,
         NiveauId: this.niveau,
-        SpecialiteId: this.specialite
+        SpecialiteId: this.specialite,
       };
-      console.log(user)
+      console.log(user);
       this.registerAuth(user)
         .then((res) => {
           if (res.data.success) {

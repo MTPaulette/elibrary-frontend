@@ -17,7 +17,13 @@
         <div class="row justify-content-center">
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
-              <form action="#" class="signin-form" enctype="multipart/form-data" method="POST" @submit.prevent="newDocument">
+              <form
+                action="#"
+                class="signin-form"
+                enctype="multipart/form-data"
+                method="POST"
+                @submit.prevent="newDocument"
+              >
                 <div class="form-group">
                   <input
                     type="text"
@@ -32,7 +38,13 @@
                 </div>
 
                 <div class="form-group">
-                  <input type="file" id="myFile" name="myFile" class="form-control" @change="processFile($event)">
+                  <input
+                    type="file"
+                    id="myFile"
+                    name="myFile"
+                    class="form-control"
+                    @change="processFile($event)"
+                  />
                   <!--input
                     type="text"
                     class="form-control"
@@ -87,7 +99,7 @@
                     <option
                       v-for="faculte in facultes"
                       :key="faculte.id"
-                      :nom="faculte" 
+                      :nom="faculte"
                       v-bind:value="faculte.id"
                     >
                       {{ faculte.nom }}
@@ -100,9 +112,10 @@
                     <option disabled value="">Filiere...</option>
                     <option
                       v-for="filiere in filieres"
-                      :key="filiere.id" v-bind:value="filiere.id"
+                      :key="filiere.id"
+                      v-bind:value="filiere.id"
                     >
-                    {{ filiere.nom }}
+                      {{ filiere.nom }}
                     </option>
                   </select>
                   <i class="bi bi-chevron-down field-icon"></i>
@@ -147,7 +160,6 @@
                     Sign In
                   </button>
                 </div>
-
               </form>
               <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
               <div class="social d-flex text-center">
@@ -209,7 +221,13 @@ export default {
   },
 
   methods: {
-    ...mapActions(["createDocument", "getFacultes", "getFilieres", "getNiveaux", "getSpecialites"]),
+    ...mapActions([
+      "createDocument",
+      "getFacultes",
+      "getFilieres",
+      "getNiveaux",
+      "getSpecialites",
+    ]),
 
     //********************************** */
     fetchData() {
@@ -219,7 +237,7 @@ export default {
           this.loading = false;
           this.facultes = res.data.facultes;
           //if (this.facultes != null) {
-            //this.faculte = res.data.facultes[0].nom;
+          //this.faculte = res.data.facultes[0].nom;
           //}
           console.log(res.data.facultes);
         });
@@ -240,26 +258,26 @@ export default {
       });
     },
 
-    processFile(event){
+    processFile(event) {
       this.file = event.target.files[0];
     },
     newDocument() {
       const formData = new FormData();
-      formData.append('myFile', this.file);
-      formData.append('titre', this.titre);
-      formData.append('auteur', this.auteur);
-      formData.append('resume', this.resume);
-      formData.append('type', this.type);
+      formData.append("myFile", this.file);
+      formData.append("titre", this.titre);
+      formData.append("auteur", this.auteur);
+      formData.append("resume", this.resume);
+      formData.append("type", this.type);
 
-      formData.append('FaculteId', this.faculte);
-      formData.append('FiliereId', this.filiere);
-      formData.append('NiveauId', this.niveau);
-      formData.append('SpecialiteId', this.specialite);
+      formData.append("FaculteId", this.faculte);
+      formData.append("FiliereId", this.filiere);
+      formData.append("NiveauId", this.niveau);
+      formData.append("SpecialiteId", this.specialite);
       //console.log(document);
       this.createDocument(formData)
         .then((res) => {
-            console.log("message de backend");
-            console.log(res.data);
+          console.log("message de backend");
+          console.log(res.data);
 
           if (!res.data.success) {
             console.log("fin  de backend");

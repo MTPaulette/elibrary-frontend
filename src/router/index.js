@@ -9,45 +9,46 @@ import ResetPassword from "../components/Authentification/ResetPassword.vue";
 import Chat from "../views/Chat.vue";
 import ChatComponent from "../components/Chat.vue";
 
+import Layout from "../views/base/Layout.vue";
 
 
 Vue.use(VueRouter);
 
 const routes = [
-
-  { 
-    path: '', component: Authentification,
+  {
+    path: "",
+    component: Authentification,
     children: [
       {
-        path: '/register',
-        component: Register
+        path: "/register",
+        component: Register,
       },
       {
-        path: 'login',
-        component: Login
+        path: "login",
+        component: Login,
       },
       {
-        path: 'resetPassword',
-        component: ResetPassword
-      }
-    ]
+        path: "resetPassword",
+        component: ResetPassword,
+      },
+    ],
   },
 
   {
-    path: "/",
-    name: "Home",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Home.vue"),
+    path: "/layout",
+    name: "Layout",
+    component: Layout,
   },
 
-  { 
-    path: '/chat', component: Chat,
+  {
+    path: "/chat",
+    component: Chat,
     children: [
       {
-        path: '/',
-        component: ChatComponent
+        path: "/",
+        component: ChatComponent,
       },
-    ]
+    ],
   },
 ];
 

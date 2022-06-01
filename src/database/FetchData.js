@@ -27,7 +27,9 @@ const actions = {
 
   //toutes les specialites
   async getSpecialites() {
-    let res = await axios.get("http://localhost:5000/api/specialites/specialites");
+    let res = await axios.get(
+      "http://localhost:5000/api/specialites/specialites"
+    );
     return res;
   },
 };
