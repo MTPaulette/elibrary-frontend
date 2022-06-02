@@ -1,20 +1,18 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-<<<<<<< HEAD
 
 import Authentification from "../views/Authentification.vue";
 import Login from "../components/Authentification/Login.vue";
 import Register from "../components/Authentification/Register.vue";
 import ResetPassword from "../components/Authentification/ResetPassword.vue";
 
-import Chat from "../views/Chat.vue";
-import ChatComponent from "../components/Chat.vue";
+// import Chat from "../views/Chat.vue";
+// import ChatComponent from "../components/Chat.vue";
 
 import Layout from "../views/base/Layout.vue";
 
-=======
-import Home from "../views/Home.vue";
-import LoginPage from "../views/Authentification/Login.vue";
+//import Home from "../views/Home.vue";
+// import LoginPage from "../views/Authentification/Login.vue";
 import Informatiques from "../views/Pages/Filiere/Informatiques.vue";
 import Mathematiques from "../views/Pages/Filiere/Mathematiques.vue";
 import Physiques from "../views/Pages/Filiere/Physiques.vue";
@@ -35,14 +33,13 @@ import HomeAdmin from "../views/AdminDashboard/Home.vue";
 import Simpleform from "../components/AdminDashboard/Form/Simpleform.vue";
 import Advancedform from "../components/AdminDashboard/Form/Advancedform.vue";
 import Table from "../components/AdminDashboard/Table.vue";
->>>>>>> samuel
+import User from "../components/AdminDashboard/Form/User.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-<<<<<<< HEAD
-    path: "",
+    path: "/",
     component: Authentification,
     children: [
       {
@@ -50,18 +47,19 @@ const routes = [
         component: Register,
       },
       {
-        path: "login",
+        path: "/login",
         component: Login,
       },
       {
-        path: "resetPassword",
+        path: "/resetPassword",
         component: ResetPassword,
       },
     ],
-=======
+    /*
     path: "/",
     name: "LoginPage",
     component: LoginPage,
+    */
   },
   {
     path: "/informatiques",
@@ -127,44 +125,31 @@ const routes = [
     path: "/enseignants",
     name: "enseignants",
     component: Enseignants,
->>>>>>> samuel
   },
 
   {
-<<<<<<< HEAD
     path: "/layout",
     name: "Layout",
     component: Layout,
-=======
+  },
+  {
     path: "/enseignants/docEnseignant",
     name: "docEnseignant",
     component: DocEnseignants,
   },
-
+  /*
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
->>>>>>> samuel
-  },
-
-  {
-<<<<<<< HEAD
     path: "/chat",
     component: Chat,
     children: [
       {
         path: "/",
         component: ChatComponent,
-=======
     path: "/home",
     name: "Home",
     component: Home,
   },
+  */
   {
     path: "/Advancedform",
     name: "HomeAdmin",
@@ -181,7 +166,10 @@ const routes = [
       {
         path: "/Table",
         component: Table,
->>>>>>> samuel
+      },
+      {
+        path: "/User",
+        component: User,
       },
     ],
   },
