@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import LoginPage from "../views/Authentification/Login.vue";
+import RegisterComponent from "../components/Auth/Register.vue";
 import Informatiques from "../views/Pages/Filiere/Informatiques.vue";
 import Mathematiques from "../views/Pages/Filiere/Mathematiques.vue";
 import Physiques from "../views/Pages/Filiere/Physiques.vue";
@@ -24,6 +25,11 @@ const routes = [
     path: "/",
     name: "LoginPage",
     component: LoginPage,
+  },
+  {
+    path: "/register",
+    name: "RegisterComponent",
+    component: RegisterComponent,
   },
   {
     path: "/informatiques",
@@ -106,9 +112,9 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-     path: "/home",
+    path: "/home",
     name: "Home",
-     component: Home,
+    component: Home,
   },
 ];
 
