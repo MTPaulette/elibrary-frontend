@@ -17,6 +17,12 @@ import InfosDocM2s from "../views/Pages/Filiere/InfosDocM2s.vue";
 import InfosDoctorats from "../views/Pages/Filiere/InfosDoctorats.vue";
 import DocEnseignants from "../views/Pages/Enseignants/DocEnseignants.vue";
 
+/**route des pages de l'admin */
+import HomeAdmin from "../views/AdminDashboard/Home.vue";
+import Simpleform from "../components/AdminDashboard/Form/Simpleform.vue";
+import Advancedform from "../components/AdminDashboard/Form/Advancedform.vue";
+import Table from "../components/AdminDashboard/Table.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -109,6 +115,25 @@ const routes = [
     path: "/home",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/Advancedform",
+    name: "HomeAdmin",
+    component: HomeAdmin,
+    children: [
+      {
+        path: "/Simpleform",
+        component: Simpleform,
+      },
+      {
+        path: "/Advancedform",
+        component: Advancedform,
+      },
+      {
+        path: "/Table",
+        component: Table,
+      },
+    ],
   },
 ];
 

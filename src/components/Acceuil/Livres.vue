@@ -34,8 +34,8 @@
                 >
                 <span
                   ><a
-                    :href="livre.contenu"
                     class="btn btn-primary btn-sm btn-course"
+                    @click="telecharger(livre.id)"
                     >Télécharger</a
                   ></span
                 >
@@ -265,14 +265,23 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getDocumentsActifs"]),
+    ...mapActions(["getDocumentsActifs", "download"]),
 
     //********************************** */
     getDocuments() {
       this.getDocumentsActifs().then((res) => {
-        this.loading = false;
         this.livres = res.data.allDocument;
         console.log(this.livres);
+      });
+    },
+    telecharger(id) {
+      console.log("id" + id);
+
+      this.download(id).then((res) => {
+        // let doc = res.data.allDocument;
+        // return doc.download(doc.contenu)
+        //return res
+        console.log(res.data);
       });
     },
   },
