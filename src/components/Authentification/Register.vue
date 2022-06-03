@@ -3,40 +3,50 @@
     <section class="img js-fullheight">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-6 text-center mb-5 mt-11">
+          <div class="col-md-6 text-center mb-2 mt-2">
             <h2 class="heading-section">
               <img
                 alt="speed learn logo"
-                width="20%"
-                height="20%"
+                width="15%"
+                height="15%"
                 src="../../assets/fille-logo.jpg"
               />
             </h2>
           </div>
-
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center" id="link">
-                <router-link to="/register" 
-                  >Creer un compte?</router-link
-                >
+                <router-link to="/login">Avez-vous un compte?</router-link>
               </h3>
-              <form action="#" class="signin-form" @submit.prevent="toLogin">
+              <form action="#" class="signin-form" @submit.prevent="register">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    placeholder="name"
+                    autocomplete="name"
+                    autofocus
+                    v-model="nom"
+                    required
+                  />
+                  <i class="bi bi-person field-icon"></i>
+                </div>
                 <div class="form-group">
                   <input
                     type="email"
                     class="form-control"
-                    v-model="email"
                     placeholder="email"
                     name="email"
                     autocomplete="email"
-                    autofocus
+                    v-model="email"
                     required
                   />
                   <i class="bi bi-envelope field-icon"></i>
                 </div>
+
                 <div class="form-group">
                   <input
                     id="password-field"
@@ -49,57 +59,98 @@
                   <i class="bi bi-eye field-icon"></i>
                 </div>
                 <div class="form-group">
+                  <input
+                    id="password-field"
+                    type="password"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                    v-model="confirm_password"
+                    required
+                  />
+                  <i class="bi bi-eye field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <select name="faculte" class="form-control" v-model="faculte">
+                    <option disabled value="">Faculte...</option>
+                    <option
+                      v-for="faculte in facultes"
+                      :key="faculte.id"
+                      :nom="faculte"
+                      v-bind:value="faculte.id"
+                    >
+                      {{ faculte.nom }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+                <div class="form-group">
+                  <select name="filiere" class="form-control" v-model="filiere">
+                    <option disabled value="">Filiere...</option>
+                    <option
+                      v-for="filiere in filieres"
+                      :key="filiere.id"
+                      v-bind:value="filiere.id"
+                    >
+                      {{ filiere.nom }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <select name="niveau" class="form-control" v-model="niveau">
+                    <option disabled value="">Niveau...</option>
+                    <option
+                      v-for="niveau in niveaux"
+                      :key="niveau.id"
+                      :value="niveau.id"
+                    >
+                      {{ niveau.nom }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+
+                <div class="form-group">
+                  <select
+                    name="specialite"
+                    class="form-control"
+                    v-model="specialite"
+                  >
+                    <option disabled value="">Specialité...</option>
+                    <option
+                      v-for="specialite in specialites"
+                      :key="specialite.id"
+                      :value="specialite.id"
+                    >
+                      {{ specialite.nom }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down field-icon"></i>
+                </div>
+
+                <div class="form-group">
                   <button type="submit" class="form-control submit px-3 signin">
                     Sign In
                   </button>
                 </div>
-                <div class="form-group d-md-flex">
+                <!--div class="form-group d-md-flex">
                   <div class="w-50">
                     <label for="remember" class="checkbox-wrap">
                       <input
                         type="checkbox"
                         name="remember"
-                        v-model="rememberMe"
                         id=""
                         class="mx-3"
                       />
                       <span class="rememberme">Remember Me</span>
                     </label>
-          <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-              <div class="login-wrap p-0">
-                <h3 class="mb-4 text-center">
-                  <a href="/register">Avez-vous déjà un compte ?</a>
-                </h3>
-                <form action="#" class="signin-form">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Username"
-                      required
-                    />
-                  </div>
-                  <div class="form-group">
-                    <input
-                      id="password-field"
-                      type="password"
-                      class="form-control"
-                      placeholder="Password"
-                      required
-                    />
-                    <span
-                      toggle="#password-field"
-                      class="fa fa-fw fa-eye field-icon toggle-password"
-                    ></span>
-
                   </div>
                   <div class="w-50 text-md-right">
-                    <router-link to="/resetPassword"
-                      >Forgot Password</router-link
-                    >
+                    <router-link to="/reinitialise">Forgot Password</router-link>
                   </div>
-                </div>
+                </div-->
               </form>
               <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
               <div class="social d-flex text-center">
@@ -120,38 +171,100 @@
 
 <script>
 import { mapActions } from "vuex";
-import { mapGetters } from "vuex";
 export default {
-  name: "LoginComponnent",
-  data() {
-    return {
-      email: "",
-      password: "",
-      rememberMe: "",
-    };
-  },
+  name: "RegisterComponent",
   props: {
     msg: String,
   },
-  computed: {
-    ...mapGetters(["isLoggedIn"]),
-  },
-  methods: {
-    ...mapActions(["loginAuth"]),
-    toLogin() {
-      let user = {
-        email: this.email,
-        password: this.password,
-      };
-      this.loginAuth(user)
-        .then((res) => {
-          if (!res.data.email || !res.data.password) {
-            console.log("erreur de email:" + res.data.msg);
-          }
+  data() {
+    return {
+      nom: "",
+      email: "",
+      password: "",
+      confirm_password: "",
 
+      //************dynamic loading of filiere*******/
+      loading: false,
+      error: null,
+
+      faculte: "",
+      filiere: "",
+      niveau: "",
+      specialite: "",
+
+      facultes: null,
+      filieres: null,
+      niveaux: null,
+      specialites: null,
+    };
+  },
+
+  created() {
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.fetchData();
+      },
+      { immediate: true }
+    );
+  },
+
+  methods: {
+    ...mapActions([
+      "registerAuth",
+      "getFacultes",
+      "getFilieres",
+      "getNiveaux",
+      "getSpecialites",
+    ]),
+
+    //********************************** */
+    fetchData() {
+      this.error = this.post = null;
+      (this.loading = true),
+        this.getFacultes().then((res) => {
+          this.loading = false;
+          this.facultes = res.data.facultes;
+          //if (this.facultes != null) {
+          //this.faculte = res.data.facultes[0].nom;
+          //}
+          console.log(res.data.facultes);
+        });
+
+      this.getFilieres().then((res) => {
+        this.loading = false;
+        this.filieres = res.data.filieres;
+      });
+
+      this.getNiveaux().then((res) => {
+        this.loading = false;
+        this.niveaux = res.data.niveaux;
+      });
+
+      this.getSpecialites().then((res) => {
+        this.loading = false;
+        this.specialites = res.data.specialites;
+      });
+    },
+
+    register() {
+      let user = {
+        nom: this.nom,
+        email: this.email,
+        login: this.login,
+        password: this.password,
+        confirm_password: this.confirm_password,
+        FaculteId: this.faculte,
+        FiliereId: this.filiere,
+        NiveauId: this.niveau,
+        SpecialiteId: this.specialite,
+      };
+      console.log(user);
+      this.registerAuth(user)
+        .then((res) => {
           if (res.data.success) {
-            console.log("message de backend true:" + res.data.msg);
-            //this.$router.push("/resetPassword");
+            console.log("message de backend register:" + res.data.msg);
+            this.$router.push("/login");
           }
         })
         .catch((err) => {
@@ -159,6 +272,7 @@ export default {
         });
     },
   },
+  mounted() {},
 };
 </script>
 
@@ -175,7 +289,7 @@ primary = #fbceb5
   position: relative;
   z-index: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .body:after {
@@ -218,7 +332,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 100%;
+  min-height: 100vh;
 }
 
 .login-wrap {
@@ -290,7 +404,7 @@ a:hover {
 .form-control {
   background: transparent;
   border: none;
-  height: 50px;
+  height: 40px;
   color: rgba(255, 255, 255, 1) !important;
   border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.4);

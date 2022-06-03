@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <section class="img js-fullheight">
+    <section class="img js-fullheight" v-if="isLoggedIn">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-6 text-center mb-5 mt-11">
@@ -13,17 +13,16 @@
               />
             </h2>
           </div>
-
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center" id="link">
-                <router-link to="/register" 
-                  >Creer un compte?</router-link
+                <router-link to="/register"
+                  >Reinitialiser votre mot de passe?</router-link
                 >
               </h3>
-              <form action="#" class="signin-form" @submit.prevent="toLogin">
+              <form action="#" class="signin-form" @submit.prevent="toCheck">
                 <div class="form-group">
                   <input
                     type="email"
@@ -38,78 +37,11 @@
                   <i class="bi bi-envelope field-icon"></i>
                 </div>
                 <div class="form-group">
-                  <input
-                    id="password-field"
-                    type="password"
-                    class="form-control"
-                    placeholder="Password"
-                    v-model="password"
-                    required
-                  />
-                  <i class="bi bi-eye field-icon"></i>
-                </div>
-                <div class="form-group">
                   <button type="submit" class="form-control submit px-3 signin">
                     Sign In
                   </button>
                 </div>
-                <div class="form-group d-md-flex">
-                  <div class="w-50">
-                    <label for="remember" class="checkbox-wrap">
-                      <input
-                        type="checkbox"
-                        name="remember"
-                        v-model="rememberMe"
-                        id=""
-                        class="mx-3"
-                      />
-                      <span class="rememberme">Remember Me</span>
-                    </label>
-          <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-              <div class="login-wrap p-0">
-                <h3 class="mb-4 text-center">
-                  <a href="/register">Avez-vous déjà un compte ?</a>
-                </h3>
-                <form action="#" class="signin-form">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Username"
-                      required
-                    />
-                  </div>
-                  <div class="form-group">
-                    <input
-                      id="password-field"
-                      type="password"
-                      class="form-control"
-                      placeholder="Password"
-                      required
-                    />
-                    <span
-                      toggle="#password-field"
-                      class="fa fa-fw fa-eye field-icon toggle-password"
-                    ></span>
-
-                  </div>
-                  <div class="w-50 text-md-right">
-                    <router-link to="/resetPassword"
-                      >Forgot Password</router-link
-                    >
-                  </div>
-                </div>
               </form>
-              <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-              <div class="social d-flex text-center">
-                <a href="#" class="px-2 py-2 m-1 rounded facebook"
-                  ><i class="bi bi-facebook mr-2"></i> Facebook</a
-                >
-                <a href="#" class="px-2 py-2 m-1 rounded twitter"
-                  ><i class="bi bi-twitter mr-2"></i> Twitter</a
-                >
-              </div>
             </div>
           </div>
         </div>
@@ -122,12 +54,10 @@
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
 export default {
-  name: "LoginComponnent",
+  name: "ResetPasswordComponnent",
   data() {
     return {
       email: "",
-      password: "",
-      rememberMe: "",
     };
   },
   props: {
@@ -137,22 +67,14 @@ export default {
     ...mapGetters(["isLoggedIn"]),
   },
   methods: {
-    ...mapActions(["loginAuth"]),
-    toLogin() {
+    ...mapActions(["check"]),
+    toCheck() {
       let user = {
         email: this.email,
-        password: this.password,
       };
-      this.loginAuth(user)
+      this.check(user)
         .then((res) => {
-          if (!res.data.email || !res.data.password) {
-            console.log("erreur de email:" + res.data.msg);
-          }
-
-          if (res.data.success) {
-            console.log("message de backend true:" + res.data.msg);
-            //this.$router.push("/resetPassword");
-          }
+          console.log("message de backend true:" + res.data.msg);
         })
         .catch((err) => {
           console.log(err);
