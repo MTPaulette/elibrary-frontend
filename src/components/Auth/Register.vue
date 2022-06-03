@@ -9,7 +9,7 @@
                 alt="speed learn logo"
                 width="15%"
                 height="15%"
-                src="../../assets/fille-logo.jpg"
+                src="../../assets/logo.png"
               />
             </h2>
           </div>
@@ -328,7 +328,7 @@ a:hover {
 
 /*COVER BG*/
 .img {
-  background-image: url("../../../public/static/images/bg_book_noir_et_blanc.jpeg");
+  background-image: url("../../../public/static/images/bg2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

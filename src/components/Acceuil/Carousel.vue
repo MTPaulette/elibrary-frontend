@@ -28,9 +28,9 @@
                         Ici vous pouvez trouvez tous les livres, documents et
                         supports de cours pour votre épanouissement intellectuel
                       </p>
-                      <!-- <a href="/login" class="hover-btn-new"><span>Se connecter</span></a>
+                      <a href="/" class="hover-btn-new"><span>S'authentifier</span></a>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<a href="#" class="hover-btn-new"><span>S'authentifier</span></a> -->
+											<a href="/register" class="hover-btn-new"><span>S'enregistrer</span></a>
                     </div>
                   </div>
                 </div>
@@ -62,4 +62,7 @@ export default {
 @import "../../../public/static/homePage/css/versions.css";
 @import "../../../public/static/homePage/css/responsive.css";
 @import "../../../public/static/homePage/css/custom.css";
+.first-section{
+     background-image:url('../../../public/static/homePage/images/slider-01.jpg');
+ }
 </style>

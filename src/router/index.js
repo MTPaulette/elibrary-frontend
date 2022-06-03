@@ -13,6 +13,11 @@ import Layout from "../views/base/Layout.vue";
 
 //import Home from "../views/Home.vue";
 // import LoginPage from "../views/Authentification/Login.vue";
+
+import Home from "../views/Home.vue";
+import LoginPage from "../views/Authentification/Login.vue";
+import RegisterComponent from "../components/Auth/Register.vue";
+
 import Informatiques from "../views/Pages/Filiere/Informatiques.vue";
 import Mathematiques from "../views/Pages/Filiere/Mathematiques.vue";
 import Physiques from "../views/Pages/Filiere/Physiques.vue";
@@ -60,6 +65,11 @@ const routes = [
     name: "LoginPage",
     component: LoginPage,
     */
+  },
+  {
+    path: "/register",
+    name: "RegisterComponent",
+    component: RegisterComponent,
   },
   {
     path: "/informatiques",
