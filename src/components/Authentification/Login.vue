@@ -22,6 +22,7 @@
                   >Creer un compte?</router-link
                 >
               </h3>
+              <span class="tiny bg-danger" v-if="error">Email ou mot de passe incorrect</span>
               <form action="#" class="signin-form" @submit.prevent="toLogin">
                 <div class="form-group">
                   <input
@@ -96,6 +97,7 @@ export default {
   name: "LoginComponnent",
   data() {
     return {
+      error: false,
       email: "",
       password: "",
       rememberMe: "",
@@ -105,7 +107,7 @@ export default {
     msg: String,
   },
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters(["isLoggedIn", "user"]),
   },
   methods: {
     ...mapActions(["loginAuth"]),
@@ -117,12 +119,13 @@ export default {
       this.loginAuth(user)
         .then((res) => {
           if (!res.data.email || !res.data.password) {
+            this.error = true;
             console.log("erreur de email:" + res.data.msg);
           }
 
           if (res.data.success) {
             console.log("message de backend true:" + res.data.msg);
-            //this.$router.push("/resetPassword");
+            this.$router.push("/resetPassword");
           }
         })
         .catch((err) => {
