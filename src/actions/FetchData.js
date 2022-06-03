@@ -39,23 +39,6 @@ const actions = {
     return res;
   },
 
-  //toutes les specialites
-  async download(id) {
-    console.log("**************************************************");
-    console.log(id);
-    console.log(id.params);
-    const ids = 2;
-    let res = await axios.get(
-      `http://localhost:5000/api/documents/telecharger/${ids}`
-      // "http://localhost:5000/api/documents/telecharger/2"
-      // "http://localhost:5000/api/documents/telecharger", {
-      //   params: {
-      //     id: id
-      //   }
-      // }
-    );
-    return res;
-  },
 };
 
 const mutations = {};

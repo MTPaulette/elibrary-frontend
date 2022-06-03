@@ -11,8 +11,8 @@ import ResetPassword from "../components/Authentification/ResetPassword.vue";
 
 import Layout from "../views/base/Layout.vue";
 
-//import Home from "../views/Home.vue";
 // import LoginPage from "../views/Authentification/Login.vue";
+import Home from "../views/Home.vue";
 import Informatiques from "../views/Pages/Filiere/Informatiques.vue";
 import Mathematiques from "../views/Pages/Filiere/Mathematiques.vue";
 import Physiques from "../views/Pages/Filiere/Physiques.vue";
@@ -39,7 +39,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/login",
     component: Authentification,
     children: [
       {
@@ -137,19 +137,11 @@ const routes = [
     name: "docEnseignant",
     component: DocEnseignants,
   },
-  /*
   {
-    path: "/chat",
-    component: Chat,
-    children: [
-      {
-        path: "/",
-        component: ChatComponent,
     path: "/home",
     name: "Home",
     component: Home,
   },
-  */
   {
     path: "/Advancedform",
     name: "HomeAdmin",
