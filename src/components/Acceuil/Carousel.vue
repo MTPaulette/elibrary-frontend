@@ -62,4 +62,7 @@ export default {
 @import "../../../public/static/homePage/css/versions.css";
 @import "../../../public/static/homePage/css/responsive.css";
 @import "../../../public/static/homePage/css/custom.css";
+.first-section{
+     background-image:url('../../../public/static/homePage/images/slider-01.jpg');
+ }
 </style>
