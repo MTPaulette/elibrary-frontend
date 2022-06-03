@@ -795,6 +795,7 @@ a img.aligncenter {
 }
 .box-slider .carousel-inner{
 	height: 100%;
+    width: 100%;
 }
 .box-slider .carousel-item{
 	height: 100%;
@@ -908,6 +909,7 @@ a img.aligncenter {
     overflow: hidden;
     height: 100%;
 	vertical-align: middle;
+    background-image:url('images/slider-01.jpg');
 }
 
 .first-section::before {
@@ -933,7 +935,7 @@ a img.aligncenter {
 }
 
 .first-section h2 strong{
-	color: #eea412;
+	color: #eea412;   
 }
 
 .first-section .lead {
@@ -943,7 +945,7 @@ a img.aligncenter {
     margin: 0;
     line-height: inherit;
     color: #ffffff;
-}
+} 
 
 .macbookright {
     width: 980px;
@@ -982,11 +984,11 @@ a img.aligncenter {
 }
 
 
-.box-slider .first-section{
+/* .box-slider .first-section{
 	display: table;
 	position: relative;
 	width: 100%;
-}
+} */
 .dtab{
 	display: table-cell;
 	vertical-align: middle;

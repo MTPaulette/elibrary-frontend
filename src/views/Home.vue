@@ -3,7 +3,6 @@
     <navbar></navbar>
     <carousel></carousel>
 
-
     <afficheLivre></afficheLivre>
     <foot></foot>
     <!---<img alt="Vue logo" src="../assets/logo.png" />
@@ -12,23 +11,19 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Navbar from "@/components/Acceuil/Navbar.vue";
 import Carousel from "@/components/Acceuil/Carousel.vue";
 import Livres from "@/components/Acceuil/Livres.vue";
 import Footer from "@/components/Acceuil/Footer.vue";
 
-
 export default {
-   name: "Home",
-   components: {
-    'navbar' : Navbar,
-    'carousel' : Carousel,
-    'afficheLivre' : Livres,
-    'foot' : Footer
+  name: "Home",
+  components: {
+    navbar: Navbar,
+    carousel: Carousel,
+    afficheLivre: Livres,
+    foot: Footer,
   },
- };
+};
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

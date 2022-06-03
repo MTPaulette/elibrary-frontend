@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-              <i class="bi bi-facebook"></i>
+    <i class="bi bi-facebook"></i>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -22,8 +22,8 @@ export default {
     let res = new Request("http://127.0.0.1:8000/api/laravel", {
       method: "get",
     });
-    fetch(res).then((response)=> {
-      for(let donnee of response.headers.entries()) {
+    fetch(res).then((response) => {
+      for (let donnee of response.headers.entries()) {
         console.log(donnee[0] + ":" + donnee[1]);
       }
     });

@@ -2,25 +2,74 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import LoginPage from "../views/Authentification/Login.vue";
+import RegisterComponent from "../components/Auth/Register.vue";
 import Informatiques from "../views/Pages/Filiere/Informatiques.vue";
 import Mathematiques from "../views/Pages/Filiere/Mathematiques.vue";
 import Physiques from "../views/Pages/Filiere/Physiques.vue";
 import Chimies from "../views/Pages/Filiere/Chimies.vue";
 import Biologies from "../views/Pages/Filiere/Biologies.vue";
 import Enseignants from "../views/Pages/Enseignants/Enseignants.vue";
+import InfosDocL1s from "../views/Pages/Filiere/InfosDocL1s.vue";
+import MatiereInfL1s from "../views/Pages/Filiere/MatiereInfL1s.vue";
+import InfosDocL2s from "../views/Pages/Filiere/InfosDocL2s.vue";
+import InfosDocL3s from "../views/Pages/Filiere/InfosDocL3s.vue";
+import InfosDocM1s from "../views/Pages/Filiere/InfosDocM1s.vue";
+import InfosDocM2s from "../views/Pages/Filiere/InfosDocM2s.vue";
+import InfosDoctorats from "../views/Pages/Filiere/InfosDoctorats.vue";
+import DocEnseignants from "../views/Pages/Enseignants/DocEnseignants.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "LoginPage",
+    component: LoginPage,
+  },
+  {
+    path: "/register",
+    name: "RegisterComponent",
+    component: RegisterComponent,
   },
   {
     path: "/informatiques",
     name: "Informatiques",
     component: Informatiques,
+  },
+  {
+    path: "/informatiques/matiereInfL1",
+    name: "MatiereInfL1s",
+    component: MatiereInfL1s,
+  },
+  {
+    path: "/informatiques/infosL1",
+    name: "InfosL1",
+    component: InfosDocL1s,
+  },
+  {
+    path: "/informatiques/infosL2",
+    name: "InfosL2",
+    component: InfosDocL2s,
+  },
+  {
+    path: "/informatiques/infosL3",
+    name: "InfosL3",
+    component: InfosDocL3s,
+  },
+  {
+    path: "/informatiques/infosM1",
+    name: "InfosM1",
+    component: InfosDocM1s,
+  },
+  {
+    path: "/informatiques/infosM2",
+    name: "InfosM2",
+    component: InfosDocM2s,
+  },
+  {
+    path: "/informatiques/infosDoctorat",
+    name: "infosDoctorat",
+    component: InfosDoctorats,
   },
   {
     path: "/mathematiques",
@@ -47,6 +96,11 @@ const routes = [
     name: "enseignants",
     component: Enseignants,
   },
+  {
+    path: "/enseignants/docEnseignant",
+    name: "docEnseignant",
+    component: DocEnseignants,
+  },
 
   {
     path: "/about",
@@ -58,9 +112,9 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: "/login",
-    name: "LoginPage",
-    component: LoginPage,
+    path: "/home",
+    name: "Home",
+    component: Home,
   },
 ];
 
