@@ -6,7 +6,9 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
-            <img src="../../../public/static/homePage/images/logo.png" alt="" />
+            <!-- <img src="../../../public/static/homePage/images/logo.png" alt="" /> -->
+            <img class="logo" src="../../../public/static/images/logo.jpg" alt="" />
+
           </a>
           <button
             class="navbar-toggler"
@@ -108,4 +110,9 @@ export default {
 @import "../../../public/static/homePage/css/custom.css";
 
 @import "../../../public/static/recherche/css/style.css";
+
+.logo{
+  width:180px;
+  height : 110px;
+}
 </style>

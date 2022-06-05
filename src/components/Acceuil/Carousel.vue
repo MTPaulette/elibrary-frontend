@@ -19,7 +19,7 @@
             <div class="dtab">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-12 col-sm-12 text-right">
+                  <div class="col-md-6 col-sm-12 text-right">
                     <div class="big-tagline">
                       <h2>
                         <strong>E-Library </strong>Université de Yaoundé 1
