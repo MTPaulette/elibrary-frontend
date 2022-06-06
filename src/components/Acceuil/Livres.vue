@@ -35,7 +35,10 @@
                 <span
                   ><a
                     class="btn btn-primary btn-sm btn-course"
-					:href="'http://localhost:5000/api/documents/telecharger/'+livre.id"
+                    :href="
+                      'http://localhost:5000/api/documents/telecharger/' +
+                      livre.id
+                    "
                     >Télécharger</a
                   ></span
                 >

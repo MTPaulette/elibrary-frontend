@@ -1,11 +1,14 @@
 import axios from "axios";
 //import router from '../router';
 const URL = "http://localhost:5000/api/";
-const state = {};
-
-const getters = {};
 
 const actions = {
+  //toutes les ues
+  async getUes() {
+    let res = await axios.get(URL + "ues/ues");
+    return res;
+  },
+
   //toutes les facultes
   async getFacultes() {
     let res = await axios.get(URL + "facultes/facultes");
@@ -38,14 +41,8 @@ const actions = {
     );
     return res;
   },
-
 };
 
-const mutations = {};
-
 export default {
-  state,
-  getters,
   actions,
-  mutations,
 };

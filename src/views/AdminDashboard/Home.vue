@@ -1,5 +1,6 @@
 <template>
   <div class="homeAdmin">
+  <!-- <div class="homeAdmin" v-if="currentUser.username"> -->
     <aside id="left-panel" class="left-panel">
       <nav class="navbar navbar-expand-sm navbar-default">
         <Sidebar></Sidebar>
@@ -29,11 +30,19 @@ export default {
     Navbar: Navbar,
     Breadcrumbs: Breadcrumbs,
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push("/login");
+    }
+  },
 };
-
 </script>
 <style>
-
 .homeAdmin {
   text-align: left;
 }

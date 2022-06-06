@@ -1,411 +1,214 @@
-<template>
-    <div>
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-              <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Form elements</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="form-elements">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Charts</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="icon-grid-2 menu-icon"></i>
-              <span class="menu-title">Tables</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="tables">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-              <i class="icon-contract menu-icon"></i>
-              <span class="menu-title">Icons</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="icons">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-              <i class="icon-ban menu-icon"></i>
-              <span class="menu-title">Error pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="error">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/documentation/documentation.html">
-              <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+<template lang="">
+  <div>
+    <!-- <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default"> -->
+
+    <div class="navbar-header">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#main-menu"
+        aria-controls="main-menu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="./"
+        ><img src="../../assets/fille-logo.jpg" class="w-25 h-25"  alt="Logo"
+      /></a>
+      <a class="navbar-brand hidden" href="./"
+        ><img src="images/logo2.png" alt="Logo"
+      /></a>
     </div>
+
+    <div id="main-menu" class="main-menu collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="index.html">
+            <i class="menu-icon fa fa-dashboard"></i>Accueil
+          </a>
+        </li>
+        <h3 class="menu-title">Gestion</h3>
+        <!-- /.menu-title -->
+        <li class="menu-item-has-children dropright">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="menu-icon fa fa-laptop"></i>Nouveau</a
+          >
+          <ul class="sub-menu children dropdown-menu">
+            <li>
+              <i class="fa fa-puzzle-piece"></i
+              ><a href="NewDocument">Document</a>
+            </li>
+            <li>
+              <i class="fa fa-id-badge"></i><a href="NewTeacher">Enseignant</a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-item-has-children dropright">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="menu-icon fa fa-table"></i>Documents</a
+          >
+          <ul class="sub-menu children dropdown-menu">
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="UpdateDocument">Modification</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="BlockDocument">Suspension</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="Unblockdocument">Restauration</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="menu-item-has-children dropright">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="menu-icon fa fa-th"></i>Enseignant</a
+          >
+          <ul class="sub-menu children dropdown-menu">
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="UpdateTeacher">Modification</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="BlockTeacher">Suspension</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="UnblockTeacher">Restauration</a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-item-has-children dropright">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="menu-icon fa fa-th"></i>Etudiant</a
+          >
+          <ul class="sub-menu children dropdown-menu">
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="BlockStudent">Suspension</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="UnblockStudent">Restauration</a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-item-has-children dropright">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="menu-icon fa fa-th"></i>Corbeille</a
+          >
+          <ul class="sub-menu children dropdown-menu">
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="DeletedDocuments">Document</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="DeletedTeachers">Enseignant</a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-item-has-children dropright">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="menu-icon fa fa-th"></i>Suspension</a
+          >
+          <ul class="sub-menu children dropdown-menu">
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="blockedDocuments">Document</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="blockedTeachers">Enseignant</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="blockedStudents">Etudiant</a>
+            </li>
+          </ul>
+        </li>
+
+        <h3 class="menu-title">Notifications</h3>
+        <li>
+          <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Nouveau</a>
+        </li>
+        <li>
+          <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Boite d'envoi</a>
+        </li>
+        <li>
+          <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Boite de reception</a>
+        </li>
+
+        <h3 class="menu-title">Analyse & Rapport</h3>
+        <li>
+          <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Analyse</a>
+        </li>
+        <li>
+          <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Rapport</a>
+        </li>
+
+        <h3 class="menu-title">Paramètres</h3>
+        <li>
+          <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profil Utilisateur</a>
+        </li>
+        <li>
+          <a href="#"> <i class="menu-icon fa fa-power-off"></i>Deconnexion</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+    <!-- </nav>
+    </aside> -->
+  </div>
 </template>
 <script>
-export default {
-  name: "Sidebar",
-    
-}
+export default {};
 </script>
-<style scoped>
-/* Sidebar */
-
-.sidebar {
-  min-height: calc(100vh - 60px);
-  background: #fff;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 500;
-  padding: 0;
-  width: 235px;
-  z-index: 11;
-  transition: width 0.25s ease, background 0.25s ease;
-  -webkit-transition: width 0.25s ease, background 0.25s ease;
-  -moz-transition: width 0.25s ease, background 0.25s ease;
-  -ms-transition: width 0.25s ease, background 0.25s ease;
+<style>
+ul li {
+  list-style: none;
 }
-  .sidebarv .nav {
-    overflow: hidden;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    margin-bottom: 60px;
-  }
-    .nav-item {
-    transition-duration: 0.25s;
-      transition-property: background;
-      -webkit-transition-property: background;
-    }
-      .nav-item .collapse {
-        z-index: 999;
-      }
-
-      .nav-item .nav-link {
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-        padding: .8125rem 1.937rem .8125rem 1rem;
-        color: #6C7383;
-        border-radius: 8px;
-        transition-duration: 0.45s;
-        transition-property: color;
-        -webkit-transition-property: color;
-      }
-        .nav-item .nav-link i {
-          color: inherit;
-        }
-        /*
-          &.menu-icon {
-            font-size: $sidebar-icon-font-size;
-            line-height: 1;
-            margin-right: 1rem;
-            .rtl & {
-              margin-left: 2rem;
-              margin-right: 0;
-            }
-            color: $sidebar-light-menu-icon-color;
-            &:before {
-              vertical-align: middle;
-            }
-          }
-          &.menu-arrow {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            margin-left: auto;
-            margin-right: 0;
-            color: $sidebar-light-menu-arrow-color;
-            .rtl & {
-              margin-left: 0;
-              margin-right: auto;
-            }
-
-            &:before {
-              content: "\e649";
-              font-family: "themify";
-              font-style: normal;
-              display: block;
-              font-size: 0.687rem;
-              line-height: 10px;
-              @include transition(all .2s ease-in);
-            }
-          }
-        }
-
-        .menu-title {
-          color: inherit;
-          display: inline-block;
-          font-size: $sidebar-menu-font-size;
-          line-height: 1;
-          vertical-align: middle;
-        }
-
-        .badge {
-          margin-left: auto;
-          .rtl & {
-            margin-left: 0;
-            margin-right: auto;
-          }
-        }
-        &[aria-expanded="true"] {
-          i {
-            &.menu-arrow {
-              &:before {
-                @include rotate(90);
-              }
-            }
-          }
-        }
-      }
-
-      &.active {
-        border-radius: 8px;
-        > .nav-link {
-            background: $sidebar-light-menu-active-bg;
-            position: relative;
-            i,
-            .menu-title,
-            .menu-arrow {
-              color: $sidebar-light-menu-active-color;
-            }
-            i {
-              &.menu-arrow {
-                &::before {
-                  content: "\e64b";
-                }
-              }
-            }
-        }
-      }
-      &:hover {
-        > .nav-link {
-          i,
-          .menu-title,
-          .menu-arrow {
-            color: $sidebar-light-menu-active-color;
-          }
-        }
-
-      }
-    }
-
-    &:not(.sub-menu) {
-      margin-top: 1.45rem;
-      margin-left: 1rem;
-      margin-right: 1rem;
-      > .nav-item {
-        margin-top: .2rem;
-        &:hover {
-          > .nav-link, &[aria-expanded="true"] {
-            background: $sidebar-light-menu-hover-bg;
-            color: $sidebar-light-menu-hover-color;                    
-          }
-        }
-        > .nav-link {
-          margin: 0;
-          &[aria-expanded="true"] {
-            border-radius: 8px 8px 0 0;
-            background: $sidebar-light-menu-hover-bg;
-            color: $sidebar-light-menu-active-color;
-          }
-        }
-        &.active {
-          background: $sidebar-light-menu-hover-bg;
-        }
-      }
-    }
-    &.sub-menu {
-      margin-bottom: 0;
-      margin-top:0;
-      list-style: none;
-      padding: $sidebar-submenu-padding;
-      background: $sidebar-light-menu-hover-bg;
-      padding-bottom: 12px;
-
-      .nav-item {
-        padding: 0;
-        &::before {
-          content: '';
-          width: 5px;
-          height: 5px;
-          position: absolute;
-          margin-top: 16px;
-          border-radius: 50%;
-          background: #b2b2b2;
-        }
-        .nav-link {
-          color: $sidebar-light-submenu-color;
-          padding: $sidebar-submenu-item-padding;
-          position: relative;
-          font-size: $sidebar-submenu-font-size;
-          line-height: 1;
-          height: auto;
-          border-top: 0;
-          &:hover {
-            color: $sidebar-light-submenu-hover-color;
-          }
-          &.active {
-            color: $sidebar-light-submenu-active-color;
-            background: transparent;
-          }
-        }
-        &:hover {
-          background: transparent;
-        }
-      }
-    }
-  }
-}
-//sidebar color variation
-.sidebar-dark {
-  .sidebar {
-    background: $sidebar-dark-bg;
-    .nav {
-      .nav-item {
-        .nav-link {
-          color: $sidebar-dark-menu-color;
-          i {
-            color: inherit;
-            &.menu-icon {
-              color: $sidebar-dark-menu-icon-color;
-            }
-          }
-          .menu-title {
-            color: inherit;
-          }
-          &[aria-expanded="true"] {
-            .menu-title {
-              color: $sidebar-dark-submenu-color;
-            }
-          }
-        }
-        &.active {
-          > .nav-link {
-            background: $sidebar-dark-menu-active-bg;
-            .menu-title,
-            i {
-              color: $sidebar-dark-menu-active-color; 
-            }
-          }
-        }
-      }
-      &:not(.sub-menu) {
-        > .nav-item {
-          &:hover {
-            > .nav-link {
-              background: $sidebar-dark-menu-hover-bg;
-              color: $sidebar-dark-menu-hover-color;                                    
-            }
-          }
-          .nav-link {
-            &[aria-expanded="true"] {
-              background: #1a1f26;
-            }
-          }
-        }
-      }
-      &.sub-menu {
-        background: #1a1f26;
-        .nav-item {
-          .nav-link {
-            color: $sidebar-dark-submenu-color;
-            &:before {
-              color: lighten($sidebar-dark-submenu-color, 10%);
-            }
-            &.active {
-              color: $sidebar-dark-menu-active-color;
-              background: transparent;
-            }
-            &:hover {
-              color: $sidebar-dark-submenu-hover-color;
-            }
-          }
-          &:hover {
-            background: transparent;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 991px) {
-  .sidebar-offcanvas {
-    position: fixed;
-    max-height: calc(100vh - 60px);
-    top: $navbar-height;
-    bottom: 0;
-    overflow: auto;
-    right: -235px;
-    -webkit-transition: all 0.25s ease-out;
-    -o-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-    &.active {
-      right: 0;
-    }
-  }
-}
-*/
 </style>

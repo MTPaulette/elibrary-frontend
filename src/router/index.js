@@ -6,13 +6,13 @@ import Login from "../components/Authentification/Login.vue";
 import Register from "../components/Authentification/Register.vue";
 import ResetPassword from "../components/Authentification/ResetPassword.vue";
 
-// import Chat from "../views/Chat.vue";
-// import ChatComponent from "../components/Chat.vue";
+ import Chat from "../views/Chat.vue";
+ import ChatComponent from "../components/Chat.vue";
 
 import Layout from "../views/base/Layout.vue";
 
 // import LoginPage from "../views/Authentification/Login.vue";
-import Home from "../views/Home.vue";
+//import Home from "../views/Home.vue";
 import Informatiques from "../views/Pages/Filiere/Informatiques.vue";
 import Mathematiques from "../views/Pages/Filiere/Mathematiques.vue";
 import Physiques from "../views/Pages/Filiere/Physiques.vue";
@@ -30,13 +30,26 @@ import DocEnseignants from "../views/Pages/Enseignants/DocEnseignants.vue";
 
 /**route des pages de l'admin */
 import HomeAdmin from "../views/AdminDashboard/Home.vue";
-import Simpleform from "../components/AdminDashboard/Form/Simpleform.vue";
-import Advancedform from "../components/AdminDashboard/Form/Advancedform.vue";
+import NewDocument from "../components/AdminDashboard/New/Document.vue";
+import Advancedform from "../components/AdminDashboard/New/Advancedform.vue";
 import Table from "../components/AdminDashboard/Table.vue";
-import User from "../components/AdminDashboard/Form/User.vue";
+import User from "../components/AdminDashboard/New/User.vue";
 
 Vue.use(VueRouter);
+/*
+router.beforeEach((to, from, next) => {
+  const publicPages = ["/login", "register", "/myHome"];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem("user");
 
+  // try to access a restricted page + not logged in
+  if (authRequired && !loggedIn) {
+    return next("/login");
+  }
+
+  next();
+});
+*/
 const routes = [
   {
     path: "/login",
@@ -54,13 +67,119 @@ const routes = [
         path: "/resetPassword",
         component: ResetPassword,
       },
-    ],
-    /*
-    path: "/",
-    name: "LoginPage",
-    component: LoginPage,
-    */
+    ]
   },
+  {
+    path: "/Advancedform",
+    name: "HomeAdmin",
+    component: HomeAdmin,
+    children: [
+      {
+        path: "/NewDocument",
+        component: NewDocument,
+      },
+      {
+        path: "/Advancedform",
+        component: Advancedform,
+      },
+      {
+        path: "/Table",
+        component: Table,
+      },
+      {
+        path: "/User",
+        component: User,
+      },
+
+      /*********** bloqué ***********/
+      {
+        path: "/BlockDocument",
+        name: "BlockDocument",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Block/Document.vue"),
+      },
+      {
+        path: "/BlockStudent",
+        name: "BlockStudent",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Block/Student.vue"),
+      },
+      {
+        path: "/BlockTeacher",
+        name: "BlockTeacher",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Block/Teacher.vue"),
+      },
+
+
+
+      /*********** debloqué ***********/
+      {
+        path: "/UnblockDocument",
+        name: "UnblockDocument",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Unblock/Document.vue"),
+      },
+      {
+        path: "/UnblockStudent",
+        name: "UnblockStudent",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Unblock/Student.vue"),
+      },
+      {
+        path: "/UnblockTeacher",
+        name: "UnblockTeacher",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Unblock/Teacher.vue"),
+      },
+
+
+      /*********** bloqué ***********/
+      {
+        path: "/DeleteDocument",
+        name: "DeleteDocument",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Delete/Document.vue"),
+      },
+      {
+        path: "/DeleteStudent",
+        name: "DeleteStudent",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Delete/Student.vue"),
+      },
+      {
+        path: "/DeleteTeacher",
+        name: "DeleteTeacher",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Delete/Teacher.vue"),
+      },
+    ],
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {
     path: "/informatiques",
     name: "Informatiques",
@@ -138,33 +257,49 @@ const routes = [
     component: DocEnseignants,
   },
   {
-    path: "/home",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/Advancedform",
-    name: "HomeAdmin",
-    component: HomeAdmin,
+    path: "/chat",
+    name: "chat",
+    //redirect: "/NewDocument",
+    component: Chat,
     children: [
       {
-        path: "/Simpleform",
-        component: Simpleform,
-      },
-      {
-        path: "/Advancedform",
-        component: Advancedform,
-      },
-      {
-        path: "/Table",
-        component: Table,
-      },
-      {
-        path: "/User",
-        component: User,
+        path: "/ChatComponent",
+        component: ChatComponent,
       },
     ],
   },
+
+  /*************************
+  {
+    path: "/myHome",
+    name: "MyHome",
+    // lazy-loaded
+    component: () => import("../views/MyHome.vue"),
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    // lazy-loaded
+    component: () => import("../views/Profile.vue"),
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    // lazy-loaded
+    component: () => import("../views/BoardAdmin.vue"),
+  },
+  {
+    path: "/mod",
+    name: "moderator",
+    // lazy-loaded
+    component: () => import("../views/BoardTeacher.vue"),
+  },
+  {
+    path: "/user",
+    name: "user",
+    // lazy-loaded
+    component: () => import("../views/BoardStudent.vue"),
+  },*****************************/
 ];
 
 const router = new VueRouter({

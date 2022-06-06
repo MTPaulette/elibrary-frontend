@@ -7,8 +7,7 @@
             <h2 class="heading-section">
               <img
                 alt="speed learn logo"
-                width="20%"
-                height="20%"
+                class="logo"
                 src="../../assets/fille-logo.jpg"
               />
             </h2>
@@ -18,24 +17,32 @@
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center" id="link">
-                <router-link to="/register" 
-                  >Creer un compte?</router-link
-                >
+                <router-link to="/register">Creer un compte?</router-link>
               </h3>
-              <span class="tiny bg-danger" v-if="error">Email ou mot de passe incorrect</span>
-              <form action="#" class="signin-form" @submit.prevent="toLogin">
+              <form
+                action="#"
+                class="signin-form"
+                @submit.prevent="handleLogin"
+              >
                 <div class="form-group">
                   <input
                     type="email"
                     class="form-control"
-                    v-model="email"
+                    v-model="user.email"
                     placeholder="email"
                     name="email"
                     autocomplete="email"
                     autofocus
-                    required
+                    v-validate="'required'"
                   />
                   <i class="bi bi-envelope field-icon"></i>
+                </div>
+                <div
+                  class="alert alert-danger bg-danger h-25"
+                  role="alert"
+                  v-if="errors.has('email')"
+                >
+                  Email is required!
                 </div>
                 <div class="form-group">
                   <input
@@ -43,18 +50,42 @@
                     type="password"
                     class="form-control"
                     placeholder="Password"
-                    v-model="password"
-                    required
+                    v-model="user.password"
+                    v-validate="'required'"
                   />
                   <i class="bi bi-eye field-icon"></i>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    v-if="errors.has('password')"
+                  >
+                    Password is required!
+                  </div>
                 </div>
+
                 <div class="form-group">
-                  <button type="submit" class="form-control submit px-3 signin">
-                    Sign In
+                  <button class="btn btn-block signin" :disabled="loading">
+                    <span
+                      class="spinner-border spinner-border-sm mr-1"
+                      v-show="loading"
+                    ></span>
+                    <span>Login</span>
                   </button>
                 </div>
+                <div class="form-group">
+                  <div class="alert alert-danger" role="alert" v-if="message">
+                    {{ message }}
+                  </div>
+                </div>
+
+                <!--div class="form-group">
+                  <button type="submit" class="form-control submit px-3 signin">
+                    Login
+                  </button>
+                </div-->
+
                 <div class="form-group d-md-flex">
-                  <div class="w-50">
+                  <!-- <div class="w-50">
                     <label for="remember" class="checkbox-wrap">
                       <input
                         type="checkbox"
@@ -65,7 +96,7 @@
                       />
                       <span class="rememberme">Remember Me</span>
                     </label>
-                  </div>
+                  </div> -->
                   <div class="w-50 text-md-right">
                     <router-link to="/resetPassword"
                       >Forgot Password</router-link
@@ -91,46 +122,52 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { mapGetters } from "vuex";
+import User from "../../models/user";
+
 export default {
   name: "LoginComponnent",
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  },
   data() {
     return {
-      error: false,
-      email: "",
-      password: "",
-      rememberMe: "",
+      user: new User("", ""),
+      loading: false,
+      message: "",
     };
   },
-  props: {
-    msg: String,
-  },
-  computed: {
-    ...mapGetters(["isLoggedIn", "user"]),
+  mounted() {
+    if (this.loggedIn) {
+      this.$router.push("/profile");
+    }
   },
   methods: {
-    ...mapActions(["loginAuth"]),
-    toLogin() {
-      let user = {
-        email: this.email,
-        password: this.password,
-      };
-      this.loginAuth(user)
-        .then((res) => {
-          if (!res.data.email || !res.data.password) {
-            this.error = true;
-            console.log("erreur de email:" + res.data.msg);
-          }
+    handleLogin() {
+      this.loading = true;
+      this.$validator.validateAll();
 
-          if (res.data.success) {
-            console.log("message de backend true:" + res.data.msg);
-            this.$router.push("/resetPassword");
+      if (this.errors.any()) {
+    console.log("dans le eror")
+        this.loading = false;
+        return;
+      }
+
+      if (this.user.email && this.user.password) {
+        this.$store.dispatch("auth/login", this.user).then(
+          () => {
+          console.log("fchbjhbgvbnhbv");
+            this.$router.push("/newDocument");
+            // this.$router.push("/profile");
+          },
+          (error) => {
+          console.log("error");
+            this.loading = false;
+            this.message = error.message;
           }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        );
+      }
     },
   },
 };
@@ -315,5 +352,15 @@ textarea.form-control {
   border: 1px solid #fbceb5;
   background: transparent;
   color: #fbceb5;
+}
+
+.logo {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 </style>

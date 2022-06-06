@@ -43,9 +43,7 @@
                 </div>
               </form>
 
-              <span> {{user}}</span>
-
-
+              <span> {{ user }}</span>
             </div>
           </div>
         </div>

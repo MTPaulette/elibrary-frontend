@@ -220,7 +220,7 @@ export default {
 
     //********************************** */
     fetchData() {
-      this.error = this.post = null;
+      this.error = null;
       (this.loading = true),
         this.getFacultes().then((res) => {
           this.loading = false;
