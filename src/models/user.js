@@ -9,12 +9,16 @@ export default class User {
     faculte,
     filiere,
     niveau,
-    specialite
+    specialite,
+    newPassword,
+    matricule
   ) {
     this.confirmPassword = confirmPassword;
     this.FaculteId = faculte;
     this.FiliereId = filiere;
     this.NiveauId = niveau;
     this.SpecialiteId = specialite;
+    this.newPassword = newPassword;
+    this.matricule = matricule;
   }
 }

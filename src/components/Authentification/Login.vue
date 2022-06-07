@@ -157,9 +157,7 @@ export default {
       if (this.user.email && this.user.password) {
         this.$store.dispatch("auth/login", this.user).then(
           () => {
-          console.log("fchbjhbgvbnhbv");
-            this.$router.push("/newDocument");
-            // this.$router.push("/profile");
+            this.$router.push("/profile");
           },
           (error) => {
           console.log("error");

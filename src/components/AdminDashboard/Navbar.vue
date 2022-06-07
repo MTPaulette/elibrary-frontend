@@ -56,9 +56,9 @@
 
     <div class="col-sm-5">
       <div class="user-area dropdown float-right">
-        <a href="" class="dropdown-toggle" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"
+        <a href="/profile" class="dropdown-toggle" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"
         >
-          <span class="fw-bold">{{ currentUser.user.username }}: {{ currentUser.user.RoleId }}</span>
+          <span class="fw-bold">{{ currentUser.user.username }}: {{ currentUser.user.email }}</span>
         </a>
 
         <div class="user-menu dropdown-menu" aria-labelledby="dropdownMenuClickable">
@@ -91,4 +91,8 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style scoped>
+.header-menu {
+  width: 80vw;
+}
+</style>

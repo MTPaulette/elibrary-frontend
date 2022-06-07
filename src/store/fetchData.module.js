@@ -2,37 +2,48 @@ import axios from "axios";
 //import router from '../router';
 const API_URL = "http://localhost:5000/api/";
 
+const initialState = { 
+  facultes: null, 
+  filieres: null,
+  niveaux: null,
+  specialites: null,
+  ues: null
+};
+
+
 export const fetchData = {
+  namespaced: true,
+  state: initialState,
   actions: {
     //toutes les ues
-    async getUes() {
+    async getUes({ commit }) {
       let res = await axios.get(API_URL + "ues/ues");
-      return res;
+      commit("setUes", res.data.ues);
     },
 
     //toutes les facultes
-    async getFacultes() {
+    async getFacultes({ commit }) {
       let res = await axios.get(API_URL + "facultes/facultes");
-      return res;
+      commit("setFaculte", res.data.facultes);
     },
 
     //toutes les filieres
-    async getFilieres() {
+    async getFilieres({ commit }) {
       let res = await axios.get(API_URL + "filieres/filieres");
       //let res = await axios.get(API_URL+"filieres/filiere/:fa");
-      return res;
+      commit("setFiliere", res.data.filieres);
     },
 
     //toutes les niveaux
-    async getNiveaux() {
+    async getNiveaux({ commit }) {
       let res = await axios.get(API_URL + "niveaux/niveaux");
-      return res;
+      commit("setNiveau", res.data.niveaux);
     },
 
     //toutes les specialites
-    async getSpecialites() {
+    async getSpecialites({ commit }) {
       let res = await axios.get(API_URL + "specialites/specialites");
-      return res;
+      commit("setSpecialite", res.data.specialites);
     },
 
     //toutes les specialites
@@ -43,10 +54,23 @@ export const fetchData = {
       return res;
     },
   },
+  mutations:  {
+    setFaculte(state, facultes) {
+      state.facultes = facultes
+    },
+    setFiliere(state, filieres) {
+      state.filieres = filieres
+    },
+    setNiveau(state, niveaux) {
+      state.niveaux = niveaux
+    },
+    setSpecialite(state, specialites) {
+      state.specialites = specialites
+    },
+    setUe(state, ues) {
+      state.ues = ues
+    }
+  }
 };
 
-/*
-export default {
-  actions,
-};
-*/
+

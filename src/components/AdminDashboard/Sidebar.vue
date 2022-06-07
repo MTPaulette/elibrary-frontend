@@ -19,7 +19,7 @@
         ><img src="../../assets/fille-logo.jpg" class="w-25 h-25"  alt="Logo"
       /></a>
       <a class="navbar-brand hidden" href="./"
-        ><img src="images/logo2.png" alt="Logo"
+        ><img src="images/logo2.png"
       /></a>
     </div>
 
@@ -143,9 +143,13 @@
               <i class="fa fa-table"></i
               ><a href="DeletedTeachers">Enseignant</a>
             </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a href="DeletedStudents">Etudiant</a>
+            </li>
           </ul>
         </li>
-        <li class="menu-item-has-children dropright">
+        <!--li class="menu-item-has-children dropright">
           <a
             href="#"
             class="dropdown-toggle"
@@ -169,7 +173,7 @@
               ><a href="blockedStudents">Etudiant</a>
             </li>
           </ul>
-        </li>
+        </li-->
 
         <h3 class="menu-title">Notifications</h3>
         <li>
@@ -192,10 +196,10 @@
 
         <h3 class="menu-title">Paramètres</h3>
         <li>
-          <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profil Utilisateur</a>
+          <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profil</a>
         </li>
         <li>
-          <a href="#"> <i class="menu-icon fa fa-power-off"></i>Deconnexion</a>
+          <a href="" @click="handleLogout"> <i class="menu-icon fa fa-power-off"></i>Deconnexion</a>
         </li>
       </ul>
     </div>
@@ -205,7 +209,22 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods: {
+    handleLogout() {
+        this.$store.dispatch("auth/logout").then(
+          () => {
+            this.$router.push("/login");
+          },
+          (error) => {
+          console.log("error");
+            this.loading = false;
+            this.message = error.message;
+          }
+        );
+      }
+  }
+};
 </script>
 <style>
 ul li {

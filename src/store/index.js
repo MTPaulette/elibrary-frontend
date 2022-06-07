@@ -4,7 +4,6 @@ import Vuex from "vuex";
 import { auth } from "./auth.module";
 import { fetchData } from "./fetchData.module";
 import main  from "./main.module";
-import mainw  from "../services/main";
 
 Vue.use(Vuex);
 
@@ -13,7 +12,6 @@ export default new Vuex.Store({
     auth,
     fetchData,
     main,
-    mainw
   },
 });
 

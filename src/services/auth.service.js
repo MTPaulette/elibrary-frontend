@@ -15,6 +15,7 @@ class AuthService {
         console.log("la fameuse reponse");
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("token", response.data.token);
         }
 
         return response.data;
@@ -23,6 +24,7 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
   }
 
   register(user) {
@@ -46,7 +48,6 @@ class AuthService {
       const error = response.data && response.data.message;
       return Promise.reject(error);
     }
-      console.log("wannnnnnnnnnnnnnnnnnndddddddddddddddddaaaaaaaaaaaaaaaaaa")
 
     return Promise.resolve(response);
   }

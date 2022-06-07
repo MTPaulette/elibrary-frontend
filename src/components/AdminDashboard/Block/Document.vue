@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header">
-              <strong class="card-title">Souhaitez-vous blouer un document?</strong>
+            <div class="card-header"> 
+              <strong class="card-title">DOCUMENTS BLOQUES</strong>
             </div>
             <div class="card-body">
               <div class="row">
@@ -48,8 +48,10 @@
                 >
                   <thead>
                     <tr>
-                      <th>Nom</th>
-                      <th>Email</th>
+                      <th>Titre</th>
+                      <th>Contenu</th>
+                      <th>Resume</th>
+                      <th>Auteur</th>
                       <th>Créé le</th>
                       <th>Etat</th>
                       <th>bloqué?</th>
@@ -57,18 +59,28 @@
                   </thead>
                   <tbody>
                     <tr
-                      v-for="student in students"
-                      :key="student.id"
-                      v-bind:value="student.id">
-                      <td>{{student.username}}</td>
-                      <td>{{student.email}}</td>
-                      <td>{{student.createdAt}}</td>
-                      <td><span class="badge badge-success">{{student.etat}}</span></td>
+                      v-for="document in documents"
+                      :key="document.id"
+                      v-bind:value="document.id" :disabled="loading"
+                    >
+                      <td>{{document.titre}}</td>
+                      <td><a :href="'http://localhost:5000/api/documents/telecharger/'+ document.id">{{document.contenu}}</a></td>
+                      <td>{{document.resume}}</td>
+                      <td>{{document.auteur}}</td>
+
+                      <td>{{document.createdAt}}</td>
+                      <td><span class="badge badge-success">{{document.etat}}</span></td>
                       <td>
                         <label class="switch switch-3d switch-danger mr-3">
-                          <input type="checkbox" class="switch-input">
-                          <span class="switch-label"></span> <span class="switch-handle"></span>
+                          <input type="checkbox" class="switch-input"  @click="blockDocument(document.id)">
+                          <span class="switch-label" value="1"></span>
+                          <span class="switch-handle" value="2"></span>
                         </label>
+
+                      <span
+                        class="spinner-border spinner-border-sm mr-1"
+                        v-show="loading"
+                      ></span>
                       </td>
                     </tr>
                   </tbody>
@@ -84,15 +96,13 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import axios from "axios";
 export default {
   name: "",
-  props: {
-    msg: String,
-  },
   data() {
     return {
-      students: "",
+      documents: "",
+      loading: false
     };
   },
 
@@ -107,18 +117,37 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-      "getActiveDocument",
-    ]),
 
     //********************************** */
     fetchData() {
-      this.getActiveDocument().then((res) => {
-        this.loading = false;
-        this.students = res.data.allUser;
-      });
+        axios.get("http://localhost:5000/api/documents/TousDocumentsActifs").then((res) => {
+          console.log(res.data.allDocument);
+          this.documents = res.data.allDocument;
 
+          if (!res.data.success) {
+            console.log("fin  de backend");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
+    blockDocument(documentId) {
+      this.loading = true;
+        axios.get("http://localhost:5000/api/documents/bloquerDocument/"+documentId).then((res) => {
+          console.log("-------------------------");
+          console.log(documentId);
+          console.log(res.data.success);
+
+          if (res.data.success) {
+      this.loading = false;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      //}
+    }
   },
   mounted() {},
 };

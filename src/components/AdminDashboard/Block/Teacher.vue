@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <strong class="card-title">Souhaitez-vous blouer un enseignant?</strong>
+              <strong class="card-title">ENSEIGNANTS BLOQUES</strong>
             </div>
             <div class="card-body">
               <div class="row">
@@ -59,15 +59,17 @@
                     <tr
                       v-for="teacher in teachers"
                       :key="teacher.id"
-                      v-bind:value="teacher.id">
+                      v-bind:value="teacher.id"
+                      >
                       <td>{{teacher.username}}</td>
                       <td>{{teacher.email}}</td>
                       <td>{{teacher.createdAt}}</td>
                       <td><span class="badge badge-success">{{teacher.etat}}</span></td>
                       <td>
                         <label class="switch switch-3d switch-danger mr-3">
-                          <input type="checkbox" class="switch-input">
-                          <span class="switch-label"></span> <span class="switch-handle"></span>
+                          <input type="checkbox" class="switch-input"  @click="blockTeacher(teacher.id)">
+                          <span class="switch-label" value="1"></span>
+                          <span class="switch-handle" value="2"></span>
                         </label>
                       </td>
                     </tr>
@@ -84,15 +86,13 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import axios from "axios";
 export default {
   name: "",
-  props: {
-    msg: String,
-  },
   data() {
     return {
       teachers: "",
+      checkValue: false
     };
   },
 
@@ -107,18 +107,39 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-      "getActiveTeacher",
-    ]),
 
     //********************************** */
     fetchData() {
-      this.getActiveTeacher().then((res) => {
-        this.loading = false;
-        this.teachers = res.data.allUser;
-      });
+        axios.get("http://localhost:5000/api/users/TousEnseignantsActifs").then((res) => {
+          console.log(res.data.allUser);
+          this.teachers = res.data.allUser;
 
+          if (!res.data.success) {
+            console.log("fin  de backend");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
+    blockTeacher(teacherId) {
+      //if(this.checkValue) {
+        axios.get("http://localhost:5000/api/users/bloquerUser/"+teacherId).then((res) => {
+        // axios.get("http://localhost:5000/api/users/etudiantBloque/"+teacherId).then((res) => {
+          console.log("-------------------------");
+          console.log(teacherId);
+          console.log(res.data.msg);
+          //this.checkValue = true;
+
+          if (!res.data.success) {
+            console.log("fin  de backend");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      //}
+    }
   },
   mounted() {},
 };

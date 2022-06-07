@@ -1,115 +1,409 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const passport = require('passport');
-const cors = require('cors');
+<template>
 
-// initialize the app
-const app = express();
+  <div class="m-5">
+    <div class="col mb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="e-profile">
+            <div class="row">
+              <div class="col-12 col-sm-auto mb-3">
+                <div class="mx-auto" style="width: 150px">
+                  <div
+                    class="d-flex justify-content-center align-items-center rounded"
+                    style="
+                      height: 180px;
+                      background-color: rgb(233, 236, 239);
+                    "
+                  >
+                    <span
+                      style="
+                        color: rgb(166, 168, 170);
+                        font: bold 8pt Arial;
+                      "
+                      ><img
+                        src=../../assets/fille-logo.jpg
+                        alt=""
+                    /></span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col d-flex flex-column flex-sm-row justify-content-between mb-3"
+              >
+                <div class="text-center text-sm-left mb-2 mb-sm-0">
+                  <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                    {{ currentUser.username }}
+                  </h4>
+                  <p class="mb-0">{{ currentUser.email }}</p>
+                  <div class="text-muted">
+                    <small>Last seen 2 hours ago</small>
+                  </div>
+                  <div class="mt-2">
+                    <button class="btn btn-primary" type="button">
+                      <i class="bi bi-camera-fill mr-2"></i>
+                      <span
+                        ><input
+                          type="file"
+                          class="btn- btn-primary"
+                          placeholder="changer la photo"
+                      /></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="text-center text-sm-right">
+                  <span class="badge badge-secondary"
+                    >{{currentRole}}</span
+                  >
+                  <div class="text-muted">
+                    <small>Joined 02 juin 2022</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a href="" class="active nav-link">Settings</a>
+              </li>
+            </ul>
+            <div class="tab-content pt-3">
+              <div class="tab-pane active">
+                <form class="form" 
+        action="#"
+        @submit.prevent="handleUpdate">
+                  <div class="row">
+                    <div class="col">
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Noms & Prénoms</label>
+                            <input
+                              class="form-control"
+                              type="text"
+                              name="name"
+                              :placeholder="currentUser.username"
+                              v-model="user.username"
+                            />
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Matricule</label>
+                            <input
+                              class="form-control"
+                              type="text"
+                              placeholder="xxxxxxx"
+                              v-model="matricule"
+                              v-validate="'required'"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Email</label>
+                            <input disabled
+                              class="form-control"
+                              type="email"
+                              :placeholder="currentUser.email"
+                            />
+                          </div>
+                        </div>
+                      </div>
 
-app.use((req, res, next) => {
-  res.setHeader(
-    'Report-To',
-    '{"group":"csp-endpoint","max_age":10886400,"endpoints":[{"url":"http://localhost:5000/__cspreport__"}],"include_subdomains":true}',
-  );
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://images.unsplash.com; script-src 'self' https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/ 'sha256-INJfZVfoUd61ITRFLf63g+S/NJAfswGDl15oK0iXgYM='; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css; frame-src 'self' https://www.youtube.com https://youtube.com; report-to csp-endpoint; report-uri /__cspreport__;",
-  );
-  next();
-});
+                      <div class="row">
+                        <div class="col mb-3">
 
-app.use(
-  bodyParser.json({
-    type: [
-      'application/json',
-      'application/csp-report',
-      'application/reports+json',
-    ],
-  }),
+
+          <div class="form-group">
+            <label for="">{{ currentUser.Role.nom }}</label>
+            <select
+              name="faculte"
+              class="form-control"
+              v-model="faculte"
+            >
+              <option disabled value="">Faculte...</option>
+              <option
+                v-for="faculte in facultes"
+                :key="faculte.id"
+                :nom="faculte"
+                v-bind:value="faculte.id"
+              >
+                {{ faculte.nom }}
+              </option>
+            </select>
+            <!-- <i class="bi bi-chevron-down field-icon"></i> -->
+          </div>
+                        </div>
+                      <!-- </div>
+
+                      <div class="row"> -->
+                        <div class="col mb-3">
+
+          <div class="form-group">
+            <select
+              name="filiere"
+              class="form-control"
+              v-model="filiere"
+            >
+              <option disabled value="">Filiere...</option>
+              <option
+                v-for="filiere in filieres"
+                :key="filiere.id"
+                v-bind:value="filiere.id"
+              >
+                {{ filiere.nom }}
+              </option>
+            </select>
+            <i class="bi bi-chevron-down field-icon"></i>
+          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col mb-3">
+
+          <div class="form-group">
+            <select name="niveau" class="form-control" v-model="niveau">
+              <option disabled value="">Niveau...</option>
+              <option
+                v-for="niveau in niveaux"
+                :key="niveau.id"
+                :value="niveau.id"
+              >
+                {{ niveau.nom }}
+              </option>
+            </select>
+            <i class="bi bi-chevron-down field-icon"></i>
+          </div>
+                        </div>
+                      <!-- </div>
+
+                      <div class="row"> -->
+                        <div class="col mb-3">
+
+          <div class="form-group">
+            <select
+              name="specialite"
+              class="form-control"
+              v-model="specialite"
+            >
+              <option disabled value="">Specialité...</option>
+              <option
+                v-for="specialite in specialites"
+                :key="specialite.id"
+                :value="specialite.id"
+              >
+                {{ specialite.nom }}
+              </option>
+            </select>
+            <i class="bi bi-chevron-down field-icon"></i>
+          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col mb-3">
+                          <div class="form-group">
+
+                            <label>About</label>
+                            <textarea
+                              class="form-control"
+                              rows="5"
+                              placeholder="About"
+                            >
+                            Shadow monarch</textarea
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-6 mb-3">
+                      <div class="mb-2"><b>Change Password</b></div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Current Password</label>
+                            <input
+              type="password"
+              class="form-control"
+              placeholder="******"
+              v-model="user.password"
+              v-validate="'required|min:6|max:40'"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>New Password</label>
+                            <input
+              type="password"
+              class="form-control"
+              placeholder="******"
+              v-model="newPassword"
+              v-validate="'required|min:6|max:40'"
+                            />
+          
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label
+                              >Confirm
+                              <span class="d-none d-xl-inline"
+                                >Password</span
+                              ></label
+                            >
+                            <input
+              type="password"
+              class="form-control"
+              placeholder="******"
+              v-model="confirmPassword"
+              v-validate="'required|min:6|max:40'"
+                            />
+            <div
+              class="alert-danger"
+              v-if="submitted && errors.has('password')"
+            >
+              {{ errors.first("password") }}
+            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col d-flex justify-content-end">
+                      <button class="btn btn-primary" type="submit">
+                        Enregistrer
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import { mapActions } from "vuex";
+import User from "../../models/user";
+export default {
+name: "profile",
+data() {
+return {
+role: "",
+username: "",
+matricule: "",
+newPassword: "",
+submitted: "",
+
+user: new User("", "", ""),
+
+confirmPassword: "",
+faculte: "",
+filiere: "",
+niveau: "",
+specialite: "",
+
+facultes: null,
+filieres: null,
+niveaux: null,
+specialites: null,
+
+}
+},
+computed: {
+currentUser() {
+return this.$store.state.auth.user.user;
+}
+},
+created() {
+this.$watch(
+() => {
+this.fetchData();
+},
+{ immediate: true }
 );
-app.use
-/*
-app.use(express.static(__dirname+'/public'));
-app.use(express.static(path.join(__dirname + '/public/upload')));
-app.use(express.static(path.join(__dirname + '/public/')));
-*/
-app.use(express.static(path.join(__dirname)));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/public/bg.jpg`));
+},
+methods: {
+...mapActions([
+"getFacultes",
+"getFilieres",
+"getNiveaux",
+"getSpecialites",
+]),
+
+fetchData() {
+this.error = null;
+(this.loading = true),
+this.getFacultes().then((res) => {
+  this.loading = false;
+  this.facultes = res.data.facultes;
+  //if (this.facultes != null) {
+  //this.faculte = res.data.facultes[0].nom;
+  //}
+  console.log(res.data.facultes);
 });
 
-app.post('/__cspreport__', (req) => {
-  console.log(req.body);
+this.getFilieres().then((res) => {
+this.loading = false;
+this.filieres = res.data.filieres;
 });
 
-app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, 'public')));
-// app.use(bodyParser.json());
-app.use(cors());
+this.getNiveaux().then((res) => {
+this.loading = false;
+this.niveaux = res.data.niveaux;
+});
 
-// json middleware
-app.use(bodyParser.urlencoded({
-  extended: false,
-}));
+this.getSpecialites().then((res) => {
+this.loading = false;
+this.specialites = res.data.specialites;
+});
+},
 
-// configuration the static directory
-// app.use(express.static(__dirname+'/public'));
-
-// use the passport middleware
-app.use(passport.initialize());
-
-// bring in passport strategy
-require('./middleware/passport');
-
-// connection to a database
-// const db = require('./models');
-// db.sequelize.sync({ alter: true }).then(() => {
-// console.log("drop and re-sync the database if it contains existing tables");
-// })
-
-// bring in the Users route
-const users = require('./routes/api/users');
-
-app.use('/api/users', users);
-
-// bring in the faculte route
-const facultes = require('./routes/api/facultes');
-
-app.use('/api/facultes', facultes);
-
-// bring in the filiere route
-const filieres = require('./routes/api/filieres');
-
-app.use('/api/filieres', filieres);
-
-// bring in the specialites route
-const specialites = require('./routes/api/specialites');
-
-app.use('/api/specialites', specialites);
-
-// bring in the niveau route
-const niveaux = require('./routes/api/niveaux');
-
-app.use('/api/niveaux', niveaux);
-
-// bring in the documents route
-const documents = require('./routes/api/documents');
-
-app.use('/api/documents', documents);
-
-// bring in the domaines route
-const ues = require('./routes/api/ues');
-app.use('/api/ues', ues);
-
-// bring in the domaines route
-const domaines = require('./routes/api/domaines');
-
-app.use('/api/domaines', domaines);
-
-app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, 'public')));
-
-// start server
-const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`server started on port ${port}`));
+handleUpdate() {
+this.message = "";
+this.submitted = true;
+//this.$validator.validate().then((valid) => {
+//if (valid) {
+  this.user.setOthersInformations(
+    this.confirmPassword,
+    this.faculte,
+    this.filiere,
+    this.niveau,
+    this.specialite,
+    this.newPassword,
+    this.matricule,
+  );
+  console.log(this.user.username)
+  /*
+  this.$store.dispatch("auth/register", this.user).then(
+    (data) => {
+      this.message = data.message;
+      this.successful = true;
+      this.$router.push("/login");
+    },
+  (error) => {
+    this.message = error.message;
+    this.successful = false;
+  })
+  */
+//}
+//});
+},
+},
+};
+</script>
+<style scoped>
+</style>

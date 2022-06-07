@@ -6,9 +6,6 @@ import Login from "../components/Authentification/Login.vue";
 import Register from "../components/Authentification/Register.vue";
 import ResetPassword from "../components/Authentification/ResetPassword.vue";
 
- import Chat from "../views/Chat.vue";
- import ChatComponent from "../components/Chat.vue";
-
 import Layout from "../views/base/Layout.vue";
 
 // import LoginPage from "../views/Authentification/Login.vue";
@@ -30,10 +27,6 @@ import DocEnseignants from "../views/Pages/Enseignants/DocEnseignants.vue";
 
 /**route des pages de l'admin */
 import HomeAdmin from "../views/AdminDashboard/Home.vue";
-import NewDocument from "../components/AdminDashboard/New/Document.vue";
-import Advancedform from "../components/AdminDashboard/New/Advancedform.vue";
-import Table from "../components/AdminDashboard/Table.vue";
-import User from "../components/AdminDashboard/New/User.vue";
 
 Vue.use(VueRouter);
 /*
@@ -75,20 +68,10 @@ const routes = [
     component: HomeAdmin,
     children: [
       {
-        path: "/NewDocument",
-        component: NewDocument,
-      },
-      {
-        path: "/Advancedform",
-        component: Advancedform,
-      },
-      {
-        path: "/Table",
-        component: Table,
-      },
-      {
-        path: "/User",
-        component: User,
+        path: "/newDocument",
+        name: "newDocument",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/New/Document.vue"),
       },
 
       /*********** bloqué ***********/
@@ -136,42 +119,39 @@ const routes = [
 
       /*********** bloqué ***********/
       {
-        path: "/DeleteDocument",
+        path: "/DeletedDocuments",
         name: "DeleteDocument",
         // lazy-loaded
         component: () => import("../components/AdminDashboard/Delete/Document.vue"),
       },
       {
-        path: "/DeleteStudent",
+        path: "/DeletedStudents",
         name: "DeleteStudent",
         // lazy-loaded
         component: () => import("../components/AdminDashboard/Delete/Student.vue"),
       },
       {
-        path: "/DeleteTeacher",
+        path: "/DeletedTeachers",
         name: "DeleteTeacher",
         // lazy-loaded
         component: () => import("../components/AdminDashboard/Delete/Teacher.vue"),
       },
+
+      /*********** recherche ***********/
+      {
+        path: "/DeletedDocuments",
+        name: "DeleteDocument",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Delete/Document.vue"),
+      },
+      {
+        path: "/profile",
+        name: "Profile",
+        // lazy-loaded
+        component: () => import("../components/AdminDashboard/Profile.vue"),
+      },
     ],
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -255,18 +235,6 @@ const routes = [
     path: "/enseignants/docEnseignant",
     name: "docEnseignant",
     component: DocEnseignants,
-  },
-  {
-    path: "/chat",
-    name: "chat",
-    //redirect: "/NewDocument",
-    component: Chat,
-    children: [
-      {
-        path: "/ChatComponent",
-        component: ChatComponent,
-      },
-    ],
   },
 
   /*************************

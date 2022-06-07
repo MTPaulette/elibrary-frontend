@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <strong class="card-title">Souhaitez-vous bloquer un étudiant?</strong>
+              <strong class="card-title">ETUDIANTS BLOQUES</strong>
             </div>
             <div class="card-body">
               <div class="row">
@@ -59,7 +59,8 @@
                     <tr
                       v-for="student in students"
                       :key="student.id"
-                      v-bind:value="student.id">
+                      v-bind:value="student.id"
+                      >
                       <td>{{student.username}}</td>
                       <td>{{student.email}}</td>
                       <td>{{student.createdAt}}</td>

@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <strong class="card-title">Souhaitez-vous débloquer un étudiant?</strong>
+              <strong class="card-title">ETUDIANTS ACTIFS</strong>
             </div>
             <div class="card-body">
               <div class="row">

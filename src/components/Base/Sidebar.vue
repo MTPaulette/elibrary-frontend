@@ -141,7 +141,7 @@
             </li>
             <li>
               <i class="fa fa-table"></i
-              ><a href="DeletedTeachers">Enseignant</a>
+              ><a href="DeletedTeacher">Enseignant</a>
             </li>
           </ul>
         </li>
