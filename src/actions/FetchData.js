@@ -34,7 +34,7 @@ const actions = {
     return res;
   },
 
-  //toutes les specialites
+  //tous les documents
   async getDocumentsActifs() {
     let res = await axios.get(
       "http://localhost:5000/api/documents/TousDocumentsActifs"

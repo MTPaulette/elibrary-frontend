@@ -2,11 +2,8 @@
   <div>
     <div id="fh5co-course">
       <div class="container">
-        <div class="row animate-box">
-          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-            <h2>Documents d'informatique Licence 1 filière X</h2>
-            <p>Disponibles pour vous 7J/7, 24h/24</p>
-          </div>
+        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+          <h2>Supports de cours</h2>
         </div>
         <div class="row">
           <div class="col-md-6 animate-box">
@@ -23,48 +20,11 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+          <h2>Travaux pratiques</h2>
         </div>
         <div class="row">
           <div class="col-md-6 animate-box">
@@ -81,48 +41,11 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+          <h2>Notes du contrôle continu</h2>
         </div>
         <div class="row">
           <div class="col-md-6 animate-box">
@@ -139,92 +62,13 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+          <h2>Notes de la session normale</h2>
         </div>
         <div class="row">
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 animate-box">
-            <div class="course">
-              <a href="#" class="course-img"> </a>
-              <div class="desc">
-                <h3><a href="#">Titre &amp; Auteur</a></h3>
-                <p>Description du livre</p>
-                <span
-                  ><a href="#" class="btn btn-primary btn-sm btn-course"
-                    >Télécharger</a
-                  ></span
-                >
-              </div>
-            </div>
-          </div>
           <div class="col-md-6 animate-box">
             <div class="course">
               <a href="#" class="course-img"> </a>
