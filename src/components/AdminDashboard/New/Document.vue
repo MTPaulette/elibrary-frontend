@@ -346,8 +346,25 @@
 import axios from "axios";
 //import router from '../router';
   //import Document from "../../../models/document";
-  import { mapActions } from "vuex";
+  //import { mapActions } from "vuex";
   export default {
+  computed: {
+		facultes() {
+			return this.$store.state.fetchData.facultes
+		},
+		filieres() {
+			return this.$store.state.fetchData.filieres
+		},
+		niveaux() {
+			return this.$store.state.fetchData.niveaux
+		},
+		specialites() {
+			return this.$store.state.fetchData.specialites
+		},
+		ues() {
+			return this.$store.state.fetchData.ues
+		}
+  },
     data() {
       return {
         titre: "",
@@ -362,67 +379,20 @@ import axios from "axios";
         niveau: "",
         specialite: "",
   
-        ues: null,
-        facultes: null,
-        filieres: null,
-        niveaux: null,
-        specialites: null,
-  
         //document: new Document("", "", "", "", "", "", "", ""),
         submitted: false,
         successful: false,
         message: "",
       };
     },
-    created() {
-      this.$watch(
-        () => this.$route.params,
-        () => {
-          this.fetchData();
-        },
-        { immediate: true }
-      );
-    },
     mounted() {
-      if (this.loggedIn) {
-        this.$router.push("/profile");
-      }
+		this.$store.dispatch("fetchData/getFacultes")
+		this.$store.dispatch("fetchData/getFilieres")
+		this.$store.dispatch("fetchData/getNiveaux")
+		this.$store.dispatch("fetchData/getSpecialites")
+		this.$store.dispatch("fetchData/getUes")
     },
     methods: {
-      ...mapActions([
-        "getUes",
-        "getFacultes",
-        "getFilieres",
-        "getNiveaux",
-        "getSpecialites",
-        "uploadDocumentw",
-      ]),
-  
-      //********************************** */
-      fetchData() {
-        this.error = null;
-        (this.loading = true),
-  
-        this.getUes().then((res) => {
-          this.ues = res.data.ues;
-        });
-  
-        this.getFacultes().then((res) => {
-          this.facultes = res.data.facultes;
-        });
-  
-        this.getFilieres().then((res) => {
-          this.filieres = res.data.filieres;
-        });
-  
-        this.getNiveaux().then((res) => {
-          this.niveaux = res.data.niveaux;
-        });
-  
-        this.getSpecialites().then((res) => {
-          this.specialites = res.data.specialites;
-        });
-      },
   
       processFile(event) {
         this.file = event.target.files[0];

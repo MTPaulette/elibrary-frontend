@@ -20,6 +20,11 @@
               <h3 class="mb-4 text-center" id="link">
                 <router-link to="/login">Avez-vous un compte?</router-link>
               </h3>
+                <div class="form-group">
+                  <div class="alert alert-danger" role="alert" v-if="message">
+                    {{ message }}
+                  </div>
+                </div>
               <form action="#" class="signin-form" @submit.prevent="register">
                 <div class="form-group">
                   <input
@@ -29,7 +34,7 @@
                     placeholder="name"
                     autocomplete="name"
                     autofocus
-                    v-model="nom"
+                    v-model="username"
                     required
                   />
                   <i class="bi bi-person field-icon"></i>
@@ -64,7 +69,7 @@
                     type="password"
                     class="form-control"
                     placeholder="Confirm Password"
-                    v-model="confirm_password"
+                    v-model="confirmPassword"
                     required
                   />
                   <i class="bi bi-eye field-icon"></i>
@@ -131,8 +136,12 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="form-control submit px-3 signin">
-                    Sign In
+                  <button class="btn btn-block signin" :disabled="loading">
+                    <span
+                      class="spinner-border spinner-border-sm mr-1"
+                      v-show="loading"
+                    ></span>
+                    <span>Sign in</span>
                   </button>
                 </div>
                 <!--div class="form-group d-md-flex">
@@ -193,14 +202,15 @@ export default {
 
   data() {
     return {
-      nom: "",
+      username: "",
       email: "",
       password: "",
-      confirm_password: "",
+      confirmPassword: "",
 
       //************dynamic loading of filiere*******/
       loading: false,
       error: null,
+      message: "",
 
       faculte: "",
       filiere: "",
@@ -267,12 +277,12 @@ export default {
     },
     */
     register() {
+            this.loading = true;
       let user = {
-        nom: this.nom,
+        username: this.username,
         email: this.email,
-        login: this.login,
         password: this.password,
-        confirm_password: this.confirm_password,
+        confirmPassword: this.confirmPassword,
         FaculteId: this.faculte,
         FiliereId: this.filiere,
         NiveauId: this.niveau,
@@ -280,19 +290,16 @@ export default {
       };
       console.log(user);
       //this.registerAuth(user)
-        this.$store.dispatch("auth/register", user).then((res) => {
-          if (res.data.success) {
-            console.log("message de backend register:" + res.data.msg);
+        this.$store.dispatch("auth/register", user).then(
+          () => {
             this.$router.push("/login");
-          }else {
-            this.message = res.data.msg
-          }
-        })
-        .catch((error) => {
-          console.log(error);
+          },
+          (error) => {
             this.loading = false;
-            this.message = error.message;
-        });
+            this.message = error.msg;
+          console.log(this.message);
+          }
+        );
     },
   },
 };

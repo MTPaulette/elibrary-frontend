@@ -28,16 +28,7 @@ class AuthService {
   }
 
   register(user) {
-    return axios.post(API_URL + "register", {
-      username: user.username,
-      email: user.email,
-      password: user.password,
-      confirmPassword: user.confirmPassword,
-      FaculteId: user.FaculteId,
-      FiliereId: user.FiliereId,
-      NiveauId: user.NiveauId,
-      SpecialiteId: user.SpecialiteId,
-    });
+    return axios.post(API_URL + "register", user);
   }
 
   handleResponse(response) {

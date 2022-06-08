@@ -2,11 +2,20 @@
 
           <div class="m-5">
             <div class="col mb-3">
+                <div class="col-12">
+                  <div class="alert alert-danger" role="alert" v-if="error">
+                    {{ error }}
+                  </div>
+                  <div class="alert alert-success" role="alert" v-if="message">
+                    {{ message }}
+                  </div>
+                </div>
               <div class="card">
                 <div class="card-body">
                   <div class="e-profile">
                     <div class="row">
                       <div class="col-12 col-sm-auto mb-3">
+
                         <div class="mx-auto" style="width: 150px">
                           <div
                             class="d-flex justify-content-center align-items-center rounded"
@@ -40,19 +49,18 @@
                           </div>
                           <div class="mt-2">
                             <button class="btn btn-primary" type="button">
-                              <i class="bi bi-camera-fill mr-2"></i>
-                              <span
-                                ><input
+                              <i class="bi bi-camera-fill"></i>
+                              <input
                                   type="file"
                                   class="btn- btn-primary"
                                   placeholder="changer la photo"
-                              /></span>
+                              />
                             </button>
                           </div>
                         </div>
                         <div class="text-center text-sm-right">
                           <span class="badge badge-secondary"
-                            >Role</span
+                            >{{currentUser.Role.nom}}</span
                           >
                           <div class="text-muted">
                             <small>Joined 02 juin 2022</small>
@@ -116,13 +124,13 @@
 
 
                   <div class="form-group">
-										<label for=""> ..nom </label>
+										<label for="">Faculte</label>
                     <select
                       name="faculte"
                       class="form-control"
                       v-model="faculte"
                     >
-                      <option disabled value="">Faculte...</option>
+                      <option disabled value="">{{currentUser.Faculte.nom}}</option>
                       <option
                         v-for="faculte in facultes"
                         :key="faculte.id"
@@ -141,12 +149,13 @@
 																<div class="col mb-3">
 
                   <div class="form-group">
+										<label for="">Filiere</label>
                     <select
                       name="filiere"
                       class="form-control"
                       v-model="filiere"
                     >
-                      <option disabled value="">Filiere...</option>
+                      <option disabled value="">{{currentUser.Filiere.nom}}</option>
                       <option
                         v-for="filiere in filieres"
                         :key="filiere.id"
@@ -155,7 +164,6 @@
                         {{ filiere.nom }}
                       </option>
                     </select>
-                    <i class="bi bi-chevron-down field-icon"></i>
                   </div>
                                 </div>
                               </div>
@@ -164,8 +172,9 @@
 																<div class="col mb-3">
 
                   <div class="form-group">
+										<label for="">Niveau</label>
                     <select name="niveau" class="form-control" v-model="niveau">
-                      <option disabled value="">Niveau...</option>
+                      <option disabled value="">{{currentUser.Niveau.nom}}</option>
                       <option
                         v-for="niveau in niveaux"
                         :key="niveau.id"
@@ -174,7 +183,6 @@
                         {{ niveau.nom }}
                       </option>
                     </select>
-                    <i class="bi bi-chevron-down field-icon"></i>
                   </div>
                                 </div>
                               <!-- </div>
@@ -183,12 +191,14 @@
 																<div class="col mb-3">
 
                   <div class="form-group">
+										<label for="">Specialité</label>
                     <select
                       name="specialite"
                       class="form-control"
                       v-model="specialite"
                     >
-                      <option disabled value="">Specialité...</option>
+                      <option disabled value="" v-if="currentUser.Specialite">{{currentUser.Specialite.nom}}</option>
+                      <option disabled value="" v-else>Non défini</option>
                       <option
                         v-for="specialite in specialites"
                         :key="specialite.id"
@@ -197,26 +207,10 @@
                         {{ specialite.nom }}
                       </option>
                     </select>
-                    <i class="bi bi-chevron-down field-icon"></i>
                   </div>
 																</div>
 															</div>
 
-                              <div class="row">
-                                <div class="col mb-3">
-                                  <div class="form-group">
-
-                                    <label>About</label>
-                                    <textarea
-                                      class="form-control"
-                                      rows="5"
-                                      placeholder="About"
-                                    >
-																		Shadow monarch</textarea
-                                    >
-                                  </div>
-                                </div>
-                              </div>
                             </div>
                           </div>
                           <div class="row">
@@ -280,9 +274,15 @@
                             </div>
                           </div>
                           <div class="row">
+
                             <div class="col d-flex justify-content-end">
-                              <button class="btn btn-primary" type="submit">
-                                Enregistrer
+                              <button class="btn btn-primary" type="submit" :disabled="loading">
+                    <span
+                      class="spinner-border spinner-border-sm mr-1"
+                      v-show="loading"
+                    ></span>
+                    <span>Enregistrer</span>
+                                
                               </button>
                             </div>
                           </div>
@@ -296,6 +296,7 @@
           </div>
 </template>
 <script>
+import axios from "axios";
 //import { mapActions } from "vuex";
 //import { mapState } from "vuex";
 import User from "../../models/user";
@@ -321,7 +322,6 @@ export default {
 
 	data() {
 		return {
-			role: "",
       username: "",
       matricule: "",
       newPassword: "",
@@ -336,7 +336,8 @@ export default {
       specialite: "",
 
 			error: "",
-			loading:"",
+			loading: false,
+      message: "",
 
 		}
 	},
@@ -349,8 +350,25 @@ export default {
 	
 	methods: {
     handleUpdate() {
-      this.message = "";
       this.submitted = true;
+      this.loading = true;
+
+      if (!this.faculte) {
+        this.faculte = this.currentUser.FaculteId;
+      }
+      if (!this.filiere) {
+        this.filiere = this.currentUser.FiliereId;
+      }
+      if (!this.niveau) {
+        this.niveau = this.currentUser.NiveauId;
+      }
+      if (!this.specialite) {
+        this.specialite = this.currentUser.SpecialiteId
+      }
+      if (!this.user.username) {
+        this.user.username = this.currentUser.username
+      }
+      
       //this.$validator.validate().then((valid) => {
         //if (valid) {
           this.user.setOthersInformations(
@@ -363,7 +381,21 @@ export default {
             this.matricule,
           );
 				
-			console.log(this.faculte)
+      //if(this.checkValue) {
+        axios.post("http://localhost:5000/api/users/updateUser/"+this.currentUser.id, this.user).then((res) => {
+          console.log("-------------------------");
+          console.log(res.data.msg);
+            this.loading = false;
+          if (res.data.success) {
+            this.message = res.data.msg;
+          }else {
+            this.error = res.data.msg
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      //}
 					/*
           this.$store.dispatch("auth/register", this.user).then(
             (data) => {
@@ -378,7 +410,7 @@ export default {
 					*/
         //}
       //});
-    },
+    }
 	},
 };
 </script>

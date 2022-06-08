@@ -18,7 +18,7 @@ export const fetchData = {
     //toutes les ues
     async getUes({ commit }) {
       let res = await axios.get(API_URL + "ues/ues");
-      commit("setUes", res.data.ues);
+      commit("setUe", res.data.ues);
     },
 
     //toutes les facultes
