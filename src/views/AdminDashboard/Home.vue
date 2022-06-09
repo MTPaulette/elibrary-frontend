@@ -14,6 +14,8 @@
       <Breadcrumbs></Breadcrumbs>
 
       <router-view />
+      <Footer></Footer>
+
     </div>
   </div>
 </template>
@@ -21,6 +23,7 @@
 <script>
 import Sidebar from "@/components/AdminDashboard/Sidebar.vue";
 import Navbar from "@/components/AdminDashboard/Navbar.vue";
+import Footer from "@/components/AdminDashboard/Footer.vue";
 import Breadcrumbs from "@/components/AdminDashboard/Breadcrumbs.vue";
 
 export default {
@@ -29,6 +32,7 @@ export default {
     Sidebar: Sidebar,
     Navbar: Navbar,
     Breadcrumbs: Breadcrumbs,
+    Footer,
   },
   computed: {
     currentUser() {

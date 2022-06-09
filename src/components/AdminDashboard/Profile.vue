@@ -297,8 +297,6 @@
 </template>
 <script>
 import axios from "axios";
-//import { mapActions } from "vuex";
-//import { mapState } from "vuex";
 import User from "../../models/user";
 export default {
   name: "profile",

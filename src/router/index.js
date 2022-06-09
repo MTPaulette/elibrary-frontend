@@ -5,8 +5,8 @@ import Authentification from "../views/Authentification.vue";
 import Login from "../components/Authentification/Login.vue";
 import Register from "../components/Authentification/Register.vue";
 import ResetPassword from "../components/Authentification/ResetPassword.vue";
+import Search from '../components/Base/Search.vue';
 
-import Layout from "../views/base/Layout.vue";
 
 // import LoginPage from "../views/Authentification/Login.vue";
 //import Home from "../views/Home.vue";
@@ -150,11 +150,13 @@ const routes = [
         // lazy-loaded
         component: () => import("../components/AdminDashboard/Profile.vue"),
       },
-    ],
+  {
+    path: "/search",
+    component: Search,
   },
 
-
-
+    ],
+  },
 
 
 
@@ -226,11 +228,7 @@ const routes = [
     component: Enseignants,
   },
 
-  {
-    path: "/layout",
-    name: "Layout",
-    component: Layout,
-  },
+
   {
     path: "/enseignants/docEnseignant",
     name: "docEnseignant",

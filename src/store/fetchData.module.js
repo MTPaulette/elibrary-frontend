@@ -7,7 +7,9 @@ const initialState = {
   filieres: null,
   niveaux: null,
   specialites: null,
-  ues: null
+  ues: null,
+  types: null,
+  enseignants: null,
 };
 
 
@@ -15,6 +17,18 @@ export const fetchData = {
   namespaced: true,
   state: initialState,
   actions: {
+    //toutes les ues
+    async getEnseignants({ commit }) {
+      let res = await axios.get(API_URL + "users/TousEnseignantsActifs");
+      commit("setEnseignant", res.data.allUser);
+    },
+
+    //toutes les ues
+    async getTypes({ commit }) {
+      let res = await axios.get(API_URL + "types/types");
+      commit("setType", res.data.types);
+    },
+
     //toutes les ues
     async getUes({ commit }) {
       let res = await axios.get(API_URL + "ues/ues");
@@ -69,6 +83,12 @@ export const fetchData = {
     },
     setUe(state, ues) {
       state.ues = ues
+    },
+    setEnseignant(state, enseigants) {
+      state.enseignants = enseigants
+    },
+    setType(state, types) {
+      state.types = types
     }
   }
 };

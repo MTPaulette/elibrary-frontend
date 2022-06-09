@@ -1,409 +1,219 @@
 <template>
+  <div>
+      
+      
 
-  <div class="m-5">
-    <div class="col mb-3">
-      <div class="card">
-        <div class="card-body">
-          <div class="e-profile">
-            <div class="row">
-              <div class="col-12 col-sm-auto mb-3">
-                <div class="mx-auto" style="width: 150px">
-                  <div
-                    class="d-flex justify-content-center align-items-center rounded"
-                    style="
-                      height: 180px;
-                      background-color: rgb(233, 236, 239);
-                    "
-                  >
-                    <span
-                      style="
-                        color: rgb(166, 168, 170);
-                        font: bold 8pt Arial;
-                      "
-                      ><img
-                        src=../../assets/fille-logo.jpg
-                        alt=""
-                    /></span>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col d-flex flex-column flex-sm-row justify-content-between mb-3"
-              >
-                <div class="text-center text-sm-left mb-2 mb-sm-0">
-                  <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
-                    {{ currentUser.username }}
-                  </h4>
-                  <p class="mb-0">{{ currentUser.email }}</p>
-                  <div class="text-muted">
-                    <small>Last seen 2 hours ago</small>
-                  </div>
-                  <div class="mt-2">
-                    <button class="btn btn-primary" type="button">
-                      <i class="bi bi-camera-fill mr-2"></i>
-                      <span
-                        ><input
-                          type="file"
-                          class="btn- btn-primary"
-                          placeholder="changer la photo"
-                      /></span>
+
+<main id="main">
+
+<!-- ====================================================== Specials Section ===================================== -->
+<section class="specials about">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Recherche</h2>
+      <p>Resultats de la recherche</p>
+    </div>
+
+    <div class="row filter-horizontal">
+      <div class="col-lg-6 col-sm-12 mx-auto filter">
+        <ul class="nav nav-tabs">
+          <li class="nav-link" style="width: 100%">
+            <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
+                <form class="d-flex tm-search-form">
+                    <input class="tm-search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="tm-search-btn" type="submit">
+                        <i class="fas fa-search"></i>
                     </button>
-                  </div>
-                </div>
-                <div class="text-center text-sm-right">
-                  <span class="badge badge-secondary"
-                    >{{currentRole}}</span
-                  >
-                  <div class="text-muted">
-                    <small>Joined 02 juin 2022</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a href="" class="active nav-link">Settings</a>
-              </li>
-            </ul>
-            <div class="tab-content pt-3">
-              <div class="tab-pane active">
-                <form class="form" 
-        action="#"
-        @submit.prevent="handleUpdate">
-                  <div class="row">
-                    <div class="col">
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Noms & Prénoms</label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              name="name"
-                              :placeholder="currentUser.username"
-                              v-model="user.username"
-                            />
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Matricule</label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              placeholder="xxxxxxx"
-                              v-model="matricule"
-                              v-validate="'required'"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Email</label>
-                            <input disabled
-                              class="form-control"
-                              type="email"
-                              :placeholder="currentUser.email"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col mb-3">
-
-
-          <div class="form-group">
-            <label for="">{{ currentUser.Role.nom }}</label>
-            <select
-              name="faculte"
-              class="form-control"
-              v-model="faculte"
-            >
-              <option disabled value="">Faculte...</option>
-              <option
-                v-for="faculte in facultes"
-                :key="faculte.id"
-                :nom="faculte"
-                v-bind:value="faculte.id"
-              >
-                {{ faculte.nom }}
-              </option>
-            </select>
-            <!-- <i class="bi bi-chevron-down field-icon"></i> -->
-          </div>
-                        </div>
-                      <!-- </div>
-
-                      <div class="row"> -->
-                        <div class="col mb-3">
-
-          <div class="form-group">
-            <select
-              name="filiere"
-              class="form-control"
-              v-model="filiere"
-            >
-              <option disabled value="">Filiere...</option>
-              <option
-                v-for="filiere in filieres"
-                :key="filiere.id"
-                v-bind:value="filiere.id"
-              >
-                {{ filiere.nom }}
-              </option>
-            </select>
-            <i class="bi bi-chevron-down field-icon"></i>
-          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col mb-3">
-
-          <div class="form-group">
-            <select name="niveau" class="form-control" v-model="niveau">
-              <option disabled value="">Niveau...</option>
-              <option
-                v-for="niveau in niveaux"
-                :key="niveau.id"
-                :value="niveau.id"
-              >
-                {{ niveau.nom }}
-              </option>
-            </select>
-            <i class="bi bi-chevron-down field-icon"></i>
-          </div>
-                        </div>
-                      <!-- </div>
-
-                      <div class="row"> -->
-                        <div class="col mb-3">
-
-          <div class="form-group">
-            <select
-              name="specialite"
-              class="form-control"
-              v-model="specialite"
-            >
-              <option disabled value="">Specialité...</option>
-              <option
-                v-for="specialite in specialites"
-                :key="specialite.id"
-                :value="specialite.id"
-              >
-                {{ specialite.nom }}
-              </option>
-            </select>
-            <i class="bi bi-chevron-down field-icon"></i>
-          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col mb-3">
-                          <div class="form-group">
-
-                            <label>About</label>
-                            <textarea
-                              class="form-control"
-                              rows="5"
-                              placeholder="About"
-                            >
-                            Shadow monarch</textarea
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-sm-6 mb-3">
-                      <div class="mb-2"><b>Change Password</b></div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>Current Password</label>
-                            <input
-              type="password"
-              class="form-control"
-              placeholder="******"
-              v-model="user.password"
-              v-validate="'required|min:6|max:40'"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label>New Password</label>
-                            <input
-              type="password"
-              class="form-control"
-              placeholder="******"
-              v-model="newPassword"
-              v-validate="'required|min:6|max:40'"
-                            />
-          
-                            
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="form-group">
-                            <label
-                              >Confirm
-                              <span class="d-none d-xl-inline"
-                                >Password</span
-                              ></label
-                            >
-                            <input
-              type="password"
-              class="form-control"
-              placeholder="******"
-              v-model="confirmPassword"
-              v-validate="'required|min:6|max:40'"
-                            />
-            <div
-              class="alert-danger"
-              v-if="submitted && errors.has('password')"
-            >
-              {{ errors.first("password") }}
-            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col d-flex justify-content-end">
-                      <button class="btn btn-primary" type="submit">
-                        Enregistrer
-                      </button>
-                    </div>
-                  </div>
                 </form>
-              </div>
             </div>
-          </div>
-        </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
       </div>
     </div>
+
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+      <!-- ========================================================== search filter categories ======================================================================--><div class="col-lg-3">
+        <div class="filter-vertical">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-link">
+              <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
+                  <form class="d-flex tm-search-form">
+                      <input class="form-control tm-search-input" type="search" placeholder="Search" aria-label="Search">
+                      <button class="tm-search-btn" type="submit">
+                          <i class="fas fa-search"></i>
+                      </button>
+                  </form>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Modi sit est</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Unde praesentium sed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Pariatur explicabo vel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Nostrum qui quasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Iusto ut expedita aut</a>
+            </li>
+          </ul>
+
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item">
+              <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Modi sit est</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Unde praesentium sed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Pariatur explicabo vel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Nostrum qui quasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Iusto ut expedita aut</a>
+            </li>
+          </ul>
+        </div>
+
+      <!-- ========================================================== premuim for search ======================================================================-->
+        <div class="row tm-mb-90 tm-gallery">
+
+          <div class="search-premuim-title">boutiques</div>
+
+          <div class="col-xl-4 col-lg-4  col-md-2 col-sm-2 col-3 mb-1">
+            <figure class="effect-ming tm-video-item">
+              <div class="premuim-badge-search"></div>
+              <img src="static/image/img-03.jpg" alt="Image" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center">
+                <h6>Clocks</h6>
+                <a href="photo-detail.html"></a>
+              </figcaption>                 
+            </figure>
+            <div class="search-premuim-details">
+              <h6 class="title">Clocks</h6>
+              <span class=" ">2000 FCFA</span>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-4  col-md-2 col-sm-2 col-3 mb-1">
+            <figure class="effect-ming tm-video-item">
+              <div class="premuim-badge-search"></div>
+              <img src="static/image/img-04.jpg" alt="Image" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center">
+                <h6>Plants</h6>
+                <a href="photo-detail.html"></a>
+              </figcaption>                    
+            </figure>
+            <div class="search-premuim-details">
+              <h6 class="title">Plants</h6>
+              <span class=" ">2000 FCFA</span>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-4  col-md-2 col-sm-2 col-3 mb-1">
+            <figure class="effect-ming tm-video-item">
+              <div class="premuim-badge-search"></div>
+              <img src="static/image/img-05.jpg" alt="Image" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center">
+                <h6>Morning</h6>
+                <a href="photo-detail.html"></a>
+              </figcaption>                    
+            </figure>
+            <div class="search-premuim-details">
+              <h6 class="title">Morning</h6>
+              <span class=" ">2000 FCFA</span>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-4  col-md-2 col-sm-2 col-3 mb-1">
+            <figure class="effect-ming tm-video-item">
+              <div class="premuim-badge-search"></div>
+              <img src="static/image/img-06.jpg" alt="Image" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center">
+                <h6>Pinks</h6>
+                <a href="photo-detail.html"></a>
+              </figcaption>                    
+            </figure>
+            <div class="search-premuim-details">
+              <h6 class="title">Pinks</h6>
+              <span class=" ">2000 FCFA</span>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-4  col-md-2 col-sm-2 col-3 mb-1">
+            <figure class="effect-ming tm-video-item">
+              <div class="premuim-badge-search"></div>
+              <img src="static/image/img-01.jpg" alt="Image" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center">
+                <h6>Hangers</h6>
+                <a href="photo-detail.html"></a>
+              </figcaption>                    
+            </figure>
+            <div class="search-premuim-details">
+              <h6 class="title">Hangers</h6>
+              <span class=" ">2000 FCFA</span>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-4  col-md-2 col-sm-2 col-3 mb-1">
+            <figure class="effect-ming tm-video-item">
+              <div class="premuim-badge-search"></div>
+              <img src="static/image/img-02.jpg" alt="Image" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center">
+                <h6>Perfumes</h6>
+                <a href="photo-detail.html"></a>
+              </figcaption>                    
+            </figure>
+            <div class="search-premuim-details">
+              <h6 class="title">Perfumes</h6>
+              <span class=" ">2000 FCFA</span>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-4  col-md-2 col-sm-2 col-3 mb-1">
+            <figure class="effect-ming tm-video-item">
+              <div class="premuim-badge-search"></div>
+              <img src="static/image/img-07.jpg" alt="Image" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center">
+                <h6>Bus</h6>
+                <a href="photo-detail.html"></a>
+              </figcaption>                    
+            </figure>
+            <div class="search-premuim-details">
+              <h6 class="title">Bus</h6>
+              <span class=" ">2000 FCFA</span>
+            </div>
+          </div>
+
+    </div>
+  </div>
+  </div>
+  </div>
+
+
+</section>
+<!-- End Specials Section -->
+</main>
+
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
-import User from "../../models/user";
 export default {
-name: "profile",
-data() {
-return {
-role: "",
-username: "",
-matricule: "",
-newPassword: "",
-submitted: "",
-
-user: new User("", "", ""),
-
-confirmPassword: "",
-faculte: "",
-filiere: "",
-niveau: "",
-specialite: "",
-
-facultes: null,
-filieres: null,
-niveaux: null,
-specialites: null,
-
+  
 }
-},
-computed: {
-currentUser() {
-return this.$store.state.auth.user.user;
-}
-},
-created() {
-this.$watch(
-() => {
-this.fetchData();
-},
-{ immediate: true }
-);
-},
-methods: {
-...mapActions([
-"getFacultes",
-"getFilieres",
-"getNiveaux",
-"getSpecialites",
-]),
-
-fetchData() {
-this.error = null;
-(this.loading = true),
-this.getFacultes().then((res) => {
-  this.loading = false;
-  this.facultes = res.data.facultes;
-  //if (this.facultes != null) {
-  //this.faculte = res.data.facultes[0].nom;
-  //}
-  console.log(res.data.facultes);
-});
-
-this.getFilieres().then((res) => {
-this.loading = false;
-this.filieres = res.data.filieres;
-});
-
-this.getNiveaux().then((res) => {
-this.loading = false;
-this.niveaux = res.data.niveaux;
-});
-
-this.getSpecialites().then((res) => {
-this.loading = false;
-this.specialites = res.data.specialites;
-});
-},
-
-handleUpdate() {
-this.message = "";
-this.submitted = true;
-//this.$validator.validate().then((valid) => {
-//if (valid) {
-  this.user.setOthersInformations(
-    this.confirmPassword,
-    this.faculte,
-    this.filiere,
-    this.niveau,
-    this.specialite,
-    this.newPassword,
-    this.matricule,
-  );
-  console.log(this.user.username)
-  /*
-  this.$store.dispatch("auth/register", this.user).then(
-    (data) => {
-      this.message = data.message;
-      this.successful = true;
-      this.$router.push("/login");
-    },
-  (error) => {
-    this.message = error.message;
-    this.successful = false;
-  })
-  */
-//}
-//});
-},
-},
-};
 </script>
-<style scoped>
+<style>   
 </style>

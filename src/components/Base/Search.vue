@@ -22,7 +22,7 @@
 </div>
 <div class="row">
                 <div class="d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
-                    <ul class="d-flex">
+                    <ul class="d-flex flex-wrap">
                       <li>
 
                   <div class="form-group">
@@ -41,6 +41,7 @@
                         {{ faculte.nom }}
                       </option>
                     </select>
+                    <i class="bi bi-chevron-down field-icon"></i>
                   </div>
                     </li>
                     <li>
@@ -98,23 +99,64 @@
                     </select>
                   </div>
                     </li>
+                    <li>
+
+
+                  <div class="form-group">
+                    <select
+                      name="ue"
+                      class="form-control"
+                      v-model="ue"
+                    >
+                      <option disabled value="">ue</option>
+                      <option
+                        v-for="ue in ues"
+                        :key="ue.id"
+                        :value="ue.id"
+                      >
+                        {{ ue.nom }}
+                      </option>
+                    </select>
+                  </div>
+                    </li>
 
                     <li>
 
 
                   <div class="form-group">
                     <select
-                      name="specialite"
+                      name="typeDoc"
                       class="form-control"
-                      v-model="specialite"
+                      v-model="typeDoc"
                     >
                       <option disabled value="">type</option>
                       <option
-                        v-for="specialite in specialites"
-                        :key="specialite.id"
-                        :value="specialite.id"
+                        v-for="typeDoc in types"
+                        :key="typeDoc.id"
+                        :value="typeDoc.id"
                       >
-                        {{ type.nom }}
+                        {{ typeDoc.nom }}
+                      </option>
+                    </select>
+                  </div>
+                    </li>
+
+                    <li>
+
+
+                  <div class="form-group">
+                    <select
+                      name="enseignant"
+                      class="form-control"
+                      v-model="enseignant"
+                    >
+                      <option disabled value="">enseignant</option>
+                      <option
+                        v-for="enseignant in enseignants"
+                        :key="enseignant.id"
+                        :value="enseignant.id"
+                      >
+                        {{ enseignant.username }}
                       </option>
                     </select>
                   </div>
@@ -122,17 +164,6 @@
                     </ul>
                 </div>
 </div>
-    <div class="row">
-      <div class="col-lg-6 col-sm-12 mx-auto">
-        <ul class="nav">
-          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
     <div class="content mt-3">
             <div class="animated fadeIn">
 
@@ -146,6 +177,41 @@
 
                 </div>
                 <div class="recent-comment">
+
+                <div class="col-lg-6"
+                        v-for="document in documents"
+                        :key="document.id"
+                        :value="document.id"
+                  >
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object" src="../../assets/logo-pdf.png" alt="...">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">{{ document.titre }}</h4>
+                      <p>{{ document.resume }} </p>
+                      <div class="comment-action">
+                        <div class="badge badge-success">{{ document.etat }}</div>
+                        <span class="m-l-10">
+                          <a href="#">
+                            <i class="ti-check color-success"></i>
+                          </a>
+                          <a href="#">
+                            <i class="ti-close color-danger"></i>
+                          </a>
+                          <a href="#">
+                            <i class="fa fa-reply color-primary"></i>
+                          </a>
+                        </span>
+                      </div>
+                      <p class="comment-date">{{ document.createdAt }}</p>
+                    </div>
+                  </div>
+                </div>
+
+
                 <div class="col-lg-6">
                   <div class="media">
                     <div class="media-left">
@@ -174,6 +240,7 @@
                     </div>
                   </div>
                 </div>
+
                   <div class="media">
                     <div class="media-left">
                       <a href="#">
@@ -581,7 +648,16 @@ export default {
 		},
 		specialites() {
 			return this.$store.state.fetchData.specialites
-		}
+		},
+		ues() {
+			return this.$store.state.fetchData.ues
+		},
+		types() {
+			return this.$store.state.fetchData.types
+		},
+		enseignants() {
+			return this.$store.state.fetchData.enseignants
+		},
   },
 
 	data() {
@@ -590,6 +666,9 @@ export default {
       filiere: "",
       niveau: "",
       specialite: "",
+      ue: "",
+      typeDoc: "",
+      enseignant: "",
 
 			error: "",
 			loading: false,
@@ -602,6 +681,9 @@ export default {
 		this.$store.dispatch("fetchData/getFilieres")
 		this.$store.dispatch("fetchData/getNiveaux")
 		this.$store.dispatch("fetchData/getSpecialites")
+		this.$store.dispatch("fetchData/getUes")
+		this.$store.dispatch("fetchData/getTypes")
+		this.$store.dispatch("fetchData/getEnseignants")
 	},
 	
 	methods: {
@@ -656,6 +738,14 @@ export default {
 };
 </script>
 <style scoped>
+
+.field-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.9);
+}
 .media {
 	background-color: #fff;
 	background-clip: border-box;
