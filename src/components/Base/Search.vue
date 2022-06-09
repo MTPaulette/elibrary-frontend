@@ -12,7 +12,9 @@
 <div class="row">
                 <div class="d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
                     <form class="d-flex">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control" type="search" placeholder="quel document voulez-vous?" aria-label="Search" 
+                      v-model="recherche"
+                      >
                         <button class="" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
@@ -21,7 +23,13 @@
 
 </div>
 <div class="row">
-                <div class="d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
+
+      <!-- .if notfound -->
+      <div v-if="notFound">
+        <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
+      </div>
+
+                <div v-else class="d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
                     <ul class="d-flex flex-wrap">
                       <li>
 
@@ -40,8 +48,8 @@
                       >
                         {{ faculte.nom }}
                       </option>
+                    <i class="bi bi-chevron-down"></i>
                     </select>
-                    <i class="bi bi-chevron-down field-icon"></i>
                   </div>
                     </li>
                     <li>
@@ -173,7 +181,7 @@
             <div class="col-lg-11 mx-auto">
               <div class="mycard">
                 <div class="card-title section-title mt-2">
-                  <h4>Recent Comments </h4>
+                  <h4>Resultat pour la recherche: {{recherche}} </h4>
 
                 </div>
                 <div class="recent-comment">
@@ -183,23 +191,23 @@
                         :key="document.id"
                         :value="document.id"
                   >
-                  <div class="media">
+                  <div class="media mb-2 p-2">
                     <div class="media-left">
                       <a href="#">
                         <img class="media-object" src="../../assets/logo-pdf.png" alt="...">
                       </a>
                     </div>
                     <div class="media-body">
-                      <h4 class="media-heading">{{ document.titre }}</h4>
-                      <p>{{ document.resume }} </p>
+                      <h6 class="media-heading mb-0">{{ document.titre }}</h6>
+                      <p class="resume">{{ document.resume }}</p>
                       <div class="comment-action">
                         <div class="badge badge-success">{{ document.etat }}</div>
-                        <span class="m-l-10">
+                        <span class="ml-10">
                           <a href="#">
-                            <i class="ti-check color-success"></i>
+                            <i class="fa fa-replycolor-success"></i>
                           </a>
                           <a href="#">
-                            <i class="ti-close color-danger"></i>
+                            <i class="fa fa-reply color-danger"></i>
                           </a>
                           <a href="#">
                             <i class="fa fa-reply color-primary"></i>
@@ -211,414 +219,11 @@
                   </div>
                 </div>
 
-
-                <div class="col-lg-6">
-                  <div class="media">
-                    <div class="media-left">
-                      <a href="#">
-                        <img class="media-object" src="../../assets/logo-pdf.png" alt="...">
-                      </a>
-                    </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">john doe</h4>
-                      <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                      <div class="comment-action">
-                        <div class="badge badge-success">Approved</div>
-                        <span class="m-l-10">
-                          <a href="#">
-                            <i class="ti-check color-success"></i>
-                          </a>
-                          <a href="#">
-                            <i class="ti-close color-danger"></i>
-                          </a>
-                          <a href="#">
-                            <i class="fa fa-reply color-primary"></i>
-                          </a>
-                        </span>
-                      </div>
-                      <p class="comment-date">October 21, 2017</p>
-                    </div>
-                  </div>
-                </div>
-
-                  <div class="media">
-                    <div class="media-left">
-                      <a href="#">
-                        <img class="media-object" src="../../assets/logo-pdf.png" alt="...">
-                      </a>
-                    </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">Mr. John</h4>
-                      <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                      <div class="comment-action">
-                        <div class="badge badge-warning">Pending</div>
-                        <span class="m-l-10">
-                          <a href="#">
-                            <i class="ti-check color-success"></i>
-                          </a>
-                          <a href="#">
-                            <i class="ti-close color-danger"></i>
-                          </a>
-                          <a href="#">
-                            <i class="fa fa-reply color-primary"></i>
-                          </a>
-                        </span>
-                      </div>
-                      <p class="comment-date">October 21, 2017</p>
-                    </div>
-                  </div>
-                  <div class="media no-border">
-                    <div class="media-left">
-                      <a href="#">
-                        <img class="media-object" src="../../assets/logo-pdf.png" alt="...">
-                      </a>
-                    </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">Mr. John</h4>
-                      <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                      <div class="comment-action">
-                        <div class="badge badge-danger">Rejected</div>
-                        <span class="m-l-10">
-                          <a href="#">
-                            <i class="ti-check color-success"></i>
-                          </a>
-                          <a href="#">
-                            <i class="ti-close color-danger"></i>
-                          </a>
-                          <a href="#">
-                            <i class="fa fa-reply color-primary"></i>
-                          </a>
-                        </span>
-                      </div>
-                      <div class="comment-date">October 21, 2017</div>
-                    </div>
-                  </div>
                 </div>
               </div>
               <!-- /# card -->
             </div>
             <!-- /# column -->
-
-
-                    <!--<div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title mb-3">Profile Card</strong>
-                            </div>
-                            <div class="card-body">
-                                <div class="mx-auto d-block">
-                                    <img class="rounded-circle mx-auto d-block" src="images/admin.jpg" alt="Card image cap">
-                                    <h5 class="text-sm-center mt-2 mb-1">Steven Lee</h5>
-                                    <div class="location text-sm-center"><i class="fa fa-map-marker"></i> California, United States</div>
-                                </div>
-                                <hr>
-                                <div class="card-text text-sm-center">
-                                    <a href="#"><i class="fa fa-facebook pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-twitter pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest pr-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="mx-auto d-block">
-                                    <img class="rounded-circle mx-auto d-block" src="images/admin.jpg" alt="Card image cap">
-                                    <h5 class="text-sm-center mt-2 mb-1">Steven Lee</h5>
-                                    <div class="location text-sm-center"><i class="fa fa-map-marker"></i> California, United States</div>
-                                </div>
-                                <hr>
-                                <div class="card-text text-sm-center">
-                                    <a href="#"><i class="fa fa-facebook pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-twitter pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest pr-1"></i></a>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <strong class="card-title mb-3">Profile Card</strong>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fa fa-user"></i><strong class="card-title pl-2">Profile Card</strong>
-                            </div>
-                            <div class="card-body">
-                                <div class="mx-auto d-block">
-                                    <img class="rounded-circle mx-auto d-block" src="images/admin.jpg" alt="Card image cap">
-                                    <h5 class="text-sm-center mt-2 mb-1">Steven Lee</h5>
-                                    <div class="location text-sm-center"><i class="fa fa-map-marker"></i> California, United States</div>
-                                </div>
-                                <hr>
-                                <div class="card-text text-sm-center">
-                                    <a href="#"><i class="fa fa-facebook pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-twitter pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-linkedin pr-1"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest pr-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <aside class="profile-nav alt">
-                            <section class="card">
-                                <div class="card-header user-header alt bg-dark">
-                                    <div class="media">
-                                        <a href="#">
-                                            <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                                        </a>
-                                        <div class="media-body">
-                                            <h2 class="text-light display-6">Jim Doe</h2>
-                                            <p>Project Manager</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <a href="#"> <i class="fa fa-envelope-o"></i> Mail Inbox <span class="badge badge-primary pull-right">10</span></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#"> <i class="fa fa-tasks"></i> Recent Activity <span class="badge badge-danger pull-right">15</span></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#"> <i class="fa fa-bell-o"></i> Notification <span class="badge badge-success pull-right">11</span></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a href="#"> <i class="fa fa-comments-o"></i> Message <span class="badge badge-warning pull-right r-activity">03</span></a>
-                                    </li>
-                                </ul>
-
-                            </section>
-                        </aside>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="feed-box text-center">
-                            <section class="card">
-                                <div class="card-body">
-                                    <div class="corner-ribon blue-ribon">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                    <a href="#">
-                                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                                    </a>
-                                    <h2>Kanye West</h2>
-                                    <p>Just got a pretty neat project via <a href="#">@ooomf</a> - Give it a try <a href="#">http://t.co/e02DwGEeOJ</a></p>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-4">
-                        <section class="card">
-                            <div class="twt-feed blue-bg">
-                                <div class="corner-ribon black-ribon">
-                                    <i class="fa fa-twitter"></i>
-                                </div>
-                                <div class="fa fa-twitter wtt-mark"></div>
-
-                                <div class="media">
-                                    <a href="#">
-                                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                                    </a>
-                                    <div class="media-body">
-                                        <h2 class="text-white display-6">Jim Doe</h2>
-                                        <p class="text-light">Project Manager</p>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                            <div class="weather-category twt-category">
-                                <ul>
-                                    <li class="active">
-                                        <h5>750</h5>
-                                        Tweets
-                                    </li>
-                                    <li>
-                                        <h5>865</h5>
-                                        Following
-                                    </li>
-                                    <li>
-                                        <h5>3645</h5>
-                                        Followers
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="twt-write col-sm-12">
-                                <textarea placeholder="Write your Tweet and Enter" rows="1" class="form-control t-text-area"></textarea>
-                            </div>
-                            <footer class="twt-footer">
-                                <a href="#"><i class="fa fa-camera"></i></a>
-                                <a href="#"><i class="fa fa-map-marker"></i></a>
-                                New Castle, UK
-                                <span class="pull-right">
-                                    32
-                                </span>
-                            </footer>
-                        </section>
-                    </div>
-
-
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Card with switch</strong>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Card with Label <small><span class="badge badge-success float-right mt-1">Success</span></small></strong>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Card with Label <small><span class="badge badge-danger float-right mt-1">49</span></small></strong>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-4">
-                        <div class="card border border-primary">
-                            <div class="card-header">
-                                <strong class="card-title">Card Outline</strong>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="card border border-secondary">
-                            <div class="card-header">
-                                <strong class="card-title">Card Outline</strong>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="card border border-success">
-                            <div class="card-header">
-                                <strong class="card-title">Card Outline</strong>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-4">
-                        <div class="card bg-primary">
-                            <div class="card-body">
-                                <blockquote class="blockquote mb-0 text-light">
-                                    <p class="text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                    <footer class="blockquote-footer text-light">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header bg-secondary">
-                                <strong class="card-title text-light">Card Header</strong>
-                            </div>
-                            <div class="card-body text-white bg-primary">
-                                <p class="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header bg-dark">
-                                <strong class="card-title text-light">Card Header</strong>
-                            </div>
-                            <div class="card-body text-white bg-danger">
-                                <p class="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header bg-success">
-                                <strong class="card-title text-light">Card Header</strong>
-                            </div>
-                            <div class="card-body text-white bg-warning">
-                                <p class="card-text text-light">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img class="card-img-top" src="../../assets/fille-logo.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title mb-3">Card Image Title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img class="card-img-top" src="../../assets/fille-logo.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title mb-3">Card Image Title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img class="card-img-top" src="../../assets/fille-logo.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title mb-3">Card Image Title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div-->
 
                 </div><!-- .row -->
             </div><!-- .animated -->
@@ -669,13 +274,20 @@ export default {
       ue: "",
       typeDoc: "",
       enseignant: "",
+      recherche: "",
+      documents: "",
 
-			error: "",
+			notFound: false,
 			loading: false,
-      message: "",
 
 		}
 	},
+  watch: {
+    recherche: function() {
+      if(this.recherche.length >= 3) {this.handleSearch();}
+      
+    }
+  },
 	mounted() {
 		this.$store.dispatch("fetchData/getFacultes")
 		this.$store.dispatch("fetchData/getFilieres")
@@ -687,47 +299,19 @@ export default {
 	},
 	
 	methods: {
-    handleUpdate() {
-      this.submitted = true;
+    handleSearch() {
       this.loading = true;
-
-      if (!this.faculte) {
-        this.faculte = this.currentUser.FaculteId;
-      }
-      if (!this.filiere) {
-        this.filiere = this.currentUser.FiliereId;
-      }
-      if (!this.niveau) {
-        this.niveau = this.currentUser.NiveauId;
-      }
-      if (!this.specialite) {
-        this.specialite = this.currentUser.SpecialiteId
-      }
-      if (!this.user.username) {
-        this.user.username = this.currentUser.username
-      }
-      
-      //this.$validator.validate().then((valid) => {
-        //if (valid) {
-          this.user.setOthersInformations(
-            this.confirmPassword,
-            this.faculte,
-            this.filiere,
-            this.niveau,
-            this.specialite,
-            this.newPassword,
-            this.matricule,
-          );
 				
       //if(this.checkValue) {
-        axios.post("http://localhost:5000/api/users/updateUser/"+this.currentUser.id, this.user).then((res) => {
-          console.log("-------------------------");
-          console.log(res.data.msg);
+        axios.get("http://localhost:5000/api/documents/documentActif/"+this.recherche).then((res) => {
+          console.log("-----------------------------------------------------------------------------");
+          const n = res.data.allDocument.length;
             this.loading = false;
-          if (res.data.success) {
-            this.message = res.data.msg;
+          if (n != 0) {
+            this.documents = res.data.allDocument;
           }else {
-            this.error = res.data.msg
+            this.notFound = true;
+            console.log(this.notFound)
           }
         })
         .catch((err) => {
@@ -746,12 +330,19 @@ export default {
   transform: translateY(-50%);
   color: rgba(255, 255, 255, 0.9);
 }
+
 .media {
 	background-color: #fff;
 	background-clip: border-box;
 	border: 1px solid rgba(0,0,0,.125);
 	border-radius: .25rem;
+  height: 125px;
 }
+.media img {
+  width: 80px;
+  height: 90%;
+}
+
 .mycard {
 	position: relative;
 	display: flex;
@@ -759,6 +350,38 @@ export default {
 	min-width: 0;
 	word-wrap: break-word;
     
+}
+.media {
+  overflow: hidden;
+}
+.media-left {
+  height: 100%;
+}
+.media-body {
+  width: 50%;
+
+}
+.media-heading {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 2px;
+  letter-spacing: 0px;
+  height: 18px;
+  width: 100%;
+}
+
+.media-body .resume {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.media-body .comment-action {
+  height: 20px;
+}
+.media-body .comment-date {
+  width: 100%;
+  height: 20px;
 }
 /*--------------------------------------------------------------
 # Sections General
@@ -770,7 +393,6 @@ section {
 .section-bg {
   /* background-color: #1a1814;*/
 }
-
 .section-title {
   /* padding-bottom: 30px;
   margin-top: 100px; */
