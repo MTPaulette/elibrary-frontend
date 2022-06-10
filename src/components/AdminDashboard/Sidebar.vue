@@ -195,7 +195,7 @@
 
         <h3 class="menu-title">Paramètres</h3>
         <li>
-          <router-link :to="{ name: 'Profile', query: { id:currentUser.id }}"> <i class="menu-icon fa fa-user"></i>Profil</router-link>
+          <router-link :to="{ path: '/profile', query: { id:currentUser.id }}"> <i class="menu-icon fa fa-user"></i>Profil</router-link>
           <!-- <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profil</a> -->
         </li>
         <li>

@@ -10,21 +10,24 @@
 
     </div>
           <div class="row">
-            <div class="col-lg-10 mx-auto">
+            <div class="col-lg-11 mx-auto">
               <div class="card">
                 <div class="card-body">
                   <div class="user-profile">
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="user-photo m-b-30">
-                          <img class="img-fluid" src="../../assets/logo-pdf.png" alt="" />
+                        <img class="img-fluid" v-if="document.TypeId == 1" src="../../assets/logo-book.png" alt="...">
+                        <img class="img-fluid" v-else src="../../assets/logo-pdf.png" alt="...">
                         </div>
-                        <div class="user-work mt-5">
-                          <h4>work</h4>
+                        <div class="user-work mt-lg-5">
+                          <h4>Autres</h4>
                           <div class="work-content">
-                            <h3>It Solution </h3>
-                            <p>123, South Mugda {{ document.titre }} </p>
-                            <p>New York, 1214</p>
+                            <h3>{{ document.Type.nom }}</h3>
+                            <p class="details" v-if="document.Ue">{{ document.Ue.nom }}</p>
+                            <p class="details" v-if="document.Specialite">{{ document.Specialite.nom }}</p>
+                            <p class="details">{{ document.Filiere.nom }}</p>
+                            <p class="details">{{ document.Faculte.nom }}</p>
                           </div>
                           <div class="work-content">
                             <h3>Unix</h3>
@@ -95,25 +98,30 @@
                                   
                                 <div class="phone-content">
                                   <span class="contact-title">Publieur:</span>
-                                  <span class="details">
-                                    <router-link :to="{ name: 'Profile', query: { id:document.User.id }}">{{ document.User.username}}</router-link>
+                                  <span class="details" v-if="document.UserId">
+                                    <router-link :to="{ path: '/profile', query: { id:document.User.id }}">{{ document.User.username}}</router-link>
                                   </span>
+                                  <span class="details" v-else>Non défini</span>
                                 </div>
                                 <div class="address-content">
-                                  <span class="contact-title">Address:</span>
-                                  <span class="details">123, Rajar Goli, South Mugda</span>
+                                  <span class="contact-title">Fonction:</span>
+                                  <span class="details" v-if="document.User.RoleId === 2">Enseignant</span>
+                                  <span class="details" v-if="document.User.RoleId === 3">Etudiant</span>
                                 </div>
                                 <div class="email-content">
                                   <span class="contact-title">Email:</span>
-                                  <span class="details">hello@Admin Board.com</span>
+                                  <span class="details">{{ document.User.email }}</span>
                                 </div>
                                 <div class="website-content">
-                                  <span class="contact-title">Website:</span>
-                                  <span class="details">www.Admin Board.com</span>
+                                  <span class="contact-title">Etat:</span>
+                                  <span class="badge badge-success" v-if="document.User.etat == 'actif'">{{document.User.etat}}</span>
+                                  <span class="badge badge-warming" v-if="document.User.etat === 'bloqué'">{{document.User.etat}}</span>
+                                  <span class="badge badge-danger" v-if="document.User.etat === 'supprimé'">{{document.User.etat}}</span>
                                 </div>
                                 <div class="skype-content">
-                                  <span class="contact-title">Skype:</span>
-                                  <span class="details">Admin Board</span>
+                                  <span class="contact-title">Auteur:</span>
+                                  <span class="details" v-if="document.auteur">{{ document.auteur }}</span>
+                                  <span class="details" v-else>Non défini</span>
                                 </div>
 
                                 </div>
@@ -130,7 +138,7 @@
                                 </div>
                                 <div class="birthday-content">
                                   <span class="contact-title">Nombre de téléchargement:</span>
-                                  <span class="details">{{ document.nbTelechargement }}</span>
+                                  <span class="badge badge-secondary">{{ document.nbTelechargement }}</span>
                                 </div>
                               </div>
                             </div>

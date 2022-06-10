@@ -7,6 +7,7 @@ import Register from "../components/Authentification/Register.vue";
 import ResetPassword from "../components/Authentification/ResetPassword.vue";
 import Search from "../components/Base/Search.vue";
 import Document from "../components/Base/DocumentDetails.vue";
+import Profile from "../components/AdminDashboard/Profile.vue";
 //import Search2 from "../components/Base/Search2.vue";
 
 // import LoginPage from "../views/Authentification/Login.vue";
@@ -80,21 +81,18 @@ const routes = [
       {
         path: "/BlockDocument",
         name: "BlockDocument",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Block/Document.vue"),
       },
       {
         path: "/BlockStudent",
         name: "BlockStudent",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Block/Student.vue"),
       },
       {
         path: "/BlockTeacher",
         name: "BlockTeacher",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Block/Teacher.vue"),
       },
@@ -103,21 +101,18 @@ const routes = [
       {
         path: "/UnblockDocument",
         name: "UnblockDocument",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Unblock/Document.vue"),
       },
       {
         path: "/UnblockStudent",
         name: "UnblockStudent",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Unblock/Student.vue"),
       },
       {
         path: "/UnblockTeacher",
         name: "UnblockTeacher",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Unblock/Teacher.vue"),
       },
@@ -126,21 +121,18 @@ const routes = [
       {
         path: "/DeletedDocuments",
         name: "DeleteDocument",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Delete/Document.vue"),
       },
       {
         path: "/DeletedStudents",
         name: "DeleteStudent",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Delete/Student.vue"),
       },
       {
         path: "/DeletedTeachers",
         name: "DeleteTeacher",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Delete/Teacher.vue"),
       },
@@ -149,16 +141,19 @@ const routes = [
       {
         path: "/DeletedDocuments",
         name: "DeleteDocument",
-        // lazy-loaded
         component: () =>
           import("../components/AdminDashboard/Delete/Document.vue"),
       },
       {
-        path: "/profile/:id",
+        path: "/reglage",
+        name: "Reglage",
+        component: () => import("../components/AdminDashboard/Reglage.vue"),
+      },
+      {
+        path: "/profile",
         name: "Profile",
-        props: true,
-        // lazy-loaded
-        component: () => import("../components/AdminDashboard/Profile.vue"),
+        component: Profile,
+        //component: () => import("../components/AdminDashboard/Profile.vue"),
       },
       {
         path: "/search",
