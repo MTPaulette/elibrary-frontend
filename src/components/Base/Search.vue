@@ -45,7 +45,7 @@
                         v-for="faculte in facultes"
                         :key="faculte.id"
                         :nom="faculte"
-                        v-bind:value="faculte.id"
+                        v-bind:value="faculte.nom"
                       >
                         {{ faculte.nom }}
                       </option>
@@ -81,7 +81,7 @@
                       <option
                         v-for="niveau in niveaux"
                         :key="niveau.id"
-                        :value="niveau.id"
+                        :value="niveau.nom"
                       >
                         {{ niveau.nom }}
                       </option>
@@ -101,7 +101,7 @@
                       <option
                         v-for="specialite in specialites"
                         :key="specialite.id"
-                        :value="specialite.id"
+                        :value="specialite.nom"
                       >
                         {{ specialite.nom }}
                       </option>
@@ -121,7 +121,7 @@
                       <option
                         v-for="ue in ues"
                         :key="ue.id"
-                        :value="ue.id"
+                        :value="ue.nom"
                       >
                         {{ ue.nom }}
                       </option>
@@ -142,7 +142,7 @@
                       <option
                         v-for="typeDoc in types"
                         :key="typeDoc.id"
-                        :value="typeDoc.id"
+                        :value="typeDoc.nom"
                       >
                         {{ typeDoc.nom }}
                       </option>
@@ -163,7 +163,7 @@
                       <option
                         v-for="enseignant in enseignants"
                         :key="enseignant.id"
-                        :value="enseignant.id"
+                        :value="enseignant.nom"
                       >
                         {{ enseignant.username }}
                       </option>
@@ -227,6 +227,11 @@
                           <a href="#"  class="ml-2" >
                             <i class="bi bi-mortarboard-fill"></i>
                             {{ document.Filiere.nom }}
+                          </a>
+                          <router-link :to="{ path: '/searchDetails', query: { id:document.id }, params: { document: document}}">
+                            <i class="fa fa-eye"></i>voir plus</router-link>
+                            
+                          <a href="#"  class="ml-2" >
                           </a>
 
                           <!-- <a href="#">
@@ -302,16 +307,62 @@ export default {
       return this.$store.state.fetchData.enseignants;
     },
     filterDocuments() {
-      console.log('------------------------------------------')
+      /*
+      if(this.faculte.length > 0) {
+        return this.documents.filter((document) => {
+          if(document.Faculte.nom === this.faculte) {
+              return document;
+          };
+          // return document.titre.toLowerCase().includes(this.filiere.toLowerCase());
+        });
+      }
+      */
+      
       if(this.filiere.length > 0) {
         return this.documents.filter((document) => {
           if(document.Filiere.nom === this.filiere) {
               return document;
           };
-          // return document.titre.toLowerCase().includes(this.filiere.toLowerCase());
         });
-
       }
+      
+      if(this.niveau.length > 0) {
+        return this.documents.filter((document) => {
+          if(document.Niveau.nom === this.niveau) {
+              return document;
+          };
+        });
+      }
+      
+      if(this.specialite.length > 0) {
+        return this.documents.filter((document) => {
+          if(document.Specialite.nom === this.specialite) {
+              return document;
+          };
+        });
+      }
+      if(this.ue.length > 0) {
+        return this.documents.filter((document) => {
+          if(document.Ue.nom === this.ue) {
+              return document;
+          };
+        });
+      }
+      if(this.typeDoc.length > 0) {
+        return this.documents.filter((document) => {
+          if(document.Type.nom === this.typeDoc) {
+              return document;
+          };
+        });
+      }
+      if(this.enseignant.length > 0) {
+        return this.documents.filter((document) => {
+          if(document.Enseignant.nom === this.enseignant) {
+              return document;
+          };
+        });
+      }
+      
       if(this.documents.length != 0) {
         return this.documents;
       }
