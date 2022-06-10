@@ -6,7 +6,7 @@ import Login from "../components/Authentification/Login.vue";
 import Register from "../components/Authentification/Register.vue";
 import ResetPassword from "../components/Authentification/ResetPassword.vue";
 import Search from "../components/Base/Search.vue";
-import SearchDetails from "../components/Base/SearchDetails.vue";
+import Document from "../components/Base/DocumentDetails.vue";
 //import Search2 from "../components/Base/Search2.vue";
 
 // import LoginPage from "../views/Authentification/Login.vue";
@@ -154,8 +154,9 @@ const routes = [
           import("../components/AdminDashboard/Delete/Document.vue"),
       },
       {
-        path: "/profile",
+        path: "/profile/:id",
         name: "Profile",
+        props: true,
         // lazy-loaded
         component: () => import("../components/AdminDashboard/Profile.vue"),
       },
@@ -164,11 +165,67 @@ const routes = [
         component: Search,
       },
       {
-        path: "/SearchDetails",
-        component: SearchDetails,
+        path: "/document/:id",
+        name: "Document",
+        component: Document,
+        props: true,
       },
     ],
   },
+  {
+    path: "/user/:id",
+    name: "user",
+    component: Document,
+    props: true,
+  },
+
+
+  // {
+  //   path: "/Document",
+  //   component: Document,
+  //   props: true,
+  // },
+
+
+
+
+  // {
+  //   path: "/Document/:document",
+  //   name: "Document",
+  //   component: Document,
+  //   props: true,
+  //   //props: route => ({ query: route.query.document})
+  // },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   {
     path: "/informatiques",

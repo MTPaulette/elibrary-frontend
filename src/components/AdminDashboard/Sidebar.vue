@@ -195,7 +195,11 @@
 
         <h3 class="menu-title">Paramètres</h3>
         <li>
-          <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profil</a>
+          <router-link :to="{ name: 'Profile', query: { id:currentUser.id }}"> <i class="menu-icon fa fa-user"></i>Profil</router-link>
+          <!-- <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profil</a> -->
+        </li>
+        <li>
+          <a href="/reglage"> <i class="menu-icon fa fa-user"></i>Reglages</a>
         </li>
         <li>
           <a href="" @click="handleLogout">
@@ -211,6 +215,11 @@
 </template>
 <script>
 export default {
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user.user;
+    },
+  },
   methods: {
     handleLogout() {
       this.$store.dispatch("auth/logout").then(

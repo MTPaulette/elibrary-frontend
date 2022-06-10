@@ -199,7 +199,7 @@
                         :value="document.id"
                   >
                   <div class="media mb-2 p-2">
-                    <div class="media-left ml-4">
+                    <div class="media-left ml-lg-4">
                       <a href="#">
                         <img class="media-object" v-if="document.TypeId == 1" src="../../assets/logo-book.png" alt="...">
                         <img class="media-object" v-else src="../../assets/logo-pdf.png" alt="...">
@@ -228,7 +228,8 @@
                             <i class="bi bi-mortarboard-fill"></i>
                             {{ document.Filiere.nom }}
                           </a>
-                          <router-link :to="{ path: '/searchDetails', query: { id:document.id }, params: { document: document}}">
+                          <!-- <router-link :to="{ path: '/document', params: { document: document}, query: { id:document.id }}"> -->
+                          <router-link :to="{ name: 'Document', params: { document: document}, query: { id:document.id }}">
                             <i class="fa fa-eye"></i>voir plus</router-link>
                             
                           <a href="#"  class="ml-2" >
@@ -465,7 +466,7 @@ div {
   background-clip: border-box;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   /* border-radius: 0.25rem; */
-  height: 125px;
+  height: 135px;
 }
 .media img {
   width: 80px;
