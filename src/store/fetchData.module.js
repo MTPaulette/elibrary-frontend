@@ -2,8 +2,8 @@ import axios from "axios";
 //import router from '../router';
 const API_URL = "http://localhost:5000/api/";
 
-const initialState = { 
-  facultes: null, 
+const initialState = {
+  facultes: null,
   filieres: null,
   niveaux: null,
   specialites: null,
@@ -11,7 +11,6 @@ const initialState = {
   types: null,
   enseignants: null,
 };
-
 
 export const fetchData = {
   namespaced: true,
@@ -68,29 +67,27 @@ export const fetchData = {
       return res;
     },
   },
-  mutations:  {
+  mutations: {
     setFaculte(state, facultes) {
-      state.facultes = facultes
+      state.facultes = facultes;
     },
     setFiliere(state, filieres) {
-      state.filieres = filieres
+      state.filieres = filieres;
     },
     setNiveau(state, niveaux) {
-      state.niveaux = niveaux
+      state.niveaux = niveaux;
     },
     setSpecialite(state, specialites) {
-      state.specialites = specialites
+      state.specialites = specialites;
     },
     setUe(state, ues) {
-      state.ues = ues
+      state.ues = ues;
     },
     setEnseignant(state, enseigants) {
-      state.enseignants = enseigants
+      state.enseignants = enseigants;
     },
     setType(state, types) {
-      state.types = types
-    }
-  }
+      state.types = types;
+    },
+  },
 };
-
-

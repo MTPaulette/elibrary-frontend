@@ -59,14 +59,23 @@
                     <tr
                       v-for="student in students"
                       :key="student.id"
-                      v-bind:value="student.id">
-                      <td>{{student.username}}</td>
-                      <td>{{student.email}}</td>
-                      <td>{{student.createdAt}}</td>
-                      <td><span class="badge badge-danger">{{student.etat}}</span></td>
+                      v-bind:value="student.id"
+                    >
+                      <td>{{ student.username }}</td>
+                      <td>{{ student.email }}</td>
+                      <td>{{ student.createdAt }}</td>
+                      <td>
+                        <span class="badge badge-danger">{{
+                          student.etat
+                        }}</span>
+                      </td>
                       <td>
                         <label class="switch switch-3d switch-success mr-3">
-                          <input type="checkbox" class="switch-input"  @click="deblockStudent(student.id)">
+                          <input
+                            type="checkbox"
+                            class="switch-input"
+                            @click="deblockStudent(student.id)"
+                          />
                           <span class="switch-label" value="1"></span>
                           <span class="switch-handle" value="2"></span>
                         </label>
@@ -91,7 +100,7 @@ export default {
   data() {
     return {
       students: "",
-      checkValue: false
+      checkValue: false,
     };
   },
 
@@ -106,10 +115,11 @@ export default {
   },
 
   methods: {
-
     //********************************** */
     fetchData() {
-        axios.get("http://localhost:5000/api/users/TousEtudiantsBloques").then((res) => {
+      axios
+        .get("http://localhost:5000/api/users/TousEtudiantsBloques")
+        .then((res) => {
           console.log("***************************************");
           console.log(res.data.allUser);
           this.students = res.data.allUser;
@@ -124,8 +134,10 @@ export default {
     },
     deblockStudent(studentId) {
       //if(this.checkValue) {
-        axios.get("http://localhost:5000/api/users/debloquerUser/"+studentId).then((res) => {
-        // axios.get("http://localhost:5000/api/users/etudiantBloque/"+studentId).then((res) => {
+      axios
+        .get("http://localhost:5000/api/users/debloquerUser/" + studentId)
+        .then((res) => {
+          // axios.get("http://localhost:5000/api/users/etudiantBloque/"+studentId).then((res) => {
           console.log("-------------------------");
           console.log(studentId);
           console.log(res.data.msg);
@@ -139,7 +151,7 @@ export default {
           console.log(err);
         });
       //}
-    }
+    },
   },
   mounted() {},
 };

@@ -10,8 +10,14 @@
     </div>
 
 <div class="row">
-                <div class="d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
+                <div class="d-flex justify-content-center align-items-center" data-parallax="scroll">
                     <form class="d-flex">
+                <div class="my-auto">
+                  <span
+                          class="spinner-border spinner-border-sm"
+                          v-show="loading"
+                        ></span>
+                </div>
                         <input class="form-control" type="search" placeholder="quel document voulez-vous?" aria-label="Search" 
                       v-model="recherche"
                       >
@@ -24,12 +30,7 @@
 </div>
 <div class="row">
 
-      <!-- .if notfound -->
-      <div v-if="notFound">
-        <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
-      </div>
-
-                <div v-else class="d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/hero.jpg">
+                <div v-if="!notFound" class="col-lg-10 col-sm-11 d-flex justify-content-center align-items-center mx-auto">
                     <ul class="d-flex flex-wrap">
                       <li>
 
@@ -64,7 +65,7 @@
                       <option
                         v-for="filiere in filieres"
                         :key="filiere.id"
-                        v-bind:value="filiere.id"
+                        v-bind:value="filiere.nom"
                       >
                         {{ filiere.nom }}
                       </option>
@@ -178,43 +179,79 @@
                 <div class="row">
 
             <!-- /# column -->
-            <div class="col-lg-11 mx-auto">
+            <div class="col-lg-12 mx-auto">
               <div class="mycard">
                 <div class="card-title section-title mt-2">
                   <h4>Resultat pour la recherche: {{recherche}} </h4>
 
                 </div>
-                <div class="recent-comment">
+                <div class="row">
+      <!-- .if notfound -->
+      <div class="col-lg-11 mx-auto" v-if="notFound">
+        <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
+      </div></div>
+
+                <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
 
                 <div class="col-lg-6"
-                        v-for="document in documents"
+                        v-for="document in filterDocuments"
                         :key="document.id"
                         :value="document.id"
                   >
                   <div class="media mb-2 p-2">
-                    <div class="media-left">
+                    <div class="media-left ml-4">
                       <a href="#">
-                        <img class="media-object" src="../../assets/logo-pdf.png" alt="...">
+                        <img class="media-object" v-if="document.TypeId == 1" src="../../assets/logo-book.png" alt="...">
+                        <img class="media-object" v-else src="../../assets/logo-pdf.png" alt="...">
                       </a>
                     </div>
                     <div class="media-body">
-                      <h6 class="media-heading mb-0">{{ document.titre }}</h6>
-                      <p class="resume">{{ document.resume }}</p>
+                      <h6 class="media-heading mb-2">{{ document.titre }}</h6>
+                      <p class="resume mb-1">{{ document.resume }}</p>
                       <div class="comment-action">
-                        <div class="badge badge-success">{{ document.etat }}</div>
+                        <div class="badge badge-success ml-2 mr-3">{{ document.Type.nom }}</div>
                         <span class="ml-10">
-                          <a href="#">
-                            <i class="fa fa-replycolor-success"></i>
+                          <a target="_blanc" class="" 
+                          :href="
+                            'http://localhost:5000/api/documents/telecharger/' +
+                            document.id
+                          ">
+                            <i class="fa fa-download"></i>
+                            <span class="comment-date">
+                             {{ document.nbTelechargement }}</span>
+                          </a>
+                          <a href="#" class="ml-2 w-10">
+                            <i class="bi bi-person-fill"></i>
+                            {{ document.User.username }}
+                          </a>
+                          <a href="#"  class="ml-2" >
+                            <i class="bi bi-mortarboard-fill"></i>
+                            {{ document.Filiere.nom }}
+                          </a>
+
+                          <!-- <a href="#">
+                            <i class="bi bi-person-fill"></i>
+                            {{ document.Faculte.nom }}
                           </a>
                           <a href="#">
-                            <i class="fa fa-reply color-danger"></i>
+                            <i class="bi bi-person-fill"></i>
+                            {{ document.Niveau.nom }}
                           </a>
-                          <a href="#">
-                            <i class="fa fa-reply color-primary"></i>
+
+                          <a href="#" v-if="document.SpecialiteId">
+                            <i class="bi bi-person-fill"></i>
+                            {{ document.Specialite.nom }}
                           </a>
+
+                          <a href="#" v-if="document.UeId">
+                            <i class="bi bi-person-fill"></i>
+                            {{ document.Ue.nom }}
+                          </a> -->
+
+                          <!-- <a class="comment-date ml-5">{{ document.createdAt }}</a> -->
                         </span>
+                          <p class="comment-date">{{ document.createdAt }}</p>
                       </div>
-                      <p class="comment-date">{{ document.createdAt }}</p>
                     </div>
                   </div>
                 </div>
@@ -223,7 +260,6 @@
               </div>
               <!-- /# card -->
             </div>
-            <!-- /# column -->
 
                 </div><!-- .row -->
             </div><!-- .animated -->
@@ -233,6 +269,8 @@
 </section>
 </div>
 </template>
+
+
 <script>
 import axios from "axios";
 //import User from "../../models/user";
@@ -242,31 +280,49 @@ export default {
     currentUser() {
       return this.$store.state.auth.user.user;
     },
-		facultes() {
-			return this.$store.state.fetchData.facultes
-		},
-		filieres() {
-			return this.$store.state.fetchData.filieres
-		},
-		niveaux() {
-			return this.$store.state.fetchData.niveaux
-		},
-		specialites() {
-			return this.$store.state.fetchData.specialites
-		},
-		ues() {
-			return this.$store.state.fetchData.ues
-		},
-		types() {
-			return this.$store.state.fetchData.types
-		},
-		enseignants() {
-			return this.$store.state.fetchData.enseignants
-		},
+    facultes() {
+      return this.$store.state.fetchData.facultes;
+    },
+    filieres() {
+      return this.$store.state.fetchData.filieres;
+    },
+    niveaux() {
+      return this.$store.state.fetchData.niveaux;
+    },
+    specialites() {
+      return this.$store.state.fetchData.specialites;
+    },
+    ues() {
+      return this.$store.state.fetchData.ues;
+    },
+    types() {
+      return this.$store.state.fetchData.types;
+    },
+    enseignants() {
+      return this.$store.state.fetchData.enseignants;
+    },
+    filterDocuments() {
+      console.log('------------------------------------------')
+      if(this.filiere.length > 0) {
+        return this.documents.filter((document) => {
+          if(document.Filiere.nom === this.filiere) {
+              return document;
+          };
+          // return document.titre.toLowerCase().includes(this.filiere.toLowerCase());
+        });
+
+      }
+      if(this.documents.length != 0) {
+        return this.documents;
+      }
+
+      console.log('--------------------******************************----------------------')
+      return {}
+    },
   },
 
-	data() {
-		return {
+  data() {
+    return {
       faculte: "",
       filiere: "",
       niveau: "",
@@ -277,51 +333,73 @@ export default {
       recherche: "",
       documents: "",
 
-			notFound: false,
-			loading: false,
-
-		}
-	},
-  watch: {
-    recherche: function() {
-      if(this.recherche.length >= 3) {this.handleSearch();}
-      
-    }
+      notFound: false,
+      loading: false,
+    };
   },
-	mounted() {
-		this.$store.dispatch("fetchData/getFacultes")
-		this.$store.dispatch("fetchData/getFilieres")
-		this.$store.dispatch("fetchData/getNiveaux")
-		this.$store.dispatch("fetchData/getSpecialites")
-		this.$store.dispatch("fetchData/getUes")
-		this.$store.dispatch("fetchData/getTypes")
-		this.$store.dispatch("fetchData/getEnseignants")
-	},
-	
-	methods: {
+  watch: {
+    recherche: function () {
+      if (this.recherche.length >= 3) {
+        this.handleSearch();
+      }
+    },
+  },
+  mounted() {
+    this.$store.dispatch("fetchData/getFacultes");
+    this.$store.dispatch("fetchData/getFilieres");
+    this.$store.dispatch("fetchData/getNiveaux");
+    this.$store.dispatch("fetchData/getSpecialites");
+    this.$store.dispatch("fetchData/getUes");
+    this.$store.dispatch("fetchData/getTypes");
+    this.$store.dispatch("fetchData/getEnseignants");
+  },
+
+  methods: {
+    reset() {
+      this.faculte = "",
+      this.filiere = "",
+      this.niveau = "",
+      this.specialite = "",
+      this.ue = "",
+      this.typeDoc = "",
+      this.enseignant = ""
+    },
+
     handleSearch() {
       this.loading = true;
-				
+      this.notFound = false;
+
       //if(this.checkValue) {
-        axios.get("http://localhost:5000/api/documents/documentActif/"+this.recherche).then((res) => {
-          console.log("-----------------------------------------------------------------------------");
+      axios
+        .get(
+          "http://localhost:5000/api/documents/documentActif/" + this.recherche
+        )
+        .then((res) => {
           const n = res.data.allDocument.length;
-            this.loading = false;
+          this.loading = false;
           if (n != 0) {
+          console.log(
+            "-----------------------------------------------------------------------------"
+          );
+            console.log(this.recherche);
+            console.log(res.data.allDocument);
+            this.reset();
             this.documents = res.data.allDocument;
-          }else {
+          } else {
             this.notFound = true;
-            console.log(this.notFound)
           }
         })
         .catch((err) => {
           console.log(err);
         });
-    }
-	},
+    },
+  },
 };
 </script>
 <style scoped>
+div {
+  font-family: 'Poppins';
+}
 
 .field-icon {
   position: absolute;
@@ -332,10 +410,10 @@ export default {
 }
 
 .media {
-	background-color: #fff;
-	background-clip: border-box;
-	border: 1px solid rgba(0,0,0,.125);
-	border-radius: .25rem;
+  background-color: #fff;
+  background-clip: border-box;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  /* border-radius: 0.25rem; */
   height: 125px;
 }
 .media img {
@@ -344,12 +422,11 @@ export default {
 }
 
 .mycard {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	min-width: 0;
-	word-wrap: break-word;
-    
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
 }
 .media {
   overflow: hidden;
@@ -359,7 +436,6 @@ export default {
 }
 .media-body {
   width: 50%;
-
 }
 .media-heading {
   font-size: 18px;
@@ -372,8 +448,9 @@ export default {
 
 .media-body .resume {
   width: 100%;
-  height: 50px;
-  margin-bottom: 0;
+  height: 30px;
+  margin-bottom: 1px;
+  line-height: 1rem !important;
   overflow: hidden;
 }
 .media-body .comment-action {
@@ -382,6 +459,8 @@ export default {
 .media-body .comment-date {
   width: 100%;
   height: 20px;
+  font-weight:300;
+  font-size: small;
 }
 /*--------------------------------------------------------------
 # Sections General
@@ -397,7 +476,8 @@ section {
   /* padding-bottom: 30px;
   margin-top: 100px; */
 }
-.section-title h2, .section-title h4 {
+.section-title h2,
+.section-title h4 {
   font-size: 14px;
   font-weight: 500;
   padding: 0;
@@ -409,7 +489,8 @@ section {
   /* color: #aaaaaa; */
   font-family: "Poppins", sans-serif;
 }
-.section-title h2::after, .section-title h4::after {
+.section-title h2::after,
+.section-title h4::after {
   content: "";
   width: 120px;
   height: 1px;
@@ -428,12 +509,7 @@ section {
   color: #cda45e;
 }
 
-
-
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
-
-
-    
 </style>

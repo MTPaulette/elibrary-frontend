@@ -53,4 +53,5 @@ export default {};
   .breadcrumbs ol li {
     display: inline-block;
   }
-}</style>
+}
+</style>

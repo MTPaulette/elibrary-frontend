@@ -16,7 +16,7 @@
         <i class="fa fa-bars"></i>
       </button>
       <a class="navbar-brand" href="./"
-        ><img src="../../assets/fille-logo.jpg" class="w-25 h-25"  alt="Logo"
+        ><img src="../../assets/fille-logo.jpg" class="w-25 h-25" alt="Logo"
       /></a>
       <a class="navbar-brand hidden" href="./"
         ><img src="images/logo2.png"
@@ -68,8 +68,7 @@
               ><a href="UpdateDocument">Modification</a>
             </li>
             <li>
-              <i class="fa fa-table"></i
-              ><a href="BlockDocument">Suspension</a>
+              <i class="fa fa-table"></i><a href="BlockDocument">Suspension</a>
             </li>
             <li>
               <i class="fa fa-table"></i
@@ -94,8 +93,7 @@
               ><a href="UpdateTeacher">Modification</a>
             </li>
             <li>
-              <i class="fa fa-table"></i
-              ><a href="BlockTeacher">Suspension</a>
+              <i class="fa fa-table"></i><a href="BlockTeacher">Suspension</a>
             </li>
             <li>
               <i class="fa fa-table"></i
@@ -115,8 +113,7 @@
           >
           <ul class="sub-menu children dropdown-menu">
             <li>
-              <i class="fa fa-table"></i
-              ><a href="BlockStudent">Suspension</a>
+              <i class="fa fa-table"></i><a href="BlockStudent">Suspension</a>
             </li>
             <li>
               <i class="fa fa-table"></i
@@ -136,16 +133,14 @@
           >
           <ul class="sub-menu children dropdown-menu">
             <li>
-              <i class="fa fa-table"></i
-              ><a href="DeletedDocuments">Document</a>
+              <i class="fa fa-table"></i><a href="DeletedDocuments">Document</a>
             </li>
             <li>
               <i class="fa fa-table"></i
               ><a href="DeletedTeachers">Enseignant</a>
             </li>
             <li>
-              <i class="fa fa-table"></i
-              ><a href="DeletedStudents">Etudiant</a>
+              <i class="fa fa-table"></i><a href="DeletedStudents">Etudiant</a>
             </li>
           </ul>
         </li>
@@ -180,10 +175,14 @@
           <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Nouveau</a>
         </li>
         <li>
-          <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Boite d'envoi</a>
+          <a href="#">
+            <i class="menu-icon fa fa-line-chart"></i>Boite d'envoi</a
+          >
         </li>
         <li>
-          <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Boite de reception</a>
+          <a href="#">
+            <i class="menu-icon fa fa-line-chart"></i>Boite de reception</a
+          >
         </li>
 
         <h3 class="menu-title">Analyse & Rapport</h3>
@@ -199,7 +198,9 @@
           <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profil</a>
         </li>
         <li>
-          <a href="" @click="handleLogout"> <i class="menu-icon fa fa-power-off"></i>Deconnexion</a>
+          <a href="" @click="handleLogout">
+            <i class="menu-icon fa fa-power-off"></i>Deconnexion</a
+          >
         </li>
       </ul>
     </div>
@@ -212,22 +213,25 @@
 export default {
   methods: {
     handleLogout() {
-        this.$store.dispatch("auth/logout").then(
-          () => {
-            this.$router.push("/login");
-          },
-          (error) => {
+      this.$store.dispatch("auth/logout").then(
+        () => {
+          this.$router.push("/login");
+        },
+        (error) => {
           console.log("error");
-            this.loading = false;
-            this.message = error.message;
-          }
-        );
-      }
-  }
+          this.loading = false;
+          this.message = error.message;
+        }
+      );
+    },
+  },
 };
 </script>
 <style>
 ul li {
   list-style: none;
+}
+* {
+  font-family: 'Poppins';
 }
 </style>

@@ -61,17 +61,34 @@
                     <tr
                       v-for="document in documents"
                       :key="document.id"
-                      v-bind:value="document.id">
-                      <td>{{document.titre}}</td>
-                      <td><a :href="'http://localhost:5000/api/documents/telecharger/'+ document.id">{{document.contenu}}</a></td>
-                      <td>{{document.resume}}</td>
-                      <td>{{document.auteur}}</td>
+                      v-bind:value="document.id"
+                    >
+                      <td>{{ document.titre }}</td>
+                      <td>
+                        <a
+                          :href="
+                            'http://localhost:5000/api/documents/telecharger/' +
+                            document.id
+                          "
+                          >{{ document.contenu }}</a
+                        >
+                      </td>
+                      <td>{{ document.resume }}</td>
+                      <td>{{ document.auteur }}</td>
 
-                      <td>{{document.createdAt}}</td>
-                      <td><span class="badge badge-danger">{{document.etat}}</span></td>
+                      <td>{{ document.createdAt }}</td>
+                      <td>
+                        <span class="badge badge-danger">{{
+                          document.etat
+                        }}</span>
+                      </td>
                       <td>
                         <label class="switch switch-3d switch-success mr-3">
-                          <input type="checkbox" class="switch-input"  @click="deleteDocument(document.id)">
+                          <input
+                            type="checkbox"
+                            class="switch-input"
+                            @click="deleteDocument(document.id)"
+                          />
                           <span class="switch-label" value="1"></span>
                           <span class="switch-handle" value="2"></span>
                         </label>
@@ -96,7 +113,7 @@ export default {
   data() {
     return {
       documents: "",
-      checkValue: false
+      checkValue: false,
     };
   },
 
@@ -111,10 +128,11 @@ export default {
   },
 
   methods: {
-
     //********************************** */
     fetchData() {
-        axios.get("http://localhost:5000/api/documents/TousDocumentsSupprimes").then((res) => {
+      axios
+        .get("http://localhost:5000/api/documents/TousDocumentsSupprimes")
+        .then((res) => {
           console.log(res.data.allDocument);
           this.documents = res.data.allDocument;
 
@@ -128,7 +146,11 @@ export default {
     },
     deleteDocument(documentId) {
       //if(this.checkValue) {
-        axios.get("http://localhost:5000/api/documents/debloquerDocument/"+documentId).then((res) => {
+      axios
+        .get(
+          "http://localhost:5000/api/documents/debloquerDocument/" + documentId
+        )
+        .then((res) => {
           console.log("-------------------------");
           console.log(documentId);
           console.log(res.data.msg);
@@ -142,7 +164,7 @@ export default {
           console.log(err);
         });
       //}
-    }
+    },
   },
   mounted() {},
 };

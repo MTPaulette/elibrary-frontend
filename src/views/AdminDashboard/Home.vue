@@ -1,6 +1,6 @@
 <template>
   <div class="homeAdmin">
-  <!-- <div class="homeAdmin" v-if="currentUser.username"> -->
+    <!-- <div class="homeAdmin" v-if="currentUser.username"> -->
     <aside id="left-panel" class="left-panel">
       <nav class="navbar navbar-expand-sm navbar-default">
         <Sidebar></Sidebar>
@@ -14,8 +14,7 @@
       <Breadcrumbs></Breadcrumbs>
 
       <router-view />
-      <Footer></Footer>
-
+      <!-- <Footer></Footer> -->
     </div>
   </div>
 </template>
@@ -23,7 +22,7 @@
 <script>
 import Sidebar from "@/components/AdminDashboard/Sidebar.vue";
 import Navbar from "@/components/AdminDashboard/Navbar.vue";
-import Footer from "@/components/AdminDashboard/Footer.vue";
+// import Footer from "@/components/AdminDashboard/Footer.vue";
 import Breadcrumbs from "@/components/AdminDashboard/Breadcrumbs.vue";
 
 export default {
@@ -32,7 +31,7 @@ export default {
     Sidebar: Sidebar,
     Navbar: Navbar,
     Breadcrumbs: Breadcrumbs,
-    Footer,
+    // Footer,
   },
   computed: {
     currentUser() {

@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 import { auth } from "./auth.module";
 import { fetchData } from "./fetchData.module";
-import main  from "./main.module";
+import main from "./main.module";
 
 Vue.use(Vuex);
 

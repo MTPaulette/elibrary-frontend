@@ -64,7 +64,11 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="btn btn-block signin" :disabled="loading">
+                  <button
+                    type="submit"
+                    class="btn btn-block signin"
+                    :disabled="loading"
+                  >
                     <span
                       class="spinner-border spinner-border-sm mr-1"
                       v-show="loading"
@@ -149,7 +153,7 @@ export default {
       this.$validator.validateAll();
 
       if (this.errors.any()) {
-    console.log("dans le eror")
+        console.log("dans le eror");
         this.loading = false;
         return;
       }
@@ -160,7 +164,7 @@ export default {
             this.$router.push("/profile");
           },
           (error) => {
-          console.log("error");
+            console.log("error");
             this.loading = false;
             this.message = error.message;
           }

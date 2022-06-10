@@ -47,7 +47,7 @@
       </div>
     </nav> -->
 
-      <router-view />
+    <router-view />
   </div>
 </template>
 
@@ -84,11 +84,9 @@ export default {
 };
 </script>
 
-<!-- <template>
-  <div id="app">
-    <router-view />
-  </div>
-</template>
 
 <style>
-</style> -->
+*, body {
+  font-family: 'Poppins';
+}
+</style>

@@ -1,5 +1,14 @@
 export default class Document {
-  constructor(titre, resume, auteur, type, FaculteId, FiliereId, NiveauId, SpecialiteId) {
+  constructor(
+    titre,
+    resume,
+    auteur,
+    type,
+    FaculteId,
+    FiliereId,
+    NiveauId,
+    SpecialiteId
+  ) {
     this.titre = titre;
     this.resume = resume;
     this.auteur = auteur;

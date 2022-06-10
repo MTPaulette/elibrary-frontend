@@ -60,14 +60,22 @@
                       v-for="teacher in teachers"
                       :key="teacher.id"
                       v-bind:value="teacher.id"
-                      >
-                      <td>{{teacher.username}}</td>
-                      <td>{{teacher.email}}</td>
-                      <td>{{teacher.createdAt}}</td>
-                      <td><span class="badge badge-success">{{teacher.etat}}</span></td>
+                    >
+                      <td>{{ teacher.username }}</td>
+                      <td>{{ teacher.email }}</td>
+                      <td>{{ teacher.createdAt }}</td>
+                      <td>
+                        <span class="badge badge-success">{{
+                          teacher.etat
+                        }}</span>
+                      </td>
                       <td>
                         <label class="switch switch-3d switch-danger mr-3">
-                          <input type="checkbox" class="switch-input"  @click="blockTeacher(teacher.id)">
+                          <input
+                            type="checkbox"
+                            class="switch-input"
+                            @click="blockTeacher(teacher.id)"
+                          />
                           <span class="switch-label" value="1"></span>
                           <span class="switch-handle" value="2"></span>
                         </label>
@@ -92,7 +100,7 @@ export default {
   data() {
     return {
       teachers: "",
-      checkValue: false
+      checkValue: false,
     };
   },
 
@@ -107,10 +115,11 @@ export default {
   },
 
   methods: {
-
     //********************************** */
     fetchData() {
-        axios.get("http://localhost:5000/api/users/TousEnseignantsActifs").then((res) => {
+      axios
+        .get("http://localhost:5000/api/users/TousEnseignantsActifs")
+        .then((res) => {
           console.log(res.data.allUser);
           this.teachers = res.data.allUser;
 
@@ -124,8 +133,10 @@ export default {
     },
     blockTeacher(teacherId) {
       //if(this.checkValue) {
-        axios.get("http://localhost:5000/api/users/bloquerUser/"+teacherId).then((res) => {
-        // axios.get("http://localhost:5000/api/users/etudiantBloque/"+teacherId).then((res) => {
+      axios
+        .get("http://localhost:5000/api/users/bloquerUser/" + teacherId)
+        .then((res) => {
+          // axios.get("http://localhost:5000/api/users/etudiantBloque/"+teacherId).then((res) => {
           console.log("-------------------------");
           console.log(teacherId);
           console.log(res.data.msg);
@@ -139,7 +150,7 @@ export default {
           console.log(err);
         });
       //}
-    }
+    },
   },
   mounted() {},
 };

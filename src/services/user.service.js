@@ -9,7 +9,9 @@ class UserService {
   }
 
   getUserBoard() {
-    return axios.get(API_URL + "documents/telecharger/4", { headers: authHeader() });
+    return axios.get(API_URL + "documents/telecharger/4", {
+      headers: authHeader(),
+    });
   }
 
   getModeratorBoard() {

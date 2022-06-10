@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header"> 
+            <div class="card-header">
               <strong class="card-title">DOCUMENTS BLOQUES</strong>
             </div>
             <div class="card-body">
@@ -61,26 +61,43 @@
                     <tr
                       v-for="document in documents"
                       :key="document.id"
-                      v-bind:value="document.id" :disabled="loading"
+                      v-bind:value="document.id"
+                      :disabled="loading"
                     >
-                      <td>{{document.titre}}</td>
-                      <td><a :href="'http://localhost:5000/api/documents/telecharger/'+ document.id">{{document.contenu}}</a></td>
-                      <td>{{document.resume}}</td>
-                      <td>{{document.auteur}}</td>
+                      <td>{{ document.titre }}</td>
+                      <td>
+                        <a
+                          :href="
+                            'http://localhost:5000/api/documents/telecharger/' +
+                            document.id
+                          "
+                          >{{ document.contenu }}</a
+                        >
+                      </td>
+                      <td>{{ document.resume }}</td>
+                      <td>{{ document.auteur }}</td>
 
-                      <td>{{document.createdAt}}</td>
-                      <td><span class="badge badge-success">{{document.etat}}</span></td>
+                      <td>{{ document.createdAt }}</td>
+                      <td>
+                        <span class="badge badge-success">{{
+                          document.etat
+                        }}</span>
+                      </td>
                       <td>
                         <label class="switch switch-3d switch-danger mr-3">
-                          <input type="checkbox" class="switch-input"  @click="blockDocument(document.id)">
+                          <input
+                            type="checkbox"
+                            class="switch-input"
+                            @click="blockDocument(document.id)"
+                          />
                           <span class="switch-label" value="1"></span>
                           <span class="switch-handle" value="2"></span>
                         </label>
 
-                      <span
-                        class="spinner-border spinner-border-sm mr-1"
-                        v-show="loading"
-                      ></span>
+                        <span
+                          class="spinner-border spinner-border-sm mr-1"
+                          v-show="loading"
+                        ></span>
                       </td>
                     </tr>
                   </tbody>
@@ -102,7 +119,7 @@ export default {
   data() {
     return {
       documents: "",
-      loading: false
+      loading: false,
     };
   },
 
@@ -117,10 +134,11 @@ export default {
   },
 
   methods: {
-
     //********************************** */
     fetchData() {
-        axios.get("http://localhost:5000/api/documents/TousDocumentsActifs").then((res) => {
+      axios
+        .get("http://localhost:5000/api/documents/TousDocumentsActifs")
+        .then((res) => {
           console.log(res.data.allDocument);
           this.documents = res.data.allDocument;
 
@@ -134,20 +152,24 @@ export default {
     },
     blockDocument(documentId) {
       this.loading = true;
-        axios.get("http://localhost:5000/api/documents/bloquerDocument/"+documentId).then((res) => {
+      axios
+        .get(
+          "http://localhost:5000/api/documents/bloquerDocument/" + documentId
+        )
+        .then((res) => {
           console.log("-------------------------");
           console.log(documentId);
           console.log(res.data.success);
 
           if (res.data.success) {
-      this.loading = false;
+            this.loading = false;
           }
         })
         .catch((err) => {
           console.log(err);
         });
       //}
-    }
+    },
   },
   mounted() {},
 };

@@ -56,17 +56,30 @@
 
     <div class="col-sm-5">
       <div class="user-area dropdown float-right">
-        <a href="/profile" class="dropdown-toggle" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"
+        <a
+          href="/profile"
+          class="dropdown-toggle"
+          id="dropdownMenuClickable"
+          data-bs-toggle="dropdown"
+          data-bs-auto-close="false"
+          aria-expanded="false"
         >
-          <span class="fw-bold">{{ currentUser.user.username }}: {{ currentUser.user.email }}</span>
+          <span class="fw-bold"
+            >{{ currentUser.user.username }}: {{ currentUser.user.email }}</span
+          >
         </a>
 
-        <div class="user-menu dropdown-menu" aria-labelledby="dropdownMenuClickable">
+        <div
+          class="user-menu dropdown-menu"
+          aria-labelledby="dropdownMenuClickable"
+        >
           <a class="nav-link dropdown-item" href="#"
             ><i class="fa fa-user"></i> Notifications
             <span class="count">13</span></a
           >
-          <a class="nav-link dropdown-item" href="#"><i class="fa fa-user"></i>Profil d'utilisateur</a>
+          <a class="nav-link dropdown-item" href="#"
+            ><i class="fa fa-user"></i>Profil d'utilisateur</a
+          >
           <a class="nav-link dropdown-item" href="#"
             ><i class="fa fa-power-off"></i> Deconnexion</a
           >
@@ -81,7 +94,7 @@
 <script>
 export default {
   props: {
-    user: {}
+    user: {},
   },
   computed: {
     currentUser() {

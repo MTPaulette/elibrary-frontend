@@ -15,7 +15,7 @@ const token = localStorage.getItem("token");
 
 // //is there is any token then we will simply append default axios authorization headers
 if (token) {
-   Vue.prototype.$http.defaults.headers.common["Authorization"] = token;
+  Vue.prototype.$http.defaults.headers.common["Authorization"] = token;
 }
 
 Vue.use(veeValidate);

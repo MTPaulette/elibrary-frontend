@@ -20,11 +20,11 @@
               <h3 class="mb-4 text-center" id="link">
                 <router-link to="/login">Avez-vous un compte?</router-link>
               </h3>
-                <div class="form-group">
-                  <div class="alert alert-danger" role="alert" v-if="message">
-                    {{ message }}
-                  </div>
+              <div class="form-group">
+                <div class="alert alert-danger" role="alert" v-if="message">
+                  {{ message }}
                 </div>
+              </div>
               <form action="#" class="signin-form" @submit.prevent="register">
                 <div class="form-group">
                   <input
@@ -186,18 +186,18 @@ export default {
     currentUser() {
       return this.$store.state.auth.user.user;
     },
-		facultes() {
-			return this.$store.state.fetchData.facultes
-		},
-		filieres() {
-			return this.$store.state.fetchData.filieres
-		},
-		niveaux() {
-			return this.$store.state.fetchData.niveaux
-		},
-		specialites() {
-			return this.$store.state.fetchData.specialites
-		}
+    facultes() {
+      return this.$store.state.fetchData.facultes;
+    },
+    filieres() {
+      return this.$store.state.fetchData.filieres;
+    },
+    niveaux() {
+      return this.$store.state.fetchData.niveaux;
+    },
+    specialites() {
+      return this.$store.state.fetchData.specialites;
+    },
   },
 
   data() {
@@ -216,20 +216,17 @@ export default {
       filiere: "",
       niveau: "",
       specialite: "",
-
     };
   },
-	mounted() {
-		this.$store.dispatch("fetchData/getFacultes")
-		this.$store.dispatch("fetchData/getFilieres")
-		this.$store.dispatch("fetchData/getNiveaux")
-		this.$store.dispatch("fetchData/getSpecialites")
-	},
+  mounted() {
+    this.$store.dispatch("fetchData/getFacultes");
+    this.$store.dispatch("fetchData/getFilieres");
+    this.$store.dispatch("fetchData/getNiveaux");
+    this.$store.dispatch("fetchData/getSpecialites");
+  },
 
   methods: {
-    ...mapActions([
-      "registerAuth",
-    ]),
+    ...mapActions(["registerAuth"]),
     /*
 
   created() {
@@ -277,7 +274,7 @@ export default {
     },
     */
     register() {
-            this.loading = true;
+      this.loading = true;
       let user = {
         username: this.username,
         email: this.email,
@@ -290,16 +287,16 @@ export default {
       };
       console.log(user);
       //this.registerAuth(user)
-        this.$store.dispatch("auth/register", user).then(
-          () => {
-            this.$router.push("/login");
-          },
-          (error) => {
-            this.loading = false;
-            this.message = error.msg;
+      this.$store.dispatch("auth/register", user).then(
+        () => {
+          this.$router.push("/login");
+        },
+        (error) => {
+          this.loading = false;
+          this.message = error.msg;
           console.log(this.message);
-          }
-        );
+        }
+      );
     },
   },
 };
