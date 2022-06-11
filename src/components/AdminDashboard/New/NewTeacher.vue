@@ -1,14 +1,26 @@
 <template>
-  <div class="m-5">
-    <div class="col mb-3">
-      <div class="col-12">
+  <div class="my-5">
+                <div v-if="error">
+                  <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                  </div>
+                </div>
+    <!-- .if success -->
+    <div v-if="successful">
+      <div class="alert alert-success" role="alert">
+                    {{ message }}
+      </div>
+    </div>
+
+    <div class="col mx-auto mb-3" v-else>
+      <!-- <div class="col-12">
         <div class="alert alert-danger" role="alert" v-if="error">
           {{ error }}
         </div>
         <div class="alert alert-success" role="alert" v-if="message">
           {{ message }}
         </div>
-      </div>
+      </div> -->
       <div class="card">
             <div class="card-header">NOUVEAU ENSEIGNANT</div>
         <div class="card-body">
@@ -69,24 +81,25 @@
 
             <div class="tab-content pt-3">
               <div class="tab-pane active">
-                <form class="form" action="#" @submit.prevent="handleUpdate">
+                <form class="form" action="#" @submit.prevent="register">
                   <div class="row">
                     <div class="col">
+
+                          <div class="my-2"><b>Informations Personnelles <span class="text-danger">*</span></b></div>
                       <div class="row">
                         <div class="col">
-                          <div class="mb-2"><b>INFORMATIONS PERSONNELLES</b></div>
                           <div class="form-group">
                             <label>Noms & Prénoms</label>
                             <input
                               class="form-control"
                               type="text"
                               name="name"
-                              :placeholder="currentUser.username"
+                              placeholder="Ex: Mayogue Paulette"
                               v-model="username"
                             />
                           </div>
                         </div>
-                        <div class="col">
+                        <!-- <div class="col">
                           <div class="form-group">
                             <label>Matricule</label>
                             <input
@@ -98,7 +111,7 @@
                               v-validate="'required'"
                             />
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="row">
                         <div class="col">
@@ -107,13 +120,15 @@
                             <input
                               class="form-control"
                               type="email"
-                              :placeholder="currentUser.email"
+                              v-model="email"
+                              placeholder="Ex: exemple@fasciences-uy1.cm"
                             />
                           </div>
                         </div>
                       </div>
 
                       <div class="row">
+                          <div class="my-2"><b>Informations Universitaires</b></div>
                         <div class="col mb-3">
                           <div class="form-group">
                             <label for="">Faculte</label>
@@ -138,8 +153,8 @@
                           </div>
                         </div>
                         <!-- </div>
-
 															<div class="row"> -->
+
                         <div class="col mb-3">
                           <div class="form-group">
                             <label for="">Filiere</label>
@@ -217,11 +232,12 @@
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-12 col-sm-6 mb-3">
-                      <div class="mb-2"><b>INFORMATIONS DE SECURITE</b></div>
+                      <div class="my-2"><b>Informations de Sécurité <span class="text-danger">*</span></b></div>
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
@@ -229,7 +245,6 @@
                             <input
                               type="password"
                               class="form-control"
-                              placeholder="******"
                               v-model="password"
                               v-validate="'required|min:6|max:40'"
                             />
@@ -248,16 +263,15 @@
                             <input
                               type="password"
                               class="form-control"
-                              placeholder="******"
                               v-model="confirmPassword"
                               v-validate="'required|min:6|max:40'"
                             />
-                            <div
+                            <!-- <div
                               class="alert-danger"
                               v-if="submitted && errors.has('password')"
                             >
                               {{ errors.first("password") }}
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
@@ -290,6 +304,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapActions } from "vuex";
 export default {
   name: "RegisterComponent",
@@ -320,7 +335,8 @@ export default {
 
       //************dynamic loading of filiere*******/
       loading: false,
-      error: null,
+      error: false,
+      successful: false,
       message: "",
 
       faculte: "",
@@ -351,17 +367,39 @@ export default {
         SpecialiteId: this.specialite,
       };
       console.log(user);
-      //this.registerAuth(user)
-      this.$store.dispatch("auth/register", user).then(
-        () => {
-          this.$router.push("/login");
-        },
-        (error) => {
+
+
+      axios
+        .post(
+          "http://localhost:5000/api/users/ajouterEnseignant" , user
+        )
+        .then((res) => {
           this.loading = false;
-          this.message = error.msg;
-          console.log(this.message);
-        }
-      );
+          console.log(res.data.user);
+            this.message = res.data.msg;
+            console.log(res.data.msg)
+          if (!res.data.success) {
+            //this.successful = false;
+            this.error = true;
+          } else {
+            this.successful = true;
+          }
+        })
+        .catch((err) => {
+          console.log("*******************");
+          console.log(err);
+        });
+      //this.registerAuth(user)
+      // this.$store.dispatch("auth/register", user).then(
+      //   () => {
+      //     this.$router.push("/login");
+      //   },
+      //   (error) => {
+      //     this.loading = false;
+      //     this.message = error.msg;
+      //     console.log(this.message);
+      //   }
+      // );
     },
   },
 };
