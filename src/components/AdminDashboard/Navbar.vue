@@ -10,10 +10,15 @@
       <div class="header-left">
         <button class="search-trigger"><i class="fa fa-search"></i></button>
         <div class="form-inline">
-          <form class="search-form">
+
+          <form class="search-form" 
+                action="/search"
+                method="POST"
+          
+          @submit="handleSearch">
             <input
               class="form-control mr-sm-2"
-              type="text"
+              type="text" v-model="recherche"
               placeholder="Search ..."
               aria-label="Search"
             />
@@ -21,6 +26,7 @@
               <i class="fa fa-close"></i>
             </button>
           </form>
+
         </div>
 
         <div class="dropdown for-notification">
@@ -93,6 +99,11 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      recherche: "",
+    }
+  },
   props: {
     user: {},
   },
@@ -101,6 +112,12 @@ export default {
       console.log(this.$store.state.auth.user);
       return this.$store.state.auth.user;
     },
+  },
+  methods: {
+    handleSearch(){
+      console.log('bdbdbdfdhbn')
+      this.$router.push({ path: 'search',query: { q: this.recherche }})
+    }
   },
 };
 </script>

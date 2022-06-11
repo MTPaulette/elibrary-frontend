@@ -4,7 +4,7 @@
     <div class="row">
     <div class="section-title ml-5">
       <h2>Recherche</h2>
-      <p>Resultats de la recherche</p>
+      <p>Resultats de la recherche: {{$router.query.q}} </p>
     </div>
 
     </div>
