@@ -77,6 +77,14 @@ const routes = [
           import("../components/AdminDashboard/New/Document.vue"),
       },
 
+      {
+        path: "/newTeacher",
+        name: "newTeacher",
+        // lazy-loaded
+        component: () =>
+          import("../components/AdminDashboard/New/NewTeacher.vue"),
+      },
+
       /*********** bloqué ***********/
       {
         path: "/BlockDocument",
@@ -157,6 +165,7 @@ const routes = [
       },
       {
         path: "/search",
+        name: "Search",
         component: Search,
       },
       {
@@ -166,12 +175,6 @@ const routes = [
         props: true,
       },
     ],
-  },
-  {
-    path: "/user/:id",
-    name: "user",
-    component: Document,
-    props: true,
   },
 
 

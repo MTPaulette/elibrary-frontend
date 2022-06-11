@@ -4,7 +4,7 @@
     <div class="row">
     <div class="section-title ml-5">
       <h2>Recherche</h2>
-      <p>Resultats de la recherche: {{$router.query.q}} </p>
+      <p>Resultats de la recherche:</p>
     </div>
 
     </div>
@@ -18,12 +18,14 @@
                           v-show="loading"
                         ></span>
                 </div>
+
                         <input class="form-control" type="search" placeholder="quel document voulez-vous?" aria-label="Search" 
                       v-model="recherche"
                       >
                         <button class="" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
+                        
                     </form>
                 </div>
 
@@ -308,16 +310,6 @@ export default {
       return this.$store.state.fetchData.enseignants;
     },
     filterDocuments() {
-      /*
-      if(this.faculte.length > 0) {
-        return this.documents.filter((document) => {
-          if(document.Faculte.nom === this.faculte) {
-              return document;
-          };
-          // return document.titre.toLowerCase().includes(this.filiere.toLowerCase());
-        });
-      }
-      */
       
       if(this.filiere.length > 0) {
         return this.documents.filter((document) => {
@@ -367,8 +359,6 @@ export default {
       if(this.documents.length != 0) {
         return this.documents;
       }
-
-      console.log('--------------------******************************----------------------')
       return {}
     },
   },
@@ -392,9 +382,12 @@ export default {
   watch: {
     recherche: function () {
       if (this.recherche.length >= 3) {
-        this.handleSearch();
+        this.handleSearch(this.recherche);
       }
     },
+  },
+  beforeMount() {
+    this.handleSearch(this.$route.query.q);
   },
   mounted() {
     this.$store.dispatch("fetchData/getFacultes");
@@ -417,14 +410,15 @@ export default {
       this.enseignant = ""
     },
 
-    handleSearch() {
+    handleSearch(recherche) {
       this.loading = true;
       this.notFound = false;
 
       //if(this.checkValue) {
       axios
         .get(
-          "http://localhost:5000/api/documents/documentActif/" + this.recherche
+          // "http://localhost:5000/api/documents/documentActif/" + this.recherche
+          "http://localhost:5000/api/documents/documentActif/" + recherche
         )
         .then((res) => {
           const n = res.data.allDocument.length;

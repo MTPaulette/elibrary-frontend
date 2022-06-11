@@ -13,7 +13,7 @@
 
           <form class="search-form" 
                 action="/search"
-                method="POST"
+                method="get"
           
           @submit="handleSearch">
             <input
@@ -22,8 +22,16 @@
               placeholder="Search ..."
               aria-label="Search"
             />
-            <button class="search-close" type="submit">
+
+                                 <!-- <button class="bg-secondary" type="">
+
+                                
+                            <i class="fa fa-search"></i></router-link></button> -->
+            
+            <button class="search-close bg-secondary" type="">
+              <router-link :to="{ path: '/search', query: { q: this.recherche }}">
               <i class="fa fa-close"></i>
+              </router-link>
             </button>
           </form>
 
@@ -115,8 +123,7 @@ export default {
   },
   methods: {
     handleSearch(){
-      console.log('bdbdbdfdhbn')
-      this.$router.push({ path: 'search',query: { q: this.recherche }})
+      this.$router.push({ path: '/search',query: { q: this.recherche }})
     }
   },
 };
