@@ -1,7 +1,21 @@
 <template>
-<div class="">
-<section>
+<div>
     <div class="row">
+      <div class="all-title-box w-100">
+        <div class="container text-center">
+        <div class="mu-book-overview-area py-auto">
+          <div class="mu-heading-area">
+            <h2 class="mu-heading-title">Liste des Unités d'enseignement de: {{ filiere }}  {{ niveau }} </h2>
+            <span class="mu-header-dot"></span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div id="overviews" class="section wb">
+<div class="container">
+<section>
+<!--     <div class="row">
     <div class="section-title ml-5">
       <h2>Recherche</h2>
       <p>Resultats de la recherche:</p>
@@ -33,7 +47,6 @@
 <div class="row">
 
                 <div class="col-lg-10 col-sm-11 d-flex justify-content-center align-items-center mx-auto">
-                <!-- <div v-if="!notFound" class="col-lg-10 col-sm-11 d-flex justify-content-center align-items-center mx-auto"> -->
                     <ul class="d-flex flex-wrap">
                       <li>
 
@@ -176,7 +189,7 @@
                     </li>
                     </ul>
                 </div>
-</div>
+</div> -->
     <div class="content mt-3">
             <div class="animated fadeIn">
 
@@ -192,13 +205,14 @@
                 <div class="row">
       <!-- .if notfound -->
       <div class="col-lg-11 mx-auto" v-if="notFound">
+        <img class="w-50 h-50" src="../../assets/404.jpeg" alt="...">
         <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
       </div></div>
 
                 <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
 
                 <div class="col-lg-6"
-                        v-for="document in filterDocuments"
+                        v-for="document in documents"
                         :key="document.id"
                         :value="document.id"
                   >
@@ -278,6 +292,8 @@
 
 </section>
 </div>
+</div>
+</div>
 </template>
 
 
@@ -285,132 +301,28 @@
 import axios from "axios";
 //import User from "../../models/user";
 export default {
-  name: "Search",
+  name: "",
   computed: {
     currentUser() {
       return this.$store.state.auth.user.user;
-    },
-    facultes() {
-      return this.$store.state.fetchData.facultes;
-    },
-    filieres() {
-      return this.$store.state.fetchData.filieres;
-    },
-    niveaux() {
-      return this.$store.state.fetchData.niveaux;
-    },
-    specialites() {
-      return this.$store.state.fetchData.specialites;
-    },
-    ues() {
-      return this.$store.state.fetchData.ues;
-    },
-    types() {
-      return this.$store.state.fetchData.types;
-    },
-    enseignants() {
-      return this.$store.state.fetchData.enseignants;
-    },
-    filterDocuments() {
-      
-      if(this.filiere.length > 0) {
-        return this.documents.filter((document) => {
-          if(document.Filiere.nom === this.filiere) {
-              return document;
-          };
-        });
-      }
-      
-      if(this.niveau.length > 0) {
-        return this.documents.filter((document) => {
-          if(document.Niveau.nom === this.niveau) {
-              return document;
-          };
-        });
-      }
-      
-      if(this.specialite.length > 0) {
-        return this.documents.filter((document) => {
-          if(document.Specialite.nom === this.specialite) {
-              return document;
-          };
-        });
-      }
-      if(this.typeDoc.length > 0) {
-        return this.documents.filter((document) => {
-          if(document.Type.nom === this.typeDoc) {
-              return document;
-          };
-        });
-      }
-      if(this.enseignant.length > 0) {
-        return this.documents.filter((document) => {
-          if(document.Enseignant.nom === this.enseignant) {
-              return document;
-          };
-        });
-      }
-      
-      if(this.documents.length != 0) {
-        return this.documents;
-      }
-      return {}
-    },
+    }
   },
 
   data() {
     return {
-      faculte: "",
-      filiere: "",
-      niveau: "",
-      specialite: "",
-      ue: "",
-      typeDoc: "",
-      enseignant: "",
-      recherche: "",
-      documents: "",
+      documents: {},
 
       notFound: false,
       loading: false,
     };
   },
-  watch: {
-    recherche: function () {
-      if (this.recherche.length >= 3) {
-        this.handleSearch(this.recherche);
-      }
-    },
-    /*
-    ue: function () {
-      this.handleSearchUe(this.ue);
-    }
-    */
-  },
   beforeMount() {
-    this.handleSearch(this.$route.query.q);
-  },
-  mounted() {
-    this.$store.dispatch("fetchData/getFacultes");
-    this.$store.dispatch("fetchData/getFilieres");
-    this.$store.dispatch("fetchData/getNiveaux");
-    this.$store.dispatch("fetchData/getSpecialites");
-    this.$store.dispatch("fetchData/getUes");
-    this.$store.dispatch("fetchData/getTypes");
-    this.$store.dispatch("fetchData/getEnseignants");
+    this.handleSearchUe(this.$route.query.q);
   },
 
   methods: {
-    reset() {
-      this.faculte = "",
-      this.filiere = "",
-      this.niveau = "",
-      this.specialite = "",
-      this.ue = "",
-      this.typeDoc = "",
-      this.enseignant = ""
-    },
 
-    handleSearch(recherche) {
+    handleSearchUe(ue) {
       this.loading = true;
       this.notFound = false;
 
@@ -418,39 +330,7 @@ export default {
       axios
         .get(
           // "http://localhost:5000/api/documents/documentActif/" + this.recherche
-          "http://localhost:5000/api/documents/documentActif/" + recherche
-        )
-        .then((res) => {
-          const n = res.data.allDocument.length;
-          this.loading = false;
-          if (n != 0) {
-          console.log(
-            "---------------------------------search--------------------------------------------"
-          );
-            console.log(this.recherche);
-            console.log(res.data.allDocument);
-            this.reset();
-            this.documents = res.data.allDocument;
-          } else {
-            this.notFound = true;
-          }
-        })
-        .catch((err) => {
-          this.loading = false;
-            this.notFound = true;
-          console.log(err);
-        });
-    },
-
-    handleSearchUe() {
-      this.loading = true;
-      this.notFound = false;
-
-      //if(this.checkValue) {
-      axios
-        .get(
-          // "http://localhost:5000/api/documents/documentActif/" + this.recherche
-          "http://localhost:5000/api/documents/documentActifUe/" + this.ue
+          "http://localhost:5000/api/documents/documentActifUe/" + ue
         )
         .then((res) => {
           const n = res.data.allDocument.length;
@@ -459,9 +339,8 @@ export default {
           console.log(
             "---------------------------------ue--------------------------------------------"
           );
-            console.log(this.ue);
+            console.log(ue);
             console.log(res.data.allDocument);
-            this.reset();
             //return res.data.allDocument;
             this.documents = res.data.allDocument;
           } else {
@@ -591,7 +470,5 @@ section {
   color: #cda45e;
 }
 
-/*--------------------------------------------------------------
-# About
---------------------------------------------------------------*/
+@import "../../../public/static/homePage3/style.css";
 </style>

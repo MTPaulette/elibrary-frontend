@@ -144,7 +144,7 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/");
     }
   },
   methods: {
@@ -161,7 +161,7 @@ export default {
       if (this.user.email && this.user.password) {
         this.$store.dispatch("auth/login", this.user).then(
           () => {
-            this.$router.push("/informatiques");
+            this.$router.push("/");
           },
           (error) => {
             console.log("error");

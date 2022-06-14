@@ -1,8 +1,15 @@
 <template lang="">
-  <div class="content mt-3" v-if="!successful">
+  <div class="content mt-3">
     <div class="animated fadeIn">
-      <div class="row">
-        <div class="col-lg-11 mx-auto">
+    <!-- .if success -->
+    <div class="row" v-if="successful">
+      <div class="alert alert-success" role="alert">
+        Document enregistré avec succès!
+      </div>
+    </div>
+
+      <div class="row" v-else>
+        <div class="col-lg-11 mx-auto my-5">
           <div class="card">
             <div class="card-header">NOUVEAU DOCUMENT</div>
             <div class="card-body card-block">
@@ -48,7 +55,7 @@
                     <textarea
                       name="textarea-input"
                       id="textarea-input"
-                      rows="9"
+                      rows="4"
                       v-model="resume"
                       placeholder="Bref résumé du document (facultatif)"
                       class="form-control"
@@ -187,9 +194,33 @@
                   <div class="col col-md-3">
                     <label class="form-control-label">Type</label>
                   </div>
-                  <div class="col col-md-9">
+
+
+                  <div class="col col-md-9" v-if="currentUser.RoleId == 3">
                     <div class="form-check">
+                      
                       <div class="radio">
+                        <label for="1" class="form-check-label">
+                          <input
+                            type="radio"
+                            id="1"
+                            name="s"
+                            v-model="typeDoc"
+                            value="1"
+                            class="form-check-input"
+                          />Livre
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="col col-md-9" v-if="currentUser.RoleId == 1 || currentUser.RoleId == 2">
+                    <div class="form-check">
+                      
+                      <div class="radio" v-if="currentUser.RoleId == 1">
                         <label for="1" class="form-check-label">
                           <input
                             type="radio"
@@ -316,23 +347,30 @@
                     />
                   </div>
                 </div>
-                <button type="submit" class="btn btn-success btn-sm">
-                  <i class="fa fa-dot-circle-o"></i> Ajouter
+                <div class="row justify-content-end mt-5 mb-3">
+
+                <div class="col-9">
+
+
+                          <button type="reset" class="btn btn-danger btn-addon px-3">
+                            <i class="fa fa-ban mr-2 pl-0"></i>
+                          Annuler </button>
+
+                </div>
+
+                <div class="col-3">
+                <button type="submit" class="btn btn-success btn-addon px-3">
+                  <i class="fa fa-dot-circle-o  mr-2 pl-0"></i> Ajouter
                 </button>
-                <button type="reset" class="btn btn-danger btn-sm">
-                  <i class="fa fa-ban"></i>
-                  <router-link to="/NewDocument">Annuler</router-link>
-                </button>
+
+
+                </div>
+                </div>
+                
               </form>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- .if success -->
-    <div v-if="successful">
-      <div class="alert alert-success" role="alert">
-        Document enregistré avec succès!
       </div>
     </div>
   </div>
@@ -341,11 +379,11 @@
 
 <script>
 import axios from "axios";
-//import router from '../router';
-//import Document from "../../../models/document";
-//import { mapActions } from "vuex";
 export default {
   computed: {
+    currentUser() {
+      return this.$store.state.auth.user.user;
+    },
     facultes() {
       return this.$store.state.fetchData.facultes;
     },
@@ -414,7 +452,9 @@ export default {
             this.successful = false;
           } else {
             this.successful = true;
+
           }
+            this.successful = true;
         })
         .catch((err) => {
           console.log(err);

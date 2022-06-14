@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <!-- <div>
         <header id="header" class="header"> -->
 
@@ -79,7 +79,7 @@
           aria-expanded="false"
         >
           <span class="fw-bold"
-            >{{ currentUser.user.username }}: {{ currentUser.user.email }}</span
+            >{{ currentUser.user.username }}</span
           >
         </a>
 

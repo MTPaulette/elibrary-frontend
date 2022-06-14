@@ -299,8 +299,8 @@ export default {
 .contact-information h4, .basic-information h4 {
 	font-size: 12px;
 	text-transform: uppercase;
-	padding-top: 10px;
-	padding-bottom: 15px;
+	padding-top: 15px;
+	padding-bottom: 20px;
 	font-family: 'Roboto', sans-serif;
 }
 .contact-title {

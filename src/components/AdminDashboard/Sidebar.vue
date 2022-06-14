@@ -1,7 +1,5 @@
 <template lang="">
   <div>
-    <!-- <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default"> -->
 
     <div class="navbar-header">
       <button
@@ -47,11 +45,12 @@
               <i class="fa fa-puzzle-piece"></i
               ><a href="NewDocument">Document</a>
             </li>
-            <li>
+            <li v-if="currentUser.RoleId == 1">
               <i class="fa fa-id-badge"></i><a href="NewTeacher">Enseignant</a>
             </li>
           </ul>
         </li>
+
         <li class="menu-item-has-children dropright">
           <a
             href="#"
@@ -77,7 +76,7 @@
           </ul>
         </li>
 
-        <li class="menu-item-has-children dropright">
+        <li class="menu-item-has-children dropright" v-if="currentUser.RoleId == 1">
           <a
             href="#"
             class="dropdown-toggle"
@@ -101,7 +100,8 @@
             </li>
           </ul>
         </li>
-        <li class="menu-item-has-children dropright">
+
+        <li class="menu-item-has-children dropright"  v-if="currentUser.RoleId == 1">
           <a
             href="#"
             class="dropdown-toggle"
@@ -121,7 +121,7 @@
             </li>
           </ul>
         </li>
-        <li class="menu-item-has-children dropright">
+        <li class="menu-item-has-children dropright" v-if="currentUser.RoleId == 1 || currentUser.RoleId == 2">
           <a
             href="#"
             class="dropdown-toggle"
@@ -135,40 +135,15 @@
             <li>
               <i class="fa fa-table"></i><a href="DeletedDocuments">Document</a>
             </li>
-            <li>
+            <li v-if="currentUser.RoleId">
               <i class="fa fa-table"></i
               ><a href="DeletedTeachers">Enseignant</a>
             </li>
-            <li>
+            <li  v-if="currentUser.RoleId == 1">
               <i class="fa fa-table"></i><a href="DeletedStudents">Etudiant</a>
             </li>
           </ul>
         </li>
-        <!--li class="menu-item-has-children dropright">
-          <a
-            href="#"
-            class="dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <i class="menu-icon fa fa-th"></i>Suspension</a
-          >
-          <ul class="sub-menu children dropdown-menu">
-            <li>
-              <i class="fa fa-table"></i
-              ><a href="blockedDocuments">Document</a>
-            </li>
-            <li>
-              <i class="fa fa-table"></i
-              ><a href="blockedTeachers">Enseignant</a>
-            </li>
-            <li>
-              <i class="fa fa-table"></i
-              ><a href="blockedStudents">Etudiant</a>
-            </li>
-          </ul>
-        </li-->
 
         <h3 class="menu-title">Notifications</h3>
         <li>
@@ -185,11 +160,11 @@
           >
         </li>
 
-        <h3 class="menu-title">Analyse & Rapport</h3>
-        <li>
+        <h3 class="menu-title" v-if="currentUser.RoleId == 1">Analyse & Rapport</h3>
+        <li v-if="currentUser.RoleId == 1">
           <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Analyse</a>
         </li>
-        <li>
+        <li v-if="currentUser.RoleId == 1">
           <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Rapport</a>
         </li>
 
@@ -237,10 +212,7 @@ export default {
 };
 </script>
 <style>
-ul li {
-  list-style: none;
-}
-* {
-  font-family: 'Poppins';
-}
+@media (max-width: 575.99px) {
+
+  }
 </style>

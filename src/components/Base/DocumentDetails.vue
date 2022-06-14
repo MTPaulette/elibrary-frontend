@@ -21,18 +21,13 @@
                         <img class="img-fluid" v-else src="../../assets/logo-pdf.png" alt="...">
                         </div>
                         <div class="user-work mt-lg-5">
-                          <h4>Autres</h4>
+                          <h4>CARACTERISTIQUES</h4>
                           <div class="work-content">
                             <h3>{{ document.Type.nom }}</h3>
                             <p class="details" v-if="document.Ue">{{ document.Ue.nom }}</p>
                             <p class="details" v-if="document.Specialite">{{ document.Specialite.nom }}</p>
                             <p class="details">{{ document.Filiere.nom }}</p>
                             <p class="details">{{ document.Faculte.nom }}</p>
-                          </div>
-                          <div class="work-content">
-                            <h3>Unix</h3>
-                            <p>123, South Mugda</p>
-                            <p>New York, 1214</p>
                           </div>
                         </div>
                         <!-- <div class="user-skill">
@@ -57,7 +52,7 @@
                         </div> -->
                       </div>
                       <div class="col-lg-8">
-                        <div class="user-profile-name">{{ document.titre }}</div>
+                        <div class="user-profile-name m-1">{{ document.titre }}</div>
                         <div class="user-Location">
                           <i class="ti-location-pin"></i> {{ document.createdAt }}</div>
                         <div class="user-job-title">{{ document.resume }}</div>
