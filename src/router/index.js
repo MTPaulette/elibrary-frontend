@@ -212,6 +212,10 @@ const routes = [
       },
 
 
+      {
+        path: "/chat",
+        component: () => import("../views/Chat/Chat.vue"),
+      },
   /*************************
   {
     path: "/myHome",
