@@ -347,26 +347,14 @@
                     />
                   </div>
                 </div>
-                <div class="row justify-content-end mt-5 mb-3">
 
-                <div class="col-9">
+						<div class="modal-footer">
+							<button type="reset" class="btn btn-secondary">
+                            <i class="fa fa-ban mr-2 pl-0"></i>Annuler</button>
+							<button type="submit" class="btn btn-primary">
+                  <i class="fa fa-dot-circle-o  mr-2 pl-0"></i>Enregistrer</button>
+						</div>
 
-
-                          <button type="reset" class="btn btn-danger btn-addon px-3">
-                            <i class="fa fa-ban mr-2 pl-0"></i>
-                          Annuler </button>
-
-                </div>
-
-                <div class="col-3">
-                <button type="submit" class="btn btn-success btn-addon px-3">
-                  <i class="fa fa-dot-circle-o  mr-2 pl-0"></i> Ajouter
-                </button>
-
-
-                </div>
-                </div>
-                
               </form>
             </div>
           </div>

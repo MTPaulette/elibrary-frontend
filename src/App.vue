@@ -89,4 +89,14 @@ export default {
 *, body {
   font-family: 'Poppins';
 }
+.btn:hover {
+  background-color: #fff !important;
+  color: #878787 !important;
+}
+
+.btn-primary {
+  background-color: #eea412 !important;
+  border-color: #eea412 !important;
+  color: #fff !important;
+}
 </style>

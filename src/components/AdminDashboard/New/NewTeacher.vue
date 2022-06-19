@@ -1,14 +1,14 @@
 <template>
   <div class="my-5">
-                <div v-if="error">
-                  <div class="alert alert-danger" role="alert">
-                    {{ message }}
-                  </div>
-                </div>
+    <div v-if="error">
+      <div class="alert alert-danger" role="alert">
+        {{ message }}
+      </div>
+    </div>
     <!-- .if success -->
     <div v-if="successful">
       <div class="alert alert-success" role="alert">
-                    {{ message }}
+        {{ message }}
       </div>
     </div>
 
@@ -22,7 +22,7 @@
         </div>
       </div> -->
       <div class="card">
-            <div class="card-header">NOUVEAU ENSEIGNANT</div>
+        <div class="card-header">NOUVEAU ENSEIGNANT</div>
         <div class="card-body">
           <div class="e-profile">
             <!-- <div class="row">
@@ -85,18 +85,13 @@
                   <div class="row">
                     <div class="col">
 
-                          <div class="my-2"><b>Informations Personnelles <span class="text-danger">*</span></b></div>
+                      <div class="my-2"><b>Informations Personnelles <span class="text-danger">*</span></b></div>
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
                             <label>Noms & Prénoms</label>
-                            <input
-                              class="form-control"
-                              type="text"
-                              name="name"
-                              placeholder="Ex: Mayogue Paulette"
-                              v-model="username"
-                            />
+                            <input class="form-control" type="text" name="name" placeholder="Ex: Mayogue Paulette"
+                              v-model="username" />
                           </div>
                         </div>
                         <!-- <div class="col">
@@ -117,35 +112,23 @@
                         <div class="col">
                           <div class="form-group">
                             <label>Email</label>
-                            <input
-                              class="form-control"
-                              type="email"
-                              v-model="email"
-                              placeholder="Ex: exemple@fasciences-uy1.cm"
-                            />
+                            <input class="form-control" type="email" v-model="email"
+                              placeholder="Ex: exemple@fasciences-uy1.cm" />
                           </div>
                         </div>
                       </div>
 
                       <div class="row">
-                          <div class="my-2"><b>Informations Universitaires</b></div>
+                        <div class="my-2"><b>Informations Universitaires</b></div>
                         <div class="col mb-3">
                           <div class="form-group">
                             <label for="">Faculte</label>
-                            <select
-                              name="faculte"
-                              class="form-control"
-                              v-model="faculte"
-                            >
+                            <select name="faculte" class="form-control" v-model="faculte">
                               <option disabled value="">
                                 {{ currentUser.Faculte.nom }}
                               </option>
-                              <option
-                                v-for="faculte in facultes"
-                                :key="faculte.id"
-                                :nom="faculte"
-                                v-bind:value="faculte.id"
-                              >
+                              <option v-for="faculte in facultes" :key="faculte.id" :nom="faculte"
+                                v-bind:value="faculte.id">
                                 {{ faculte.nom }}
                               </option>
                             </select>
@@ -158,19 +141,11 @@
                         <div class="col mb-3">
                           <div class="form-group">
                             <label for="">Filiere</label>
-                            <select
-                              name="filiere"
-                              class="form-control"
-                              v-model="filiere"
-                            >
+                            <select name="filiere" class="form-control" v-model="filiere">
                               <option disabled value="">
                                 {{ currentUser.Filiere.nom }}
                               </option>
-                              <option
-                                v-for="filiere in filieres"
-                                :key="filiere.id"
-                                v-bind:value="filiere.id"
-                              >
+                              <option v-for="filiere in filieres" :key="filiere.id" v-bind:value="filiere.id">
                                 {{ filiere.nom }}
                               </option>
                             </select>
@@ -182,19 +157,11 @@
                         <div class="col mb-3">
                           <div class="form-group">
                             <label for="">Niveau</label>
-                            <select
-                              name="niveau"
-                              class="form-control"
-                              v-model="niveau"
-                            >
+                            <select name="niveau" class="form-control" v-model="niveau">
                               <option disabled value="">
                                 {{ currentUser.Niveau.nom }}
                               </option>
-                              <option
-                                v-for="niveau in niveaux"
-                                :key="niveau.id"
-                                :value="niveau.id"
-                              >
+                              <option v-for="niveau in niveaux" :key="niveau.id" :value="niveau.id">
                                 {{ niveau.nom }}
                               </option>
                             </select>
@@ -206,26 +173,14 @@
                         <div class="col mb-3">
                           <div class="form-group">
                             <label for="">Specialité</label>
-                            <select
-                              name="specialite"
-                              class="form-control"
-                              v-model="specialite"
-                            >
-                              <option
-                                disabled
-                                value=""
-                                v-if="currentUser.Specialite"
-                              >
+                            <select name="specialite" class="form-control" v-model="specialite">
+                              <option disabled value="" v-if="currentUser.Specialite">
                                 {{ currentUser.Specialite.nom }}
                               </option>
                               <option disabled value="" v-else>
                                 Non défini
                               </option>
-                              <option
-                                v-for="specialite in specialites"
-                                :key="specialite.id"
-                                :value="specialite.id"
-                              >
+                              <option v-for="specialite in specialites" :key="specialite.id" :value="specialite.id">
                                 {{ specialite.nom }}
                               </option>
                             </select>
@@ -242,30 +197,18 @@
                         <div class="col">
                           <div class="form-group">
                             <label>Mot de passe</label>
-                            <input
-                              type="password"
-                              class="form-control"
-                              v-model="password"
-                              v-validate="'required|min:6|max:40'"
-                            />
+                            <input type="password" class="form-control" v-model="password"
+                              v-validate="'required|min:6|max:40'" />
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col">
                           <div class="form-group">
-                            <label
-                              >Confirmer le 
-                              <span class="d-none d-xl-inline"
-                                >mot de passe</span
-                              ></label
-                            >
-                            <input
-                              type="password"
-                              class="form-control"
-                              v-model="confirmPassword"
-                              v-validate="'required|min:6|max:40'"
-                            />
+                            <label>Confirmer le
+                              <span class="d-none d-xl-inline">mot de passe</span></label>
+                            <input type="password" class="form-control" v-model="confirmPassword"
+                              v-validate="'required|min:6|max:40'" />
                             <!-- <div
                               class="alert-danger"
                               v-if="submitted && errors.has('password')"
@@ -277,20 +220,16 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col d-flex justify-content-end">
-                      <button
-                        class="btn btn-primary"
-                        type="submit"
-                        :disabled="loading"
-                      >
-                        <span
-                          class="spinner-border spinner-border-sm mr-1"
-                          v-show="loading"
-                        ></span>
-                        <span>Enregistrer</span>
+
+                  <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary">
+                      <i class="fa fa-ban mr-2 pl-0"></i>Annuler
+                    </button>
+
+                      <button class="btn btn-primary" type="submit" :disabled="loading">
+                        <span class="spinner-border spinner-border-sm mr-1" v-show="loading"></span>
+                        <i class="fa fa-dot-circle-o  mr-2 pl-0"></i>Enregistrer
                       </button>
-                    </div>
                   </div>
                 </form>
               </div>

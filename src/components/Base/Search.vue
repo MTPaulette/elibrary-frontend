@@ -1,186 +1,129 @@
 <template>
-<div class="">
-<section>
-    <div class="row">
-    <div class="section-title ml-5">
-      <h2>Recherche</h2>
-      <p>Resultats de la recherche:</p>
-    </div>
+  <div class="">
+    <section>
+      <div class="row">
+        <div class="section-title ml-5">
+          <h2>Recherche</h2>
+          <p>Resultats de la recherche:</p>
 
-    </div>
+        </div>
 
-<div class="row">
-                <div class="d-flex justify-content-center align-items-center" data-parallax="scroll">
-                    <form class="d-flex">
-                <div class="my-auto">
-                  <span
-                          class="spinner-border spinner-border-sm"
-                          v-show="loading"
-                        ></span>
-                </div>
+      </div>
 
-                        <input class="form-control" type="search" placeholder="quel document voulez-vous?" aria-label="Search" 
-                      v-model="recherche"
-                      >
-                        <button class="" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        
-                    </form>
-                </div>
+      <div class="row">
+        <div class="d-flex justify-content-center align-items-center" data-parallax="scroll">
+          <form class="d-flex">
+            <div class="my-auto">
+              <span class="spinner-border spinner-border-sm" v-show="loading"></span>
+            </div>
 
-</div>
-<div class="row">
+            <input class="form-control" type="search" placeholder="quel document voulez-vous?" aria-label="Search"
+              v-model="recherche">
+            <button class="" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
 
-                <div class="col-lg-10 col-sm-11 d-flex justify-content-center align-items-center mx-auto">
-                <!-- <div v-if="!notFound" class="col-lg-10 col-sm-11 d-flex justify-content-center align-items-center mx-auto"> -->
-                    <ul class="d-flex flex-wrap">
-                      <li>
+          </form>
+        </div>
 
-                  <div class="form-group">
-                    <select
-                      name="faculte"
-                      class="form-control"
-                      v-model="faculte"
-                    >
-                      <option disabled value="">Faculte</option>
-                      <option
-                        v-for="faculte in facultes"
-                        :key="faculte.id"
-                        :nom="faculte"
-                        v-bind:value="faculte.nom"
-                      >
-                        {{ faculte.nom }}
-                      </option>
-                    <i class="bi bi-chevron-down"></i>
-                    </select>
-                  </div>
-                    </li>
-                    <li>
+      </div>
+      <div class="row">
 
-                  <div class="form-group">
-                    <select
-                      name="filiere"
-                      class="form-control"
-                      v-model="filiere"
-                    >
-                      <option disabled value="">Filiere</option>
-                      <option
-                        v-for="filiere in filieres"
-                        :key="filiere.id"
-                        v-bind:value="filiere.nom"
-                      >
-                        {{ filiere.nom }}
-                      </option>
-                    </select>
-                  </div>
-                    </li>
+        <div class="col-lg-10 col-sm-11 d-flex justify-content-center align-items-center mx-auto">
+          <!-- <div v-if="!notFound" class="col-lg-10 col-sm-11 d-flex justify-content-center align-items-center mx-auto"> -->
+          <ul class="d-flex flex-wrap">
+            <li>
 
-                    <li>
+              <div class="form-group">
+                <select name="faculte" class="form-control" v-model="faculte">
+                  <option disabled value="">Faculte</option>
+                  <option v-for="faculte in facultes" :key="faculte.id" :nom="faculte" v-bind:value="faculte.nom">
+                    {{ faculte.nom }}
+                  </option>
+                  <i class="bi bi-chevron-down"></i>
+                </select>
+              </div>
+            </li>
+            <li>
 
-                  <div class="form-group">
-                    <select name="niveau" class="form-control" v-model="niveau">
-                      <option disabled value="">Niveau</option>
-                      <option
-                        v-for="niveau in niveaux"
-                        :key="niveau.id"
-                        :value="niveau.nom"
-                      >
-                        {{ niveau.nom }}
-                      </option>
-                    </select>
-                  </div>
-                    </li>
-                    <li>
+              <div class="form-group">
+                <select name="filiere" class="form-control" v-model="filiere">
+                  <option disabled value="">Filiere</option>
+                  <option v-for="filiere in filieres" :key="filiere.id" v-bind:value="filiere.nom">
+                    {{ filiere.nom }}
+                  </option>
+                </select>
+              </div>
+            </li>
+
+            <li>
+
+              <div class="form-group">
+                <select name="niveau" class="form-control" v-model="niveau">
+                  <option disabled value="">Niveau</option>
+                  <option v-for="niveau in niveaux" :key="niveau.id" :value="niveau.nom">
+                    {{ niveau.nom }}
+                  </option>
+                </select>
+              </div>
+            </li>
+            <li>
 
 
-                  <div class="form-group">
-                    <select
-                      name="specialite"
-                      class="form-control"
-                      v-model="specialite"
-                    >
-                      <option disabled value="">specialite</option>
-                      <option
-                        v-for="specialite in specialites"
-                        :key="specialite.id"
-                        :value="specialite.nom"
-                      >
-                        {{ specialite.nom }}
-                      </option>
-                    </select>
-                  </div>
-                    </li>
-                    <li>
+              <div class="form-group">
+                <select name="specialite" class="form-control" v-model="specialite">
+                  <option disabled value="">specialite</option>
+                  <option v-for="specialite in specialites" :key="specialite.id" :value="specialite.nom">
+                    {{ specialite.nom }}
+                  </option>
+                </select>
+              </div>
+            </li>
+            <li>
 
 
-                  <div class="form-group">
-                    <select
-                      name="ue"
-                      class="form-control"
-                      v-model="ue"
-                      @change="handleSearchUe"
-                    >
-                      <option disabled value="">ue</option>
-                      <option
-                        v-for="ue in ues"
-                        :key="ue.id"
-                        :value="ue.id"
-                      >
-                        {{ ue.nom }}
-                      </option>
-                    </select>
-                  </div>
-                    </li>
+              <div class="form-group">
+                <select name="ue" class="form-control" v-model="ue" @change="handleSearchUe">
+                  <option disabled value="">ue</option>
+                  <option v-for="ue in ues" :key="ue.id" :value="ue.id">
+                    {{ ue.nom }}
+                  </option>
+                </select>
+              </div>
+            </li>
 
-                    <li>
+            <li>
 
 
-                  <div class="form-group">
-                    <select
-                      name="typeDoc"
-                      class="form-control"
-                      v-model="typeDoc"
-                    >
-                      <option disabled value="">type</option>
-                      <option
-                        v-for="typeDoc in types"
-                        :key="typeDoc.id"
-                        :value="typeDoc.nom"
-                      >
-                        {{ typeDoc.nom }}
-                      </option>
-                    </select>
-                  </div>
-                    </li>
+              <div class="form-group">
+                <select name="typeDoc" class="form-control" v-model="typeDoc">
+                  <option disabled value="">type</option>
+                  <option v-for="typeDoc in types" :key="typeDoc.id" :value="typeDoc.nom">
+                    {{ typeDoc.nom }}
+                  </option>
+                </select>
+              </div>
+            </li>
 
-                    <li>
+            <li>
 
 
-                  <div class="form-group">
-                    <select
-                      name="enseignant"
-                      class="form-control"
-                      v-model="enseignant"
-                    >
-                      <option disabled value="">enseignant</option>
-                      <option
-                        v-for="enseignant in enseignants"
-                        :key="enseignant.id"
-                        :value="enseignant.nom"
-                      >
-                        {{ enseignant.username }}
-                      </option>
-                    </select>
-                  </div>
-                    </li>
-                    </ul>
-                </div>
-</div>
-    <div class="content mt-3">
-            <div class="animated fadeIn">
+              <div class="form-group">
+                <select name="enseignant" class="form-control" v-model="enseignant">
+                  <option disabled value="">enseignant</option>
+                  <option v-for="enseignant in enseignants" :key="enseignant.id" :value="enseignant.nom">
+                    {{ enseignant.username }}
+                  </option>
+                </select>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="content mt-3">
+        <div class="animated fadeIn">
 
-                <div class="row">
+          <div class="row">
 
             <!-- /# column -->
             <div class="col-lg-12 mx-auto">
@@ -190,56 +133,84 @@
 
                 </div>
                 <div class="row">
-      <!-- .if notfound -->
-      <div class="col-lg-11 mx-auto" v-if="notFound">
-        <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
-      </div></div>
+                  <!-- .if notfound -->
+                  <div class="col-lg-11 mx-auto" v-if="notFound">
+                    <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
+                  </div>
+                </div>
 
                 <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
 
-                <div class="col-lg-6"
-                        v-for="document in filterDocuments"
-                        :key="document.id"
-                        :value="document.id"
-                  >
-                  <div class="media mb-2 p-2">
-                    <div class="media-left ml-lg-4">
-                      <a href="#">
-                        <img class="media-object" v-if="document.TypeId == 1" src="../../assets/logo-book.png" alt="...">
-                        <img class="media-object" v-else src="../../assets/logo-pdf.png" alt="...">
-                      </a>
-                    </div>
-                    <div class="media-body">
-                      <h6 class="media-heading mb-2">{{ document.titre }}</h6>
-                      <p class="resume mb-1">{{ document.resume }}</p>
-                      <div class="comment-action">
-                        <div class="badge badge-success ml-2 mr-3">{{ document.Type.nom }}</div>
-                        <span class="ml-10">
-                          <a target="_blanc" class="" 
-                          :href="
-                            'http://localhost:5000/api/documents/telecharger/' +
-                            document.id
-                          ">
-                            <i class="fa fa-download"></i>
-                            <span class="comment-date">
-                             {{ document.nbTelechargement }}</span>
-                          </a>
-                          <a href="#" class="ml-2 w-10">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.User.username }}
-                          </a>
-                          <a href="#"  class="ml-2" >
-                            <i class="bi bi-mortarboard-fill"></i>
-                            {{ document.Filiere.nom }}
-                          </a>
-                          <!-- <router-link :to="{ path: '/document', params: { document: document}, query: { id:document.id }}"> -->
-                          <router-link :to="{ name: 'Document', params: { document: document}, query: { id:document.id }}">
-                            <i class="fa fa-eye"></i>voir plus</router-link>
-                            
-                          <a href="#"  class="ml-2" >
-                          </a>
+                  <div class="col-lg-6" v-for="document in filterDocuments" :key="document.id" :value="document.id">
+                    <div class="media mb-2 p-2">
+                      <div class="media-left ml-lg-4">
+                        <a href="#">
+                          <img class="media-object" v-if="document.TypeId == 1" src="../../assets/logo-book.png"
+                            alt="...">
+                          <img class="media-object" v-else src="../../assets/logo-pdf.png" alt="...">
+                        </a>
+                      </div>
+                      <div class="media-body">
+                        <span class="media-heading mb-2">{{ document.titre }}
+                        </span>
 
-                          <!-- <a href="#">
+                        <div class="dropdown position-relative">
+                          <div class=" position-absolute bottom-0 end-0">
+                            <!-- <div class="dropdown">
+                              <div class=""> -->
+                            <div class="dropdown-toggle" data-toggle="dropdown"><i
+                                class="bi bi-three-dots-vertical"></i>
+
+                              <ul class="dropdown-menu mt-3
+                            ">
+                                <li>
+                                  <router-link
+                                    :to="{ name: 'Document', params: { document: document}, query: { id:document.id }}">
+                                    <i class="fa fa-eye"></i> <span class="ml-2 comment-date">Details</span>
+                                  </router-link>
+                                </li>
+                                <li>
+                                  <a class="" :href="
+                                    'http://localhost:5000/api/documents/telecharger/' +
+                                    document.id
+                                  ">
+                                    <i class="fa fa-download"></i>
+                                    <span class="comment-date ml-2">
+                                      Telecharger {{document.id}} </span>
+                                  </a>
+                                </li>
+                                <li @click="showModal = true;"><a href="#"><i class="fa fa-exclamation-circle"></i><span
+                                      class="ml-2 comment-date">Signaler</span></a></li>
+
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                        <p class="resume mb-1">{{ document.resume }}</p>
+                        <div class="comment-action">
+                          <div class="badge badge-success ml-2 mr-3">{{ document.Type.nom }}</div>
+                          <span class="ml-10">
+                            <a target="_blanc" class="" :href="
+                              'http://localhost:5000/api/documents/telecharger/' +
+                              document.id
+                            ">
+                              <i class="fa fa-download"></i>
+                              <span class="comment-date">
+                                {{ document.nbTelechargement }}</span>
+                            </a>
+                            <a href="#" class="ml-2 w-10">
+                              <i class="bi bi-person-fill"></i>
+                              {{ document.User.username }}
+                            </a>
+                            <a href="#" class="ml-2">
+                              <i class="bi bi-mortarboard-fill"></i>
+                              {{ document.Filiere.nom }}
+                            </a>
+
+                            <!-- <a href="#">
                             <i class="bi bi-person-fill"></i>
                             {{ document.Faculte.nom }}
                           </a>
@@ -258,34 +229,48 @@
                             {{ document.Ue.nom }}
                           </a> -->
 
-                          <!-- <a class="comment-date ml-5">{{ document.createdAt }}</a> -->
-                        </span>
+                            <!-- <a class="comment-date ml-5">{{ document.createdAt }}</a> -->
+                          </span>
                           <p class="comment-date">{{ document.createdAt }}</p>
+
+
+
+
+                        </div>
                       </div>
                     </div>
+
+                    <Signalement :show="showModal" :document ="document.id" @close="showModal = false;">
+                      <template #header>
+                        <h3>custom header</h3>
+                      </template>
+                    </Signalement>
+
                   </div>
-                </div>
 
                 </div>
               </div>
               <!-- /# card -->
             </div>
 
-                </div><!-- .row -->
-            </div><!-- .animated -->
-        </div><!-- .content -->
+          </div><!-- .row -->
+        </div><!-- .animated -->
+      </div><!-- .content -->
 
 
-</section>
-</div>
+    </section>
+  </div>
 </template>
 
 
 <script>
 import axios from "axios";
-//import User from "../../models/user";
+import Signalement from "./Signalement";
 export default {
   name: "Search",
+  components: {
+    Signalement
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user.user;
@@ -372,6 +357,7 @@ export default {
 
       notFound: false,
       loading: false,
+      showModal: false
     };
   },
   watch: {
@@ -592,6 +578,31 @@ section {
 }
 
 /*--------------------------------------------------------------
-# About
+# dropdown pour le signalement
 --------------------------------------------------------------*/
+.dropdown-menu {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .12);
+  border: none;
+  border-radius: 0px;
+  margin-left: -150px !important;
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+.dropdown-menu li:hover, .dropdown-menu a:hover {
+  background: #eea412;
+  color: #ffffff !important;
+}
+.dropdown:hover>.dropdown-menu {
+  padding-left: 10px;
+}
+
+.dropdown-menu li {
+  padding: .25rem 0.5rem;
+  font-weight: 400;
+  border: 0;
+}
+.dropdown-menu li,
+.dropdown-menu a{
+  color: #495057 !important;
+}
 </style>
