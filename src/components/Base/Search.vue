@@ -140,12 +140,15 @@
                 </div>
 
                 <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
-
+                  <DocumentList :documents="filterDocuments"></DocumentList>
+                  <!-- 
                   <div class="col-lg-6" v-for="document in filterDocuments" :key="document.id" :value="document.id">
                     <div class="media mb-2 p-2">
                       <div class="media-left ml-lg-4">
                         <a href="#">
                           <img class="media-object" v-if="document.TypeId == 1" src="../../assets/logo-book.png"
+                            alt="...">
+                          <img class="media-object" v-else-if="document.TypeId == 3" src="../../assets/note.png"
                             alt="...">
                           <img class="media-object" v-else src="../../assets/logo-pdf.png" alt="...">
                         </a>
@@ -156,8 +159,6 @@
 
                         <div class="dropdown position-relative">
                           <div class=" position-absolute bottom-0 end-0">
-                            <!-- <div class="dropdown">
-                              <div class=""> -->
                             <div class="dropdown-toggle" data-toggle="dropdown"><i
                                 class="bi bi-three-dots-vertical"></i>
 
@@ -169,6 +170,12 @@
                                     <i class="fa fa-eye"></i> <span class="ml-2 comment-date">Details</span>
                                   </router-link>
                                 </li>
+                                <li v-if="document.TypeId == 3">
+                                  <router-link
+                                    :to="{ name: 'Chat', params: { enseignantId: document.UserId}, query: { documentId:document.id }}">
+                                    <i class="fa fa-pencil"></i> <span class="ml-2 comment-date">Requete</span>
+                                  </router-link>
+                                </li>
                                 <li>
                                   <a class="" :href="
                                     'http://localhost:5000/api/documents/telecharger/' +
@@ -176,7 +183,7 @@
                                   ">
                                     <i class="fa fa-download"></i>
                                     <span class="comment-date ml-2">
-                                      Telecharger {{document.id}} </span>
+                                      Telecharger</span>
                                   </a>
                                 </li>
                                 <li @click="showModal = true;"><a href="#"><i class="fa fa-exclamation-circle"></i><span
@@ -210,26 +217,6 @@
                               {{ document.Filiere.nom }}
                             </a>
 
-                            <!-- <a href="#">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.Faculte.nom }}
-                          </a>
-                          <a href="#">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.Niveau.nom }}
-                          </a>
-
-                          <a href="#" v-if="document.SpecialiteId">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.Specialite.nom }}
-                          </a>
-
-                          <a href="#" v-if="document.UeId">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.Ue.nom }}
-                          </a> -->
-
-                            <!-- <a class="comment-date ml-5">{{ document.createdAt }}</a> -->
                           </span>
                           <p class="comment-date">{{ document.createdAt }}</p>
 
@@ -240,13 +227,13 @@
                       </div>
                     </div>
 
-                    <Signalement :show="showModal" :document ="document.id" @close="showModal = false;">
+                    <Signalement :show="showModal" :document="document.id" @close="showModal = false;">
                       <template #header>
                         <h3>custom header</h3>
                       </template>
                     </Signalement>
 
-                  </div>
+                  </div> -->
 
                 </div>
               </div>
@@ -265,11 +252,11 @@
 
 <script>
 import axios from "axios";
-import Signalement from "./Signalement";
+import DocumentList from "./DocumentList";
 export default {
   name: "Search",
   components: {
-    Signalement
+    DocumentList
   },
   computed: {
     currentUser() {
@@ -357,7 +344,6 @@ export default {
 
       notFound: false,
       loading: false,
-      showModal: false
     };
   },
   watch: {
@@ -477,59 +463,6 @@ div {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.media {
-  background-color: #fff;
-  background-clip: border-box;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-  /* border-radius: 0.25rem; */
-  height: 135px;
-}
-.media img {
-  width: 80px;
-  height: 90%;
-}
-
-.mycard {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-}
-.media {
-  overflow: hidden;
-}
-.media-left {
-  height: 100%;
-}
-.media-body {
-  width: 50%;
-}
-.media-heading {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 2px;
-  letter-spacing: 0px;
-  height: 18px;
-  width: 100%;
-}
-
-.media-body .resume {
-  width: 100%;
-  height: 30px;
-  margin-bottom: 1px;
-  line-height: 1rem !important;
-  overflow: hidden;
-}
-.media-body .comment-action {
-  height: 20px;
-}
-.media-body .comment-date {
-  width: 100%;
-  height: 20px;
-  font-weight:300;
-  font-size: small;
-}
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
@@ -577,32 +510,4 @@ section {
   color: #cda45e;
 }
 
-/*--------------------------------------------------------------
-# dropdown pour le signalement
---------------------------------------------------------------*/
-.dropdown-menu {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .12);
-  border: none;
-  border-radius: 0px;
-  margin-left: -150px !important;
-  padding: 10px;
-  background-color: #f8f9fa;
-}
-.dropdown-menu li:hover, .dropdown-menu a:hover {
-  background: #eea412;
-  color: #ffffff !important;
-}
-.dropdown:hover>.dropdown-menu {
-  padding-left: 10px;
-}
-
-.dropdown-menu li {
-  padding: .25rem 0.5rem;
-  font-weight: 400;
-  border: 0;
-}
-.dropdown-menu li,
-.dropdown-menu a{
-  color: #495057 !important;
-}
 </style>

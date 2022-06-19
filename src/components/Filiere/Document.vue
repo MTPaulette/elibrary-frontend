@@ -1,21 +1,21 @@
 <template>
-<div>
+  <div>
     <div class="row">
       <div class="all-title-box w-100">
         <div class="container text-center">
-        <div class="mu-book-overview-area py-auto">
-          <div class="mu-heading-area">
-            <h2 class="mu-heading-title">Liste des Unités d'enseignement de: {{ filiere }}  {{ niveau }} </h2>
-            <span class="mu-header-dot"></span>
+          <div class="mu-book-overview-area py-auto">
+            <div class="mu-heading-area">
+              <h2 class="mu-heading-title">Liste des Unités d'enseignement de: {{ filiere }} {{ niveau }} </h2>
+              <span class="mu-header-dot"></span>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
     <div id="overviews" class="section wb">
-<div class="container">
-<section>
-<!--     <div class="row">
+      <div class="container">
+        <section>
+          <!--     <div class="row">
     <div class="section-title ml-5">
       <h2>Recherche</h2>
       <p>Resultats de la recherche:</p>
@@ -190,118 +190,55 @@
                     </ul>
                 </div>
 </div> -->
-    <div class="content mt-3">
+          <div class="content mt-3">
             <div class="animated fadeIn">
 
-                <div class="row">
+              <div class="row">
 
-            <!-- /# column -->
-            <div class="col-lg-12 mx-auto">
-              <div class="mycard">
-                <div class="card-title section-title mt-2">
-                  <h4>Resultat pour la recherche: {{recherche}} </h4>
+                <!-- /# column -->
+                <div class="col-lg-12 mx-auto">
+                  <div class="mycard">
+                    <div class="card-title section-title mt-2">
+                      <h4>Resultat pour la recherche: {{recherche}} </h4>
 
-                </div>
-                <div class="row">
-      <!-- .if notfound -->
-      <div class="col-lg-11 mx-auto" v-if="notFound">
-        <img class="w-50 h-50" src="../../assets/404.jpeg" alt="...">
-        <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
-      </div></div>
-
-                <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
-
-                <div class="col-lg-6"
-                        v-for="document in documents"
-                        :key="document.id"
-                        :value="document.id"
-                  >
-                  <div class="media mb-2 p-2">
-                    <div class="media-left ml-lg-4">
-                      <a href="#">
-                        <img class="media-object" v-if="document.TypeId == 1" src="../../assets/logo-book.png" alt="...">
-                        <img class="media-object" v-else src="../../assets/logo-pdf.png" alt="...">
-                      </a>
                     </div>
-                    <div class="media-body">
-                      <h6 class="media-heading mb-2">{{ document.titre }}</h6>
-                      <p class="resume mb-1">{{ document.resume }}</p>
-                      <div class="comment-action">
-                        <div class="badge badge-success ml-2 mr-3">{{ document.Type.nom }}</div>
-                        <span class="ml-10">
-                          <a target="_blanc" class="" 
-                          :href="
-                            'http://localhost:5000/api/documents/telecharger/' +
-                            document.id
-                          ">
-                            <i class="fa fa-download"></i>
-                            <span class="comment-date">
-                             {{ document.nbTelechargement }}</span>
-                          </a>
-                          <a href="#" class="ml-2 w-10">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.User.username }}
-                          </a>
-                          <a href="#"  class="ml-2" >
-                            <i class="bi bi-mortarboard-fill"></i>
-                            {{ document.Filiere.nom }}
-                          </a>
-                          <!-- <router-link :to="{ path: '/document', params: { document: document}, query: { id:document.id }}"> -->
-                          <router-link :to="{ name: 'Document', params: { document: document}, query: { id:document.id }}">
-                            <i class="fa fa-eye"></i>voir plus</router-link>
-                            
-                          <a href="#"  class="ml-2" >
-                          </a>
-
-                          <!-- <a href="#">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.Faculte.nom }}
-                          </a>
-                          <a href="#">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.Niveau.nom }}
-                          </a>
-
-                          <a href="#" v-if="document.SpecialiteId">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.Specialite.nom }}
-                          </a>
-
-                          <a href="#" v-if="document.UeId">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.Ue.nom }}
-                          </a> -->
-
-                          <!-- <a class="comment-date ml-5">{{ document.createdAt }}</a> -->
-                        </span>
-                          <p class="comment-date">{{ document.createdAt }}</p>
+                    <div class="row">
+                      <!-- .if notfound -->
+                      <div class="col-lg-11 mx-auto" v-if="notFound">
+                        <img class="w-50 h-50" src="../../assets/404.jpeg" alt="...">
+                        <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!
+                        </div>
                       </div>
                     </div>
+
+                    <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
+                      <DocumentList :documents="documents"></DocumentList>
+
+                    </div>
                   </div>
+                  <!-- /# card -->
                 </div>
 
-                </div>
-              </div>
-              <!-- /# card -->
-            </div>
-
-                </div><!-- .row -->
+              </div><!-- .row -->
             </div><!-- .animated -->
-        </div><!-- .content -->
+          </div><!-- .content -->
 
 
-</section>
-</div>
-</div>
-</div>
+        </section>
+      </div>
+    </div>
+  </div>
 </template>
 
 
 <script>
 import axios from "axios";
-//import User from "../../models/user";
+import DocumentList from "./../Base/DocumentList.vue";
 export default {
   name: "",
+  components: {
+    DocumentList
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user.user;

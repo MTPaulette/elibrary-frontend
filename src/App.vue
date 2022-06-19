@@ -99,4 +99,5 @@ export default {
   border-color: #eea412 !important;
   color: #fff !important;
 }
+
 </style>

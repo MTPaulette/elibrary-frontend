@@ -159,8 +159,16 @@ const routes = [
         component: Document,
         props: true,
       },
+      {
+        path: "/chat/:enseignantId",
+        name: "Chat",
+        component: () => import("../components/Base/Chat.vue"),
+        props: true,
+      },
     ],
   },
+
+
   {
     path: "/",
     name: "LayoutPage",
@@ -169,7 +177,7 @@ const routes = [
       {
         path: "/",
         component: () =>
-          import("../components/Acceuil/Carousel.vue"),
+          import("../components/Acceuil/Home.vue"),
       },
       {
         path: "/ue/:filiereId",
@@ -212,10 +220,10 @@ const routes = [
       },
 
 
-      {
-        path: "/chat",
-        component: () => import("../views/Chat/Chat.vue"),
-      },
+      // {
+      //   path: "/chat",
+      //   component: () => import("../views/Chat/Chat.vue"),
+      // },
   /*************************
   {
     path: "/myHome",

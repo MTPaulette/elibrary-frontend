@@ -19,14 +19,17 @@
 								<div class="card-body card-block">
 									<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
 
+
 										<div class="row form-group">
-											<div class="col col-md-3"><label for="select" class=" form-control-label">Choisir un problème</label></div>
+											<div class="col col-md-3"><label for="select" class=" form-control-label">Selectionner une
+													raison</label></div>
 											<div class="col-12 col-md-9">
-												<select name="select" id="select" class="form-control">
-													<option value="0">Please select</option>
-													<option value="1">Option #1</option>
-													<option value="2">Option #2</option>
-													<option value="3">Option #3</option>
+												<select name="raison" class="form-control textbox" v-model="raison">
+													<option disabled value="">Raison</option>
+													<option v-for="raison in raisons" :key="raison.id" v-bind:value="raison.description">
+														{{ raison.description }}
+													</option>
+													<i class="bi bi-chevron-down"></i>
 												</select>
 											</div>
 										</div>
@@ -35,7 +38,7 @@
 											<div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Autre</label>
 											</div>
 											<div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="6"
-													placeholder="Content..." class="form-control"></textarea></div>
+													placeholder="Content..." class="form-control textbox"></textarea></div>
 										</div>
 									</form>
 								</div>
@@ -62,11 +65,40 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
 	props: {
 		show: Boolean,
 		document: Number
-	}
+	},
+	computed: {
+
+		//toutes les raisons
+		// raisonsss() {
+		// 	let res = axios.get("http://localhost:5000/api/raisons/raisons");
+		// 	console.log(res)
+		// 	return res.data.raisons
+		// },
+	},
+	data() {
+		return {
+			raison: "",
+			raisons: {}
+		}
+	},
+	mounted() {
+		this.getRaisons()
+	},
+	methods: {
+
+		//toutes les raisons
+		async getRaisons() {
+			let res = await axios.get("http://localhost:5000/api/raisons/raisons");
+			console.log(res.data)
+			this.raisons = res.data.raisons
+		},
+	},
+	
 }
 </script>
 
@@ -82,17 +114,13 @@ export default {
 	display: table;
 	transition: opacity 0.3s ease;
 }
-
-
-/* .modal-content {
-	width: 300px;
-	margin: 0px auto;
-	padding: 20px 30px;
-	background-color: #fff;
-	border-radius: 2px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-	transition: all 0.3s ease;
-} */
+/********style pour la zone de saisie******/
+.card {
+	box-shadow: none;
+}
+.textbox {
+	border: 1px solid#fde9bffd !important;
+}
 
 
 </style>

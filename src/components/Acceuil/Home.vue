@@ -1,12 +1,7 @@
 <template>
   <div>
-    <div
-      id="carouselExampleControls"
-      class="carousel slide bs-slider box-slider"
-      data-ride="carousel"
-      data-pause="hover"
-      data-interval="false"
-    >
+    <div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel"
+      data-pause="hover" data-interval="false">
       <!-- Indicators 
 		<ol class="carousel-indicators">
 			<li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
@@ -48,96 +43,54 @@
       </div>
     </div>
 
-<div class="container">
-<section>
-    <div class="content mt-3 mb-5">
-            <div class="animated fadeIn">
+    <div class="container">
+      <section>
+        <div class="content mt-3 mb-5">
+          <div class="animated fadeIn">
+            
 
-                <div class="row">
+            <div class="row">
 
-            <!-- /# column -->
-            <div class="col-lg-12 mx-auto">
-              <div class="mycard">
-                <div class="card-title section-title mt-5">
-                  <h4>Quelques documents selon votre filière </h4>
+              <!-- /# column -->
+              <div class="col-lg-12 mx-auto">
+                <div class="mycard">
+                  <div class="card-title section-title mt-5">
+                    <h4>Quelques documents selon votre filière </h4>
 
-                </div>
-                <div class="row">
-      <!-- .if notfound -->
-      <div class="col-lg-11 mx-auto" v-if="notFound">
-        <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
-      </div></div>
+                  </div>
 
-                <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
-
-                <div class="col-lg-6"
-                        v-for="document in documents"
-                        :key="document.id"
-                        :value="document.id"
-                  >
-                  <div class="media mb-2 p-2">
-                    <div class="media-left ml-lg-4">
-                      <a href="#">
-                        <img class="media-object" v-if="document.TypeId == 1" src="../../assets/logo-book.png" alt="...">
-                        <img class="media-object" v-else src="../../assets/logo-pdf.png" alt="...">
-                      </a>
-                    </div>
-                    <div class="media-body">
-                      <h6 class="media-heading mb-2">{{ document.titre }}</h6>
-                      <p class="resume mb-1">{{ document.resume }}</p>
-                      <div class="comment-action">
-                        <div class="badge badge-success ml-2 mr-3">{{ document.Type.nom }}</div>
-                        <span class="ml-10">
-                          <a target="_blanc" class="" 
-                          :href="
-                            'http://localhost:5000/api/documents/telecharger/' +
-                            document.id
-                          ">
-                            <i class="fa fa-download"></i>
-                            <span class="comment-date">
-                             {{ document.nbTelechargement }}</span>
-                          </a>
-                          <a href="#" class="ml-2 w-10">
-                            <i class="bi bi-person-fill"></i>
-                            {{ document.User.username }}
-                          </a>
-                          <a href="#"  class="ml-2" >
-                            <i class="bi bi-mortarboard-fill"></i>
-                            {{ document.Filiere.nom }}
-                          </a>
-                          <!-- <router-link :to="{ path: '/document', params: { document: document}, query: { id:document.id }}"> -->
-                          <router-link :to="{ name: 'Document', params: { document: document}, query: { id:document.id }}">
-                            <i class="fa fa-eye"></i>voir plus</router-link>
-                            
-                          <a href="#"  class="ml-2" >
-                          </a>
-                        </span>
-                          <p class="comment-date">{{ document.createdAt }}</p>
-                      </div>
+                  <div class="row">
+                    <!-- .if notfound -->
+                    <div class="col-lg-11 mx-auto" v-if="notFound">
+                      <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
                     </div>
                   </div>
-                </div>
 
+                  <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
+                    <DocumentList :documents="documents"></DocumentList>
+                  </div>
                 </div>
+                <!-- /# card -->
               </div>
-              <!-- /# card -->
-            </div>
 
-                </div><!-- .row -->
-            </div><!-- .animated -->
+            </div><!-- .row -->
+          </div><!-- .animated -->
         </div><!-- .content -->
 
 
-</section>
-</div>
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-//import User from "../../models/user";
+import DocumentList from "./../Base/DocumentList.vue";
 export default {
   name: "",
+  components: {
+    DocumentList
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user.user;
