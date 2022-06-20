@@ -22,8 +22,8 @@
                                 <img src="assets/images/user.jpg" alt="">
                               </a>
                               <div class="user-name">
-                                <h5><a href="#">john doe document:{{ $route.query.documentId}} enseignant: {{ $route.params.enseignantId}}</a></h5>
-                                <span><a href="#">example@gmail.com</a></span>
+                                <h5><a href="#">{{ user.username }}{{messages}}</a></h5>
+                                <span><a href="#">{{ user.email }}</a></span>
                               </div>
                             </div>
                             <!-- Modal -->
@@ -180,7 +180,6 @@
                         <div class="col-md-6 col-lg-7 col-xl-8">
                           <aside class="lg-side">
                             <div class="inbox-head">
-                              <h3 class="input-text">Inbox</h3>
                               <form action="#" class="pull-right position">
                                 <div class="input-append inner-append">
                                   <input type="text" class="sr-input" placeholder="Search Mail">
@@ -188,6 +187,10 @@
                                       class="fa fa-search"></i></button>
                                 </div>
                               </form>
+                              <h3 class="input-text">Requete</h3>
+                              <p>
+                                <a class="_blanc" :href="'http://localhost:5000/api/documents/telecharger/' +$route.query.documentId">Lien du PV</a>
+                              </p>
                             </div>
 
                             <div class="message p-5">
@@ -317,8 +320,8 @@
                             <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
                               <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 3"
                                 style="width: 40px; height: 100%;">
-                              <input type="text" class="form-control form-control-lg textbox" id="exampleFormControlInput2"
-                                placeholder="Type message">
+                              <input type="text" class="form-control form-control-lg textbox"
+                                id="exampleFormControlInput2" placeholder="Type message">
                               <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"></i></a>
                               <a class="ms-3 text-muted" href="#!"><i class="fa fa-smile-o"></i></a>
                               <a class="ms-3" href="#!"><i class="fa fa-paper-plane"></i></a>
@@ -341,11 +344,62 @@
 
 </template>
 <script>
+import axios from "axios";
+import io from "socket.io-client";
 export default {
   props: {
-    enseignantId: String
+    enseignantId: Number
+  },
+  data() {
+    return {
+      user: {},
+      message: '',
+      messages: [],
+      socket: io('http://localhost:5000')
+    }
+  },
+  methods: {
+    getUser() {
+      this.notFound = false;
+      axios
+        .get(
+          "http://localhost:5000/api/users/user/" + this.$route.params.enseignantId
+        )
+        .then((res) => {
+          this.user = res.data.user;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    sendMessage(e) {
+      e.preventDefault();
+
+      this.socket.emit('SEND_MESSAGE', {
+        user: this.user,
+        message: this.message
+      });
+      this.message = ''
+    }
+  },
+  mounted() {
+    this.getUser();
+    this.socket.on('login', (user) => {
+      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
+      this.messages = [...this.messages, user];
+      // you can also do this.messages.push(data)
+    });
+    this.socket.on('newUser', (user) => {
+      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
+      this.messages = [...this.messages, user];
+      // you can also do this.messages.push(data)
+    });
+    this.socket.on('MESSAGE', (data) => {
+      this.messages = [...this.messages, data];
+      // you can also do this.messages.push(data)
+    });
   }
-    
+     
 }
 </script>
 <style scoped>

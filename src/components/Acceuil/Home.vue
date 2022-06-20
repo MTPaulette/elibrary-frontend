@@ -86,6 +86,7 @@
 <script>
 import axios from "axios";
 import DocumentList from "./../Base/DocumentList.vue";
+import io from "socket.io-client";
 export default {
   name: "",
   components: {
@@ -103,15 +104,28 @@ export default {
 
       notFound: false,
       loading: false,
+      socket: io('http://localhost:5000/')
     };
   },
   beforeMount() {
     this.handleSearchFiliere(this.$route.query.q);
   },
+  mounted() {
+    this.socket.on('login', (user) => {
+      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
+      this.messages = [...this.messages, user];
+      // you can also do this.messages.push(data)
+    });
+    this.socket.on('newUser', (user) => {
+      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
+      this.messages = [...this.messages, user];
+      // you can also do this.messages.push(data)
+    });
+  },
 
   methods: {
 
-    handleSearchFiliere(ue) {
+    handleSearchFiliere() {
       this.loading = true;
       this.notFound = false;
 
@@ -125,12 +139,6 @@ export default {
           const n = res.data.allDocument.length;
           this.loading = false;
           if (n != 0) {
-          console.log(
-            "---------------------------------ue--------------------------------------------"
-          );
-            console.log(ue);
-            console.log(res.data.allDocument);
-            //return res.data.allDocument;
             this.documents = res.data.allDocument;
           } else {
             this.notFound = true;

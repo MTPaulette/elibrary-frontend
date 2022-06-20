@@ -127,6 +127,7 @@
 
 <script>
 import User from "../../models/user";
+import io from 'socket.io-client';
 
 export default {
   name: "LoginComponnent",
@@ -140,6 +141,7 @@ export default {
       user: new User("", ""),
       loading: false,
       message: "",
+      socket: io('http://localhost:8080/')
     };
   },
   mounted() {
@@ -161,6 +163,11 @@ export default {
       if (this.user.email && this.user.password) {
         this.$store.dispatch("auth/login", this.user).then(
           () => {
+
+
+            this.socket.emit('login', this.user);
+
+
             this.$router.push("/");
           },
           (error) => {

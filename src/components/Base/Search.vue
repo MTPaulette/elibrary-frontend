@@ -352,11 +352,6 @@ export default {
         this.handleSearch(this.recherche);
       }
     },
-    /*
-    ue: function () {
-      this.handleSearchUe(this.ue);
-    }
-    */
   },
   beforeMount() {
     this.handleSearch(this.$route.query.q);
@@ -428,11 +423,6 @@ export default {
           const n = res.data.allDocument.length;
           this.loading = false;
           if (n != 0) {
-          console.log(
-            "---------------------------------ue--------------------------------------------"
-          );
-            console.log(this.ue);
-            console.log(res.data.allDocument);
             this.reset();
             //return res.data.allDocument;
             this.documents = res.data.allDocument;

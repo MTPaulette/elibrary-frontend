@@ -340,8 +340,6 @@ export default {
           "http://localhost:5000/api/filieres/filiere/" + filiereId
         )
         .then((res) => {
-          console.log("**********************")
-          console.log(res.data)
           this.filiere = res.data.filiere;
         })
         .catch((err) => {
