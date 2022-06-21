@@ -6,293 +6,199 @@
     <div class="main">
       <div class="container-fluid">
         <!-- /# row -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card my-5" style="background: transparent">
-                <div class="card-body">
-                  
-                      <div class="row">
-                        <div class="col-md-6 col-lg-5 col-xl-4 mb-0 mb-md-0 m-0 p-0">
-                          <aside class="sm-side row py-0 m-0">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card my-5" style="background: transparent">
+              <div class="card-body">
 
-                            <div class="col-12">
-                              <div class="user-head">
-                                <a class="inbox-avatar" href="javascript:;">
-                                  <img src="assets/images/user.jpg" alt="">
-                                </a>
-                                <div class="user-name">
-                                  <h5><a href="#">{{ currentUser.username }}</a>
-                                  </h5>
-                                  <span><a href="#">{{ currentUser.email }}</a></span>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- Modal -->
-                            <div class="col-12">
-                              <div class="inbox-body text-center my-lg-4 my-2">
-                                <a href="#myModal" data-toggle="modal" title="Nouveau" class="btn btn-primary">
-                                  <i class="fa fa-plus mr-2 pl-0"></i>Nouveau</a>
-                                <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-                                  <div class="modal-dialog">
-                                    <div class="modal-content text-left">
-                                      <div class="modal-header">
-                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"><i
-                                            class="ti-close"></i></button>
-                                        <h4 class="modal-title">Nouveau</h4>
-                                      </div>
-                                      <div class="modal-body">
-                                        <form class="form-horizontal">
-                                          <div class="form-group">
-                                            <label class="col-lg-2 control-label">To</label>
-                                            <div class="col-lg-10">
-                                              <input type="text" placeholder="" id="inputEmail1" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="form-group">
-                                            <label class="col-lg-2 control-label">Cc / Bcc</label>
-                                            <div class="col-lg-10">
-                                              <input type="text" placeholder="" id="cc" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="form-group">
-                                            <label class="col-lg-2 control-label">Subject</label>
-                                            <div class="col-lg-10">
-                                              <input type="text" placeholder="" id="inputPassword1"
-                                                class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="form-group">
-                                            <label class="col-lg-2 control-label">Message</label>
-                                            <div class="col-lg-10">
-                                              <textarea rows="10" cols="30" class="form-control" id="texarea1"
-                                                name="texarea"></textarea>
-                                            </div>
-                                          </div>
+                <div class="row">
+                  <div class="col-md-6 col-lg-5 col-xl-4 mb-0 mb-md-0 m-0 p-0">
+                    <aside class="sm-side row py-0 m-0">
 
-                                          <div class="form-group">
-                                            <div class="col-lg-offset-2 col-lg-10">
-                                              <span class="btn green fileinput-button"><i
-                                                  class="fa fa-plus fa fa-white"></i>
-                                                <span>Attachment</span>
-                                                <input type="file" name="files[]" multiple="">
-                                              </span>
-                                              <button class="btn btn-primary" type="submit">Send</button>
-                                            </div>
-                                          </div>
-                                        </form>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- /.modal> -->
-                            <div class="col-12">
-                              <ul class=" inbox-nav inbox-divider people">
-
-                                <!-- <li class="p-2 border-bottom bg-danger" v-for="requete in requetes" :key="requete.id">
-                                  <a href="#!" class="d-flex justify-content-between bg-info">
-                                    <div class="d-flex flex-row"> -->
-                                <li class="border-bottom inbox-nav-item p-2 mt-1" v-for="requete in requetes"
-                                  :key="requete.id">
-                                  <a href="#!" class="">
-                                    <div class="row">
-
-                                      <div class="col-2">
-                                        <router-link :to="{ path: '/profile', query: { id:requete.UserId }}">
-                                          <img src="../../assets/avatar.png" alt="avatar"
-                                            class="d-flex align-self-center  rounded-circle" width="100%" height="100%">
-                                        </router-link>
-                                      </div>
-                                      <div class="p-0 pl-2 m-0 col-9" @click="getMessages(requete.id);">
-                                        <div>
-                                          <div class="float-end">
-                                            <span class="fw-bold small text-muted text-end mb-1">{{
-                                              requete.Messages[0].createdAt }}
-                                            </span>
-                                            <span class="badge rounded-pill bg-secondary ">{{
-                                              requete.Messages.length}}</span>
-                                          </div>
-                                          <span class="fw-bold mb-0 text-start text-bold">{{ requete.User.username
-                                            }}</span>
-                                        </div>
-                                        <p class="smalltext-muted">{{ requete.Messages[0].contenu
-                                          }}
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </aside>
+                      <div class="col-12">
+                        <div class="user-head">
+                          <a class="inbox-avatar" href="javascript:;">
+                            <img src="assets/images/user.jpg" alt="">
+                          </a>
+                          <div class="user-name">
+                            <h5>
+                              <router-link :to="{ path: '/profile', query: { id:currentUser.id }}">{{
+                                currentUser.username }}
+                              </router-link>
+                            </h5>
+                            <span><a href="#">{{ currentUser.email }}</a></span>
+                          </div>
                         </div>
+                      </div>
+                      <!-- Modal -->
+                      <div class="col-12">
+                        <div class="inbox-body text-center my-lg-4 my-2">
+                          <a href="#myModal" data-toggle="modal" title="Nouveau" class="btn btn-primary">
+                            <i class="fa fa-plus mr-2 pl-0"></i>Nouveau</a>
+                          <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                            <div class="modal-dialog">
+                              <div class="modal-content text-left">
+                                <div class="modal-header">
+                                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button"><i
+                                      class="ti-close"></i></button>
+                                  <h4 class="modal-title">Nouveau</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <form class="form-horizontal">
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label">To</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" placeholder="" id="inputEmail1" class="form-control">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label">Cc / Bcc</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" placeholder="" id="cc" class="form-control">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label">Subject</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" placeholder="" id="inputPassword1" class="form-control">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label">Message</label>
+                                      <div class="col-lg-10">
+                                        <textarea rows="10" cols="30" class="form-control" id="texarea1"
+                                          name="texarea"></textarea>
+                                      </div>
+                                    </div>
 
-                        <div class="col-md-6 col-lg-7 col-xl-8">
-                          <aside class="lg-side row">
-                            <div class="col-12">
-                              <div class="inbox-head">
-                                <form action="#" class="pull-right position">
-                                  <div class="input-append inner-append">
-                                    <input type="text" class="sr-input" placeholder="Search Mail">
-                                    <button class="btn sr-btn append-btn" type="button"><i
-                                        class="fa fa-search"></i></button>
+                                    <div class="form-group">
+                                      <div class="col-lg-offset-2 col-lg-10">
+                                        <span class="btn green fileinput-button"><i class="fa fa-plus fa fa-white"></i>
+                                          <span>Attachment</span>
+                                          <input type="file" name="files[]" multiple="">
+                                        </span>
+                                        <button class="btn btn-primary" type="submit">Send</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.modal> -->
+                      <div class="col-12">
+                        <ul class=" inbox-nav inbox-divider people">
+                          <li class="border-bottom inbox-nav-item p-2 mt-1" v-for="requete in requetes"
+                            :key="requete.id">
+                            <a href="#!" class="">
+                              <div class="row">
+
+                                <div class="col-2">
+                                  <router-link :to="{ path: '/profile', query: { id:requete.UserId }}">
+                                    <img src="../../assets/avatar.png" alt="avatar"
+                                      class="d-flex align-self-center  rounded-circle" width="100%" height="100%">
+                                  </router-link>
+                                </div>
+                                <div class="p-0 pl-2 m-0 col-9" @click="getMessages(requete.id);">
+                                  <div>
+                                    <div class="float-end">
+                                      <!-- <span class="fw-bold small text-muted text-end mb-1">25 jan 
+                                      </span> -->
+                                      <span class="fw-bold small text-muted text-end mb-1" v-if="requete.Messages">{{
+                                        requete.Messages[0].createdAt }}
+                                      </span>
+                                      <span class="badge rounded-pill bg-secondary ">{{
+                                        requete.Messages.length}}</span>
+                                    </div>
+                                    <span class="fw-bold mb-0 text-start text-bold">{{ requete.User.username
+                                      }}</span>
                                   </div>
-                                </form>
-                                <h3 class="input-text">Requete</h3>
-                                <p>
-                                  <a class="_blanc"
-                                    :href="'http://localhost:5000/api/documents/telecharger/' +$route.query.documentId">Lien
-                                    du PV</a>
+                                  <!-- <p class="smalltext-muted">{{ requete.Messages[0]}}</p> -->
+                                  <p class="smalltext-muted" v-if="requete.Messages">{{ requete.Messages[0].contenu }}
+                                  </p>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </aside>
+                  </div>
+
+                  <div class="col-md-6 col-lg-7 col-xl-8">
+                    <aside class="lg-side row">
+                      <div class="col-12">
+                        <div class="inbox-head">
+                          <form action="#" class="pull-right position">
+                            <div class="input-append inner-append">
+                              <input type="text" class="sr-input" placeholder="Search Mail">
+                              <button class="btn sr-btn append-btn" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                          </form>
+                          <h3 class="input-text">Requete</h3>
+                          <p>
+                            <a class="_blanc"
+                              :href="'http://localhost:5000/api/documents/telecharger/' +$route.query.documentId">Lien
+                              du PV</a>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="message p-5">
+                          <div v-for="message in messages" :key="message.id">
+
+                            <div class="d-flex flex-row justify-content-end" v-if="message.UserId == currentUser.id">
+                              <div>
+                                <p class="small p-2 me-3 mb-1 rounded-3 bg-chat">
+                                  {{message.contenu}}</p>
+                                <p class="small me-3 mb-3 rounded-3 text-muted">{{ message.createdAt}}
+                                </p>
+                              </div>
+                              <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 1"
+                                style="width: 45px; height: 100%;">
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-start" v-else>
+                              <img src="../../assets/avatar.png" alt="avatar 1" class="rounded-circle"
+                                style="width: 45px; height: 100%;">
+                              <div>
+                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white  bg-primary">
+                                  {{message.contenu}}
+                                </p>
+                                <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{ message.createdAt}}
                                 </p>
                               </div>
                             </div>
-                            <div class="col-12">
-                              <div class="message p-5">
-                                <div v-for="message in messages" :key="message.id">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
+                          <form @submit.prevent="postMessage" class="form-inline">
+                            <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 3"
+                              style="width: 40px; height: 100%;">
+                            <input type="text" class="form-control form-control-lg textbox" v-model="message"
+                              placeholder="Type message">
 
-                                  <div class="d-flex flex-row justify-content-end"
-                                    v-if="message.UserId == currentUser.id">
-                                    <div>
-                                      <p class="small p-2 me-3 mb-1 rounded-3 bg-chat">
-                                        {{message.contenu}}</p>
-                                      <p class="small me-3 mb-3 rounded-3 text-muted">{{ message.createdAt}}
-                                      </p>
-                                    </div>
-                                    <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 1"
-                                      style="width: 45px; height: 100%;">
-                                  </div>
+                            <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"></i></a>
+                            <a class="ms-3 text-muted" href="#!"><i class="fa fa-smile-o"></i></a>
+                            <button type="submit" class="btn ms-3 send"><i class="fa fa-paper-plane"></i>
+                            </button>
 
-                                  <div class="d-flex flex-row justify-content-start" v-else>
-                                    <img src="../../assets/avatar.png" alt="avatar 1" class="rounded-circle"
-                                      style="width: 45px; height: 100%;">
-                                    <div>
-                                      <p class="small p-2 ms-3 mb-1 rounded-3 text-white  bg-primary">
-                                        {{message.contenu}}
-                                      </p>
-                                      <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{ message.createdAt}}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <!-- <div class="d-flex flex-row justify-content-start">
-                                <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 1"
-                                  style="width: 45px; height: 100%;">
-                                <div>
-                                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Duis aute
-                                    irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                    fugiat nulla pariatur.
-                                  </p>
-                                  <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
-                                    Aug 13</p>
-                                </div>
-                              </div>
-
-                              <div class="d-flex flex-row justify-content-end">
-                                <div>
-                                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">
-                                    Excepteur sint occaecat
-                                    cupidatat
-                                    non proident, sunt in culpa qui officia deserunt mollit anim id
-                                    est laborum.</p>
-                                  <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13
-                                  </p>
-                                </div> <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 1"
-                                  style="width: 45px; height: 100%;">
-                              </div>
-
-                              <div class="d-flex flex-row justify-content-start"> <img src="../../assets/avatar.png"
-                                  class="rounded-circle" alt="avatar 1" style="width: 45px; height: 100%;">
-                                <div>
-                                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Sed ut
-                                    perspiciatis
-                                    unde omnis iste natus error sit voluptatem accusantium
-                                    doloremque laudantium, totam
-                                    rem
-                                    aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                                    architecto beatae vitae
-                                    dicta
-                                    sunt explicabo.</p>
-                                  <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
-                                    Aug 13</p>
-                                </div>
-                              </div>
-
-                              <div class="d-flex flex-row justify-content-end">
-                                <div>
-                                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">Nemo
-                                    enim ipsam
-                                    voluptatem quia
-                                    voluptas sit aspernatur aut odit aut fugit, sed quia
-                                    consequuntur magni dolores eos
-                                    qui
-                                    ratione voluptatem sequi nesciunt.</p>
-                                  <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13
-                                  </p>
-                                </div> <img src="../../assets/avatar.png" alt="avatar 1"
-                                  style="width: 45px; height: 100%;">
-                              </div>
-
-                              <div class="d-flex flex-row justify-content-start"> <img src="../../assets/avatar.png"
-                                  alt="avatar 1" style="width: 45px; height: 100%;">
-                                <div>
-                                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Neque
-                                    porro
-                                    quisquam
-                                    est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non
-                                    numquam
-                                    eius modi tempora incidunt ut labore et dolore magnam aliquam
-                                    quaerat voluptatem.</p>
-                                  <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
-                                    Aug 13</p>
-                                </div>
-                              </div>
-
-                              <div class="d-flex flex-row justify-content-end">
-                                <div>
-                                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">Ut
-                                    enim ad minima veniam,
-                                    quis
-                                    nostrum exercitationem ullam corporis suscipit laboriosam, nisi
-                                    ut aliquid ex ea
-                                    commodi
-                                    consequatur?</p>
-                                  <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13
-                                  </p>
-                                </div> <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 1"
-                                  style="width: 45px; height: 100%;">
-                              </div> -->
-
-                              </div>
-                            </div>
-                            <div class="col-12">
-                              <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
-                                <form @submit.prevent="postMessage" class="form-inline">
-                                  <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 3"
-                                    style="width: 40px; height: 100%;">
-                                  <input type="text" class="form-control form-control-lg textbox" v-model="message"
-                                    placeholder="Type message">
-
-                                  <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"></i></a>
-                                  <a class="ms-3 text-muted" href="#!"><i class="fa fa-smile-o"></i></a>
-                                  <button type="submit" class="btn ms-3 send"><i class="fa fa-paper-plane"></i>
-                                  </button>
-
-                                </form>
-                              </div>
-                            </div>
-
-                          </aside>
+                          </form>
                         </div>
                       </div>
 
+                    </aside>
+                  </div>
                 </div>
+
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -335,13 +241,14 @@ export default {
           console.log(err);
         });
     },
-    getRequete() {
+    getAllRequetes() {
       axios
         .get(
           "http://localhost:5000/api/chat/requetes/"
         )
         .then((res) => {
-          console.log(res.data.requetes.UserSender)
+          console.log("-------------------")
+          console.log(res.data.requetes)
           this.requetes = res.data.requetes;
         })
         .catch((err) => {
@@ -371,8 +278,27 @@ export default {
           "http://localhost:5000/api/chat/requetes/" + this.requete, req
         )
         .then((res) => {
-          console.log(res.data)
+          console.log(res.data);
+          this.message = '';
           //this.messages = res.data.messages;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getOrCreateRequete() {
+      let req = {
+        userReceiverId: this.$route.params.enseignantId,
+        documentId: this.$route.query.documentId
+      };
+      console.log('****************************')
+      axios
+        .post(
+          "http://localhost:5000/api/chat/requetes/create", req
+        )
+        .then((res) => {
+          console.log(res.data.requetes)
+          //this.requetes = res.data.requete;
         })
         .catch((err) => {
           console.log(err);
@@ -390,19 +316,12 @@ export default {
   },
   mounted () {
     this.getUser();
-    this.getRequete();
+    this.getAllRequetes();
     this.socket.on('NEW_MESSAGE', (data) => {
       console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
       this.messages = [...this.messages, data];
       console.log(this.messages)
     });
-
-    // this.socket.on('ALL_REQUETE', (requetes) => {
-    //   console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
-    //   this.requetes = [...this.requetes, requetes];
-    //   console.log(this.requetes);
-    //   console.log(this.requetes);
-    // });
 
   }
      

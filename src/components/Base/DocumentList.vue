@@ -31,7 +31,7 @@
                                             <i class="fa fa-eye"></i> <span class="ml-2 comment-date">Details</span>
                                         </router-link>
                                     </li>
-                                    <li v-if="document.TypeId == 3">
+                                    <li v-if="document.TypeId == 3 && currentUser.id != document.User.id">
                                         <router-link
                                             :to="{ name: 'Chat', params: { enseignantId: document.UserId }, query: { documentId: document.id } }">
                                             <i class="fa fa-pencil"></i> <span class="ml-2 comment-date">Requete</span>
@@ -47,8 +47,8 @@
                                                 Telecharger</span>
                                         </a>
                                     </li>
-                                    <li @click="showModal = true;"><a href="#"><i
-                                                class="fa fa-exclamation-circle"></i><span
+                                    <li @click="showModal = true;" v-if="currentUser.id != document.User.id"><a
+                                            href="#"><i class="fa fa-exclamation-circle"></i><span
                                                 class="ml-2 comment-date">Signaler</span></a></li>
 
                                 </ul>
@@ -127,6 +127,11 @@ export default {
     },
     components: {
         Signalement
+    },
+    computed: {
+        currentUser() {
+            return this.$store.state.auth.user.user;
+        },
     },
     data() {
         return {
