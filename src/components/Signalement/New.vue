@@ -17,33 +17,48 @@
 
 							<div class="card">
 								<div class="card-body card-block">
-									<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+									<!-- .if success -->
+									<div class="row" v-if="successful">
+										<div class="alert alert-success" role="alert">
+											Vous avez signalé ce document!
+										</div>
+									</div>
+
+									<form method="post" class="form-horizontal">
 
 
-										<div class="row form-group">
+										<div class="row form-group" v-if="!other">
 											<div class="col col-md-3"><label for="select" class=" form-control-label">Selectionner une
 													raison</label></div>
 											<div class="col-12 col-md-9">
-												<select name="raison" class="form-control textbox" v-model="raison">
+												<select name="raison" class="form-control textbox" v-model="raisonId">
 													<option disabled value="">Raison</option>
-													<option v-for="raison in raisons" :key="raison.id" v-bind:value="raison.description">
+													<option v-for="raison in raisons" :key="raison.id" v-bind:value="raison.id">
 														{{ raison.description }}
 													</option>
 													<i class="bi bi-chevron-down"></i>
 												</select>
 											</div>
 										</div>
+										<div class="row">
+											<div class="float-end">
+												<span @click="other = !other"
+													class="fw-bold small text-end text-white mb-1 bg-secondary">Autre</span>
+											</div>
+										</div>
 
-										<div class="row form-group">
-											<div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Autre</label>
+										<div class="row form-group" v-if="other">
+											<div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Autre
+													raison</label>
 											</div>
 											<div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="6"
-													placeholder="Content..." class="form-control textbox"></textarea></div>
+													placeholder="Content..." class="form-control textbox" v-model="description"></textarea></div>
 										</div>
 									</form>
+
 								</div>
 							</div>
-
 
 
 
@@ -51,11 +66,12 @@
 								<button type="button" class="btn btn-secondary" @click="$emit('close')">
 									<i class="fa fa-ban mr-2 pl-0"></i>Annuler
 								</button>
-								<button type="submit" class="btn btn-primary">
+								<button type="submit" class="btn btn-primary" @click="postSignalement">
+									<span class=" spinner-border spinner-border-sm mr-1" v-show="loading"></span>
 									<i class="fa fa-dot-circle-o  mr-2 pl-0"></i>Confirmer
 								</button>
-
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -71,18 +87,13 @@ export default {
 		show: Boolean,
 		document: Number
 	},
-	computed: {
-
-		//toutes les raisons
-		// raisonsss() {
-		// 	let res = axios.get("http://localhost:5000/api/raisons/raisons");
-		// 	console.log(res)
-		// 	return res.data.raisons
-		// },
-	},
 	data() {
 		return {
-			raison: "",
+			description: "",
+			raisonId: "",
+			loading: false,
+			other: false,
+			successful: false,
 			raisons: {}
 		}
 	},
@@ -96,6 +107,33 @@ export default {
 			let res = await axios.get("http://localhost:5000/api/raisons/raisons");
 			console.log(res.data)
 			this.raisons = res.data.raisons
+		},
+		postSignalement() {
+			if (this.description  || this.raisonId) {
+			this.loading = true;
+			let req = {
+				description: this.description,
+				RaisonId: this.raisonId,
+				DocumentId: this.document
+			};
+			console.log(req);
+			axios
+				.post(
+					"http://localhost:5000/api/signalements/", req
+				)
+				.then((res) => {
+					this.loading = false;
+					console.log(res.data);
+					if (res.data.success) {
+						this.successful = true;
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+			} else {
+				console.log("rien")
+			}
 		},
 	},
 	

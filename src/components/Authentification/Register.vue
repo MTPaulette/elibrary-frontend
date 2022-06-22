@@ -227,52 +227,6 @@ export default {
 
   methods: {
     ...mapActions(["registerAuth"]),
-    /*
-
-  created() {
-    this.$watch(
-      () => this.$route.params,
-      () => {
-        this.fetchData();
-      },
-      { immediate: true }
-    );
-  },
-    ...mapActions([
-      "registerAuth",
-      "getFacultes",
-      "getFilieres",
-      "getNiveaux",
-      "getSpecialites",
-    ]),
-    fetchData() {
-      this.error = null;
-      (this.loading = true),
-        this.getFacultes().then((res) => {
-          this.loading = false;
-          this.facultes = res.data.facultes;
-          //if (this.facultes != null) {
-          //this.faculte = res.data.facultes[0].nom;
-          //}
-          console.log(res.data.facultes);
-        });
-
-      this.getFilieres().then((res) => {
-        this.loading = false;
-        this.filieres = res.data.filieres;
-      });
-
-      this.getNiveaux().then((res) => {
-        this.loading = false;
-        this.niveaux = res.data.niveaux;
-      });
-
-      this.getSpecialites().then((res) => {
-        this.loading = false;
-        this.specialites = res.data.specialites;
-      });
-    },
-    */
     register() {
       this.loading = true;
       let user = {

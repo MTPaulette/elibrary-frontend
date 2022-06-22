@@ -139,19 +139,20 @@
               <i class="fa fa-table"></i
               ><a href="DeletedTeachers">Enseignant</a>
             </li>
-            <li  v-if="currentUser.RoleId == 1">
+            <li v-if="currentUser.RoleId == 1">
               <i class="fa fa-table"></i><a href="DeletedStudents">Etudiant</a>
             </li>
           </ul>
         </li>
+        
 
         <h3 class="menu-title">Notifications</h3>
-        <li>
+        <li  v-if="currentUser.RoleId == 1" @click="showModal = true;">
           <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Nouveau</a>
         </li>
         <li>
-          <a href="#">
-            <i class="menu-icon fa fa-line-chart"></i>Boite d'envoi</a
+          <a href="/notifications">
+            <i class="menu-icon fa fa-line-chart"></i>Notifications</a
           >
         </li>
         <li>
@@ -159,6 +160,13 @@
             <i class="menu-icon fa fa-line-chart"></i>Boite de reception</a
           >
         </li>
+
+
+        <div v-if="currentUser.RoleId == 1">
+        <h3 class="menu-title">Signalement</h3>
+        <li>
+          <a href="/signalements"> <i class="menu-icon fa fa-line-chart"></i>signalements</a>
+        </li></div>
 
         <h3 class="menu-title" v-if="currentUser.RoleId == 1">Analyse & Rapport</h3>
         <li v-if="currentUser.RoleId == 1">
@@ -183,13 +191,23 @@
         </li>
       </ul>
     </div>
-    <!-- /.navbar-collapse -->
-    <!-- </nav>
-    </aside> -->
+    
+			<Notification :show="showModal" @close="showModal = false;">
+			</Notification>
+
   </div>
 </template>
 <script>
+import Notification from "../Notification/New.vue";
 export default {
+  components: {
+    Notification
+  },
+  data() {
+    return {
+      showModal: false,
+    };
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user.user;

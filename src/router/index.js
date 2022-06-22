@@ -160,11 +160,26 @@ const routes = [
         props: true,
       },
       {
-        path: "/chat/:enseignantId",
+        path: "/chat",
         name: "Chat",
         component: () => import("../components/Base/Chat.vue"),
-        props: true,
       },
+      {
+        path: "/notifications",
+        name: "Notification",
+        component: () => import("../components/Notification/Show.vue"),
+      },
+      {
+        path: "/signalements",
+        name: "Signalement",
+        component: () => import("../components/Signalement/Show.vue"),
+      },
+      // {
+      //   path: "/chat/:enseignantId",
+      //   name: "Chat",
+      //   component: () => import("../components/Base/Chat.vue"),
+      //   props: true,
+      // },
     ],
   },
 

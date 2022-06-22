@@ -23,7 +23,7 @@
                           <div class="user-name">
                             <h5>
                               <router-link :to="{ path: '/profile', query: { id:currentUser.id }}">{{
-                                currentUser.username }}
+                              currentUser.username }}
                               </router-link>
                             </h5>
                             <span><a href="#">{{ currentUser.email }}</a></span>
@@ -95,29 +95,43 @@
                             <a href="#!" class="">
                               <div class="row">
 
-                                <div class="col-2">
-                                  <router-link :to="{ path: '/profile', query: { id:requete.UserId }}">
+                                <div class="col-2" v-if="requete.UserReceiverId != currentUser.id">
+                                  <router-link :to="{ path: '/profile', query: { id:requete.UserReceiverId }}">
                                     <img src="../../assets/avatar.png" alt="avatar"
                                       class="d-flex align-self-center  rounded-circle" width="100%" height="100%">
                                   </router-link>
                                 </div>
+
+                                <div class="col-2" v-else>
+                                  <router-link :to="{ path: '/profile', query: { id:requete.UserSenderId }}">
+                                    <img src="../../assets/avatar.png" alt="avatar"
+                                      class="d-flex align-self-center  rounded-circle" width="100%" height="100%">
+                                  </router-link>
+                                </div>
+
                                 <div class="p-0 pl-2 m-0 col-9" @click="getMessages(requete.id);">
                                   <div>
                                     <div class="float-end">
-                                      <!-- <span class="fw-bold small text-muted text-end mb-1">25 jan 
-                                      </span> -->
-                                      <span class="fw-bold small text-muted text-end mb-1" v-if="requete.Messages">{{
+                                      <span class="fw-bold small text-muted text-end mb-1"
+                                        v-if="requete.Messages.length > 0">{{
                                         requete.Messages[0].createdAt }}
                                       </span>
+                                      <span class="fw-bold small text-muted text-end mb-1"
+                                        v-else>{{requete.updatedAt}}</span>
                                       <span class="badge rounded-pill bg-secondary ">{{
-                                        requete.Messages.length}}</span>
+                                      requete.Messages.length}}</span>
                                     </div>
-                                    <span class="fw-bold mb-0 text-start text-bold">{{ requete.User.username
+                                    <span class="fw-bold mb-0 text-start text-bold"
+                                      v-if="requete.UserReceiverId != currentUser.id">{{ requete.UserReceiver.username
                                       }}</span>
+                                    <span class="fw-bold mb-0 text-start text-bold" v-else>{{
+                                    requete.UserSender.username
+                                    }}</span>
                                   </div>
-                                  <!-- <p class="smalltext-muted">{{ requete.Messages[0]}}</p> -->
-                                  <p class="smalltext-muted" v-if="requete.Messages">{{ requete.Messages[0].contenu }}
-                                  </p>
+                                  <p class="smalltext-muted" v-if="requete.Messages.length > 0">{{
+                                  requete.Messages[0].contenu }}</p>
+                                  <p class="fw-light fst-italic" v-else>Aucun message</p>
+
                                 </div>
                               </div>
                             </a>
@@ -138,16 +152,26 @@
                             </div>
                           </form>
                           <h3 class="input-text">Requete</h3>
-                          <p>
-                            <a class="_blanc"
-                              :href="'http://localhost:5000/api/documents/telecharger/' +$route.query.documentId">Lien
-                              du PV</a>
+                          <p v-if="requetes[requete]"><a class="_blanc" 
+                              :href="'http://localhost:5000/api/documents/telecharger/' + requetes[requete].Document.id">{{requetes[requete].Document.titre}}</a>
                           </p>
                         </div>
                       </div>
                       <div class="col-12">
                         <div class="message p-5">
-                          <div v-for="message in messages" :key="message.id">
+
+                          <div class="d-flex flex-row justify-content-center my-auto"
+                            v-if="requete && messages.length <= 0">
+                            <div class="w-75">
+                              <!-- <p class="small p-2 ms-3 mb-1 rounded-3 text-dark fw-light fst-italic fs-3 text-center bg-transparent"> -->
+                              <p
+                                class="small p-2 ms-3 mb-1 rounded-3 text-white fw-light fst-italic  text-center bg-secondary">
+                                Aucun message
+                              </p>
+                            </div>
+                          </div>
+
+                          <div v-else v-for="message in messages" :key="message.id">
 
                             <div class="d-flex flex-row justify-content-end" v-if="message.UserId == currentUser.id">
                               <div>
@@ -156,7 +180,7 @@
                                 <p class="small me-3 mb-3 rounded-3 text-muted">{{ message.createdAt}}
                                 </p>
                               </div>
-                              <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 1"
+                              <img src="../../assets/fille-logo.jpg" class="rounded-circle" alt="avatar 1"
                                 style="width: 45px; height: 100%;">
                             </div>
 
@@ -175,7 +199,8 @@
                         </div>
                       </div>
                       <div class="col-12">
-                        <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
+                        <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2"
+                          v-if="requete">
                           <form @submit.prevent="postMessage" class="form-inline">
                             <img src="../../assets/avatar.png" class="rounded-circle" alt="avatar 3"
                               style="width: 40px; height: 100%;">
@@ -209,9 +234,6 @@
 import axios from "axios";
 import io from "socket.io-client";
 export default {
-  props: {
-    enseignantId: Number
-  },
   data() {
     return {
       user: {},
@@ -228,19 +250,6 @@ export default {
     },
   },
   methods: {
-    getUser() {
-      this.notFound = false;
-      axios
-        .get(
-          "http://localhost:5000/api/users/user/" + this.$route.params.enseignantId
-        )
-        .then((res) => {
-          this.user = res.data.user;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
     getAllRequetes() {
       axios
         .get(
@@ -257,6 +266,7 @@ export default {
     },
     getMessages(requeteId) {
       this.requete = requeteId;
+      this.socket.emit('SELECTED_REQUETE', requeteId);
       axios
         .get(
           "http://localhost:5000/api/chat/requetes/" + requeteId
@@ -286,37 +296,11 @@ export default {
           console.log(err);
         });
     },
-    getOrCreateRequete() {
-      let req = {
-        userReceiverId: this.$route.params.enseignantId,
-        documentId: this.$route.query.documentId
-      };
-      console.log('****************************')
-      axios
-        .post(
-          "http://localhost:5000/api/chat/requetes/create", req
-        )
-        .then((res) => {
-          console.log(res.data.requetes)
-          //this.requetes = res.data.requete;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    sendMessage(e) {
-      e.preventDefault();
-
-      this.socket.emit('SEND_MESSAGE', {
-        user: this.$route.params.enseignantId,
-        message: this.message
-      });
-      this.message = ''
-    }
   },
   mounted () {
-    this.getUser();
     this.getAllRequetes();
+    console.log(this.requete)
+
     this.socket.on('NEW_MESSAGE', (data) => {
       console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
       this.messages = [...this.messages, data];
