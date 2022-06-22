@@ -42,6 +42,8 @@
                   </button>
                 </div>
               </form>
+
+              <span> {{ user }}</span>
             </div>
           </div>
         </div>
@@ -64,7 +66,7 @@ export default {
     msg: String,
   },
   computed: {
-    ...mapGetters(["isLoggedIn"]),
+    ...mapGetters(["isLoggedIn", "user", "authState"]),
   },
   methods: {
     ...mapActions(["check"]),

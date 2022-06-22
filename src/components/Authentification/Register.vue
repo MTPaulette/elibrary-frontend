@@ -20,6 +20,11 @@
               <h3 class="mb-4 text-center" id="link">
                 <router-link to="/login">Avez-vous un compte?</router-link>
               </h3>
+              <div class="form-group">
+                <div class="alert alert-danger" role="alert" v-if="message">
+                  {{ message }}
+                </div>
+              </div>
               <form action="#" class="signin-form" @submit.prevent="register">
                 <div class="form-group">
                   <input
@@ -29,7 +34,7 @@
                     placeholder="name"
                     autocomplete="name"
                     autofocus
-                    v-model="nom"
+                    v-model="username"
                     required
                   />
                   <i class="bi bi-person field-icon"></i>
@@ -64,7 +69,7 @@
                     type="password"
                     class="form-control"
                     placeholder="Confirm Password"
-                    v-model="confirm_password"
+                    v-model="confirmPassword"
                     required
                   />
                   <i class="bi bi-eye field-icon"></i>
@@ -131,8 +136,12 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="form-control submit px-3 signin">
-                    Sign In
+                  <button class="btn btn-block signin" :disabled="loading">
+                    <span
+                      class="spinner-border spinner-border-sm mr-1"
+                      v-show="loading"
+                    ></span>
+                    <span>Sign in</span>
                   </button>
                 </div>
                 <!--div class="form-group d-md-flex">
@@ -173,106 +182,77 @@
 import { mapActions } from "vuex";
 export default {
   name: "RegisterComponent",
-  props: {
-    msg: String,
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user.user;
+    },
+    facultes() {
+      return this.$store.state.fetchData.facultes;
+    },
+    filieres() {
+      return this.$store.state.fetchData.filieres;
+    },
+    niveaux() {
+      return this.$store.state.fetchData.niveaux;
+    },
+    specialites() {
+      return this.$store.state.fetchData.specialites;
+    },
   },
+
   data() {
     return {
-      nom: "",
+      username: "",
       email: "",
       password: "",
-      confirm_password: "",
+      confirmPassword: "",
 
       //************dynamic loading of filiere*******/
       loading: false,
       error: null,
+      message: "",
 
       faculte: "",
       filiere: "",
       niveau: "",
       specialite: "",
-
-      facultes: null,
-      filieres: null,
-      niveaux: null,
-      specialites: null,
     };
   },
-
-  created() {
-    this.$watch(
-      () => this.$route.params,
-      () => {
-        this.fetchData();
-      },
-      { immediate: true }
-    );
+  mounted() {
+    this.$store.dispatch("fetchData/getFacultes");
+    this.$store.dispatch("fetchData/getFilieres");
+    this.$store.dispatch("fetchData/getNiveaux");
+    this.$store.dispatch("fetchData/getSpecialites");
   },
 
   methods: {
-    ...mapActions([
-      "registerAuth",
-      "getFacultes",
-      "getFilieres",
-      "getNiveaux",
-      "getSpecialites",
-    ]),
-
-    //********************************** */
-    fetchData() {
-      this.error = this.post = null;
-      (this.loading = true),
-        this.getFacultes().then((res) => {
-          this.loading = false;
-          this.facultes = res.data.facultes;
-          //if (this.facultes != null) {
-          //this.faculte = res.data.facultes[0].nom;
-          //}
-          console.log(res.data.facultes);
-        });
-
-      this.getFilieres().then((res) => {
-        this.loading = false;
-        this.filieres = res.data.filieres;
-      });
-
-      this.getNiveaux().then((res) => {
-        this.loading = false;
-        this.niveaux = res.data.niveaux;
-      });
-
-      this.getSpecialites().then((res) => {
-        this.loading = false;
-        this.specialites = res.data.specialites;
-      });
-    },
-
+    ...mapActions(["registerAuth"]),
     register() {
+      this.loading = true;
       let user = {
-        nom: this.nom,
+        username: this.username,
         email: this.email,
-        login: this.login,
         password: this.password,
-        confirm_password: this.confirm_password,
+        confirmPassword: this.confirmPassword,
         FaculteId: this.faculte,
         FiliereId: this.filiere,
         NiveauId: this.niveau,
         SpecialiteId: this.specialite,
       };
       console.log(user);
-      this.registerAuth(user)
-        .then((res) => {
-          if (res.data.success) {
-            console.log("message de backend register:" + res.data.msg);
-            this.$router.push("/login");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      //this.registerAuth(user)
+      this.$store.dispatch("auth/register", user).then(
+        () => {
+          this.$router.push("/login");
+        },
+        (error) => {
+          this.loading = false;
+          this.message = error.msg;
+          console.log(this.message);
+        }
+      );
     },
   },
-  mounted() {},
 };
 </script>
 

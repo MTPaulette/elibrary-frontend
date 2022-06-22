@@ -1242,7 +1242,7 @@ div#main p.boxed-blue{
 
 ul.list li{
 	margin-left: 20px;
-	list-style: disc;
+	/* list-style: disc; */
 	font-size: 14px;
 	line-height: 1.5em;
 	margin-bottom: 1em;

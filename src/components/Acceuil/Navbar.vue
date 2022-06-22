@@ -24,7 +24,7 @@
           <div class="collapse navbar-collapse" id="navbars-host">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="/home">Acceuil</a>
+                <a class="nav-link" href="/">Acceuil</a>
               </li>
               <!-- <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li> -->
               <li class="nav-item dropdown">
@@ -35,15 +35,13 @@
                   >Faculté des Sciences
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                  <a class="dropdown-item" href="/informatiques"
-                    >Informatique</a
-                  >
-                  <a class="dropdown-item" href="/mathematiques"
-                    >Mathématiques
-                  </a>
-                  <a class="dropdown-item" href="/physiques">Physique</a>
-                  <a class="dropdown-item" href="/chimies">Chimie</a>
-                  <a class="dropdown-item" href="/biologies">Biologie</a>
+                  <router-link
+                    class="dropdown-item"
+                    v-for="filiere in filiereSciences"
+                    :key="filiere.id"
+                    :to="{ path: '/niveau', query: { filiere: filiere.id } }"
+                    >{{ filiere.nom }}
+                  </router-link>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -54,25 +52,44 @@
                   >Faculté des Lettres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                  <a class="dropdown-item" href="#">Géographie</a>
-                  <a class="dropdown-item" href="#">Germanistique</a>
-                  <a class="dropdown-item" href="#">Lettres Françaises</a>
-                  <a class="dropdown-item" href="#">Lettres Bilingue</a>
+                  <!-- <a class="dropdown-item" v-for="filiere in filiereLettres" @click="handleFiliere(filiere.id)"
+                    :key="filiere.id">{{ filiere.nom}}
+                  </a> -->
+
+                  <router-link
+                    class="dropdown-item"
+                    v-for="filiere in filiereLettres"
+                    @click="location.reload(true)"
+                    :key="filiere.id"
+                    :to="{ path: '/niveau', query: { filiere: filiere.id } }"
+                    >{{ filiere.nom }}
+                  </router-link>
                 </div>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/enseignants">Enseignant</a>
               </li>
-              <!-- <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li> -->
-              <li class="nav-item"><a class="nav-link" href="#">Profil</a></li>
+              <!-- <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Profil</a></li> -->
+              <li class="nav-item">
+                <router-link
+                  class="nav-link"
+                  :to="{ path: '/profile', query: { id: currentUser.id } }"
+                  >Profil
+                </router-link>
+              </li>
             </ul>
             <div id="header">
-              <form action="#" method="post" id="search">
+              <form
+                action="/search"
+                method="get"
+                @submit="handleSearch"
+                id="search"
+              >
                 <p>
                   <input
                     type="text"
-                    onfocus="defaultInput(this)"
-                    onblur="clearInput(this)"
+                    v-model="recherche"
                     name="keyword"
                     id="keyword"
                     value=""
@@ -95,8 +112,74 @@
 </template>
 
 <script>
+//import axios from "axios";
 export default {
-  name: "Navbar",
+  data() {
+    return {
+      recherche: "",
+    };
+  },
+  props: {
+    user: {},
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user.user;
+    },
+    facultes() {
+      return this.$store.state.fetchData.facultes;
+    },
+    filieres() {
+      return this.$store.state.fetchData.filieres;
+    },
+    niveaux() {
+      return this.$store.state.fetchData.niveaux;
+    },
+    specialites() {
+      return this.$store.state.fetchData.specialites;
+    },
+    enseignants() {
+      return this.$store.state.fetchData.enseignants;
+    },
+    filiereSciences() {
+      if (this.filieres) {
+        return this.filieres.filter((filiere) => {
+          if (filiere.FaculteId == 1) {
+            return filiere;
+          }
+        });
+      } else {
+        return {};
+      }
+    },
+    filiereLettres() {
+      if (this.filieres) {
+        return this.filieres.filter((filiere) => {
+          if (filiere.FaculteId == 2) {
+            return filiere;
+          }
+        });
+      } else {
+        return {};
+      }
+    },
+  },
+  mounted() {
+    this.$store.dispatch("fetchData/getFacultes");
+    this.$store.dispatch("fetchData/getFilieres");
+    this.$store.dispatch("fetchData/getNiveaux");
+    this.$store.dispatch("fetchData/getSpecialites");
+    this.$store.dispatch("fetchData/getEnseignants");
+  },
+  methods: {
+    handleSearch() {
+      this.$router.push({ path: "/search", query: { q: this.recherche } });
+    },
+    // handleFiliere(filiereId){
+    //   location.reload(true);
+    //   this.$router.push({ path: '/niveau', query: { filiere: filiereId } });
+    // }
+  },
 };
 </script>
 
