@@ -1,19 +1,21 @@
 <template>
-<div>
+  <div>
     <div class="row">
       <div class="all-title-box w-100">
         <div class="container text-center">
-        <div class="mu-book-overview-area py-auto">
-          <div class="mu-heading-area">
-            <h2 class="mu-heading-title">Liste des Unités d'enseignement de: {{ filiere }}  {{ niveau }} </h2>
-            <span class="mu-header-dot"></span>
+          <div class="mu-book-overview-area py-auto">
+            <div class="mu-heading-area">
+              <h2 class="mu-heading-title">
+                Liste des Unités d'enseignement de: {{ filiere }} {{ niveau }}
+              </h2>
+              <span class="mu-header-dot"></span>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
 
-      <!-- <div class="row">
+    <!-- <div class="row">
         <div class="mu-book-overview-area py-auto">
           <div class="mu-heading-area">
             <h2 class="mu-heading-title">Liste des Unités d'enseignement de: {{ filiere }}  {{ niveau }} </h2>
@@ -24,12 +26,9 @@
 
     <div id="overviews" class="section wb">
       <div class="container">
-        
-          <div class="row mb-10" v-if="this.$route.query.niveau <= 2">
-            <div class="col-md-3 col-sm-6" v-for="ue in ues" :key="ue.id">
-
-              <router-link :to="{ path: '/document',query: { q: ue.id }}"
-              >
+        <div class="row mb-10" v-if="this.$route.query.niveau <= 2">
+          <div class="col-md-3 col-sm-6" v-for="ue in ues" :key="ue.id">
+            <router-link :to="{ path: '/document', query: { q: ue.id } }">
               <div class="mu-book-overview-single ue">
                 <span class="mu-book-overview-icon-box">
                   <i class="fa fa-gg" aria-hidden="true"></i>
@@ -37,33 +36,38 @@
                 <h4 class="nom">{{ ue.nom }}</h4>
                 <p class="intitule">{{ ue.intitule }}</p>
               </div>
-              </router-link>
+            </router-link>
+          </div>
+        </div>
 
-
+        <div
+          v-else
+          v-for="specialite in specialitesParFiliere()"
+          :key="specialite.id"
+          class="mb-3"
+        >
+          <div class="row">
+            <div class="card-title section-title">
+              <h4>
+                Specialité: <strong> {{ specialite.nom }}</strong>
+              </h4>
             </div>
           </div>
-
-        <div v-else v-for="specialite in specialitesParFiliere()" :key="specialite.id" class="mb-3">
-            <div class="row">
-                <div class="card-title section-title">
-                  <h4>Specialité: <strong> {{ specialite.nom }}</strong> </h4>
-
-                </div>
-              </div>
           <div class="row mb-10">
             <!-- About Us Single Content -->
-            <div class="col-md-3 col-sm-6" v-for="ue in uesParSpecialite(specialite.id)" :key="ue.id">
-
-
-              <router-link :to="{ path: '/document',query: { q: ue.id }}"
-              >
-              <div class="mu-book-overview-single ue">
-                <span class="mu-book-overview-icon-box">
-                  <i class="fa fa-gg" aria-hidden="true"></i>
-                </span>
-                <h4 class="nom">{{ ue.nom }}</h4>
-                <p class="intitule">{{ ue.intitule }}</p>
-              </div>
+            <div
+              class="col-md-3 col-sm-6"
+              v-for="ue in uesParSpecialite(specialite.id)"
+              :key="ue.id"
+            >
+              <router-link :to="{ path: '/document', query: { q: ue.id } }">
+                <div class="mu-book-overview-single ue">
+                  <span class="mu-book-overview-icon-box">
+                    <i class="fa fa-gg" aria-hidden="true"></i>
+                  </span>
+                  <h4 class="nom">{{ ue.nom }}</h4>
+                  <p class="intitule">{{ ue.intitule }}</p>
+                </div>
               </router-link>
 
               <!-- <div class="mu-book-overview-single">
@@ -73,10 +77,9 @@
                 <h4>{{ ue.nom }}</h4>
                 <p class="intitule">{{ ue.intitule }}</p>
               </div> -->
-
             </div>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -105,8 +108,8 @@ export default {
   },
   beforeMount() {
     const parameter = {
-      filiereId:  this.$route.params.filiereId,
-      niveauId:  this.$route.query.niveau,
+      filiereId: this.$route.params.filiereId,
+      niveauId: this.$route.query.niveau,
     };
     this.getUe(parameter);
   },
@@ -117,15 +120,13 @@ export default {
   methods: {
     getUe(parameter) {
       axios
-        .post(
-          "http://localhost:5000/api/ues/ues", parameter
-        )
+        .post("http://localhost:5000/api/ues/ues", parameter)
         .then((res) => {
-          console.log("**********************")
-          console.log(res.data)
-          this.filiere = res.data.ues[0].Filiere.nom,
-          this.niveau = res.data.ues[0].Niveau.nom,
-          this.ues = res.data.ues;
+          console.log("**********************");
+          console.log(res.data);
+          (this.filiere = res.data.ues[0].Filiere.nom),
+            (this.niveau = res.data.ues[0].Niveau.nom),
+            (this.ues = res.data.ues);
         })
         .catch((err) => {
           console.log(err);
@@ -133,26 +134,27 @@ export default {
     },
 
     uesParSpecialite(specialiteId) {
-      if(this.ues) {
+      if (this.ues) {
         return this.ues.filter((ue) => {
-          if(ue.SpecialiteId == specialiteId) {
-              return ue;
-          };
+          if (ue.SpecialiteId == specialiteId) {
+            return ue;
+          }
         });
-      }else {
-      return {}}
+      } else {
+        return {};
+      }
     },
-    
+
     specialitesParFiliere() {
-      if(this.specialites) {
+      if (this.specialites) {
         return this.specialites.filter((specialite) => {
-          if(specialite.FiliereId == this.$route.params.filiereId) {
-          // if(specialite.FiliereId == 1) {
-              return specialite;
-          };
+          if (specialite.FiliereId == this.$route.params.filiereId) {
+            // if(specialite.FiliereId == 1) {
+            return specialite;
+          }
         });
-      }else {
-      return false
+      } else {
+        return false;
       }
     },
   },
@@ -208,5 +210,4 @@ export default {
   font-family: "Playfair Display", serif;
   color: #cda45e;
 }
-
 </style>

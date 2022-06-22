@@ -13,13 +13,16 @@
     <div id="teachers" class="section wb">
       <div class="container">
         <div class="row">
-
-
-          <div class="col-lg-3 col-md-6 col-12" v-for="enseignant in enseignants" :key="enseignant.id">
+          <div
+            class="col-lg-3 col-md-6 col-12"
+            v-for="enseignant in enseignants"
+            :key="enseignant.id"
+          >
             <div class="our-team">
               <div class="team-img">
-
-                <router-link :to="{ path: '/profile', query: { id:enseignant.id }}"><img src="../../assets/avatar.png" />
+                <router-link
+                  :to="{ path: '/profile', query: { id: enseignant.id } }"
+                  ><img src="../../assets/avatar.png" />
                   <div class="social">
                     <a href="#">Contacter</a>
                   </div>

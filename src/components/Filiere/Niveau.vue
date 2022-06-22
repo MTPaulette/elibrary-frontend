@@ -5,9 +5,7 @@
         <div class="container text-center">
           <h1>
             <strong> {{ filiere.nom }} </strong
-            ><span class="m_1"
-              > {{ filiere.description }}</span
-            >
+            ><span class="m_1"> {{ filiere.description }}</span>
           </h1>
         </div>
       </div>
@@ -26,13 +24,15 @@
         </div>
 
         <div class="row">
-            <hr class="invis" />
+          <hr class="invis" />
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-6 mb-5"
-                                v-for="niveau in niveaux"
-                                :key="niveau.id">
+          <div
+            class="col-lg-4 col-md-6 col-6 mb-5"
+            v-for="niveau in niveaux"
+            :key="niveau.id"
+          >
             <div class="course-item">
               <div class="image-blog">
                 <img
@@ -46,13 +46,19 @@
               <div class="course-br py-0 my-0">
                 <div class="course-title">
                   <h2>
-                    <router-link :to="{ name: 'Ue', params: { filiereId: filiere.id}, query: { niveau: niveau.id  }}">{{ niveau.nom }}</router-link>
+                    <router-link
+                      :to="{
+                        name: 'Ue',
+                        params: { filiereId: filiere.id },
+                        query: { niveau: niveau.id },
+                      }"
+                      >{{ niveau.nom }}</router-link
+                    >
                     <!-- <router-link :to="{ path: '/ue', query: {  niveau: niveau.id  }}" >{{ niveau.nom }}</router-link> -->
                   </h2>
                 </div>
                 <div class="course-desc h-20">
-                  <p class="h-25">{{ niveau.description }}
-                  </p>
+                  <p class="h-25">{{ niveau.description }}</p>
                 </div>
                 <div class="course-rating mb-2">
                   <i class="fa fa-star"></i>
@@ -302,10 +308,8 @@
               </div>
             </div>
           </div> -->
-          
         </div>
       </div>
-
     </div>
     <!-- end section -->
   </div>
@@ -336,9 +340,7 @@ export default {
   methods: {
     getFiliere(filiereId) {
       axios
-        .get(
-          "http://localhost:5000/api/filieres/filiere/" + filiereId
-        )
+        .get("http://localhost:5000/api/filieres/filiere/" + filiereId)
         .then((res) => {
           this.filiere = res.data.filiere;
         })
@@ -362,7 +364,7 @@ export default {
   overflow: hidden;
 }
 .course-title > h2 {
-	margin: 5px 0;
-	padding: 0px;
+  margin: 5px 0;
+  padding: 0px;
 }
 </style>

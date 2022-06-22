@@ -84,10 +84,10 @@ export default {
 };
 </script>
 
-
 <style>
-*, body {
-  font-family: 'Poppins';
+*,
+body {
+  font-family: "Poppins";
 }
 .btn:hover {
   background-color: #fff !important;
@@ -99,5 +99,4 @@ export default {
   border-color: #eea412 !important;
   color: #fff !important;
 }
-
 </style>

@@ -14,13 +14,11 @@
 import Chat from "@/components/Chat/Chat.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    Chat
-  }
-}
+    Chat,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

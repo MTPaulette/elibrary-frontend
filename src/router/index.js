@@ -183,7 +183,6 @@ const routes = [
     ],
   },
 
-
   {
     path: "/",
     name: "LayoutPage",
@@ -191,54 +190,46 @@ const routes = [
     children: [
       {
         path: "/",
-        component: () =>
-          import("../components/Acceuil/Home.vue"),
+        component: () => import("../components/Acceuil/Home.vue"),
       },
       {
         path: "/ue/:filiereId",
         name: "Ue",
-        component: () =>
-          import("../components/Filiere/Ue.vue"),
+        component: () => import("../components/Filiere/Ue.vue"),
         props: true,
       },
       {
         path: "/niveau",
         name: "Niveau",
-        component: () =>
-          import("../components/Filiere/Niveau.vue"),
+        component: () => import("../components/Filiere/Niveau.vue"),
       },
       {
         path: "/document",
         name: "DocumentHome",
-        component: () =>
-          import("../components/Filiere/Document.vue"),
+        component: () => import("../components/Filiere/Document.vue"),
       },
       {
         path: "/enseignants",
-        component: () =>
-          import("../components/Enseignant/Enseignant.vue"),
+        component: () => import("../components/Enseignant/Enseignant.vue"),
       },
-      
+
       {
         path: "/DocEnseignants",
         name: "DocumentHome",
-        component: () =>
-          import("../components/Filiere/Document.vue"),
+        component: () => import("../components/Filiere/Document.vue"),
       },
-],
-},
+    ],
+  },
 
-      {
-        path: "*",
-        component: () =>
-          import("../components/Filiere/NotFound.vue"),
-      },
+  {
+    path: "*",
+    component: () => import("../components/Filiere/NotFound.vue"),
+  },
 
-
-      // {
-      //   path: "/chat",
-      //   component: () => import("../views/Chat/Chat.vue"),
-      // },
+  // {
+  //   path: "/chat",
+  //   component: () => import("../views/Chat/Chat.vue"),
+  // },
   /*************************
   {
     path: "/myHome",

@@ -1,7 +1,6 @@
 <template>
   <div>
     <section id="main-content">
-
       <div class="row">
         <div class="section-title ml-5">
           <h2>Details</h2>
@@ -17,11 +16,20 @@
                 <div class="row">
                   <div class="col-lg-4">
                     <div class="user-photo m-b-30">
-                      <img class="img-fluid" src="../../assets/avatar.png" alt="...">
+                      <img
+                        class="img-fluid"
+                        src="../../assets/avatar.png"
+                        alt="..."
+                      />
                     </div>
                     <div class="user-work mt-lg-5">
                       <h4>Ses documents</h4>
-                      <div class="work-content" v-for="document in documents" :key="document.id" :value="document.id">
+                      <div
+                        class="work-content"
+                        v-for="document in documents"
+                        :key="document.id"
+                        :value="document.id"
+                      >
                         <p class="">{{ document.titre }}</p>
                       </div>
                     </div>
@@ -42,7 +50,9 @@
                     <div class="custom-tab user-profile-tab">
                       <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active mt-3">
-                          <span aria-controls="1" role="tab" data-toggle="tab">A propos</span>
+                          <span aria-controls="1" role="tab" data-toggle="tab"
+                            >A propos</span
+                          >
                         </li>
                       </ul>
                       <div class="tab-content">
@@ -74,20 +84,31 @@
                             </div>
                             <div class="website-content">
                               <span class="contact-title">Etat:</span>
-                              <span class="badge badge-success" v-if="user.etat == 'actif'">{{user.etat}}</span>
-                              <span class="badge badge-warming" v-if="user.etat === 'bloqué'">{{user.etat}}</span>
-                              <span class="badge badge-danger" v-if="user.etat === 'supprimé'">{{user.etat}}</span>
+                              <span
+                                class="badge badge-success"
+                                v-if="user.etat == 'actif'"
+                                >{{ user.etat }}</span
+                              >
+                              <span
+                                class="badge badge-warming"
+                                v-if="user.etat === 'bloqué'"
+                                >{{ user.etat }}</span
+                              >
+                              <span
+                                class="badge badge-danger"
+                                v-if="user.etat === 'supprimé'"
+                                >{{ user.etat }}</span
+                              >
                             </div>
                             <!-- <div class="skype-content">
                                   <span class="contact-title">Auteur:</span>
                                   <span class="details" v-if="document.auteur">{{ document.auteur }}</span>
                                   <span class="details" v-else>Non défini</span>
                                 </div> -->
-
                           </div>
                         </div>
                         <div class="basic-information">
-                          <h4>Informations basiques </h4>
+                          <h4>Informations basiques</h4>
                           <div class="birthday-content">
                             <span class="contact-title">créé le:</span>
                             <span class="details">{{ user.createdAt }}</span>
@@ -97,8 +118,12 @@
                             <span class="details">{{ user.updatedAt }}</span>
                           </div>
                           <div class="birthday-content">
-                            <span class="contact-title">Nombre de documents publiés:</span>
-                            <span class="badge badge-secondary">{{ documents.length }}</span>
+                            <span class="contact-title"
+                              >Nombre de documents publiés:</span
+                            >
+                            <span class="badge badge-secondary">{{
+                              documents.length
+                            }}</span>
                           </div>
                         </div>
                       </div>
@@ -107,12 +132,8 @@
                 </div>
 
                 <!-- </div> -->
-
               </div>
             </div>
-
-
-
 
             <div class="row">
               <div class="section-title ml-5">
@@ -121,19 +142,18 @@
             </div>
 
             <div class="row">
-
-              <div class="recent-comment" data-wow-duration="0.75s" data-wow-delay="0s">
+              <div
+                class="recent-comment"
+                data-wow-duration="0.75s"
+                data-wow-delay="0s"
+              >
                 <DocumentList :documents="documents"></DocumentList>
               </div>
             </div>
-
-
-
           </div>
         </div>
       </div>
     </section>
-
   </div>
 </template>
 
@@ -150,16 +170,14 @@ export default {
     };
   },
   components: {
-    DocumentList
+    DocumentList,
   },
 
   methods: {
     getUser() {
       this.notFound = false;
       axios
-        .get(
-          "http://localhost:5000/api/users/user/" + this.$route.query.id
-        )
+        .get("http://localhost:5000/api/users/user/" + this.$route.query.id)
         .then((res) => {
           const n = res.data.user.length;
           if (n != 0) {
@@ -167,7 +185,7 @@ export default {
           } else {
             this.notFound = true;
           }
-            console.log("****************************")
+          console.log("****************************");
           console.log(this.user);
         })
         .catch((err) => {
@@ -177,21 +195,20 @@ export default {
     getUserDocument() {
       axios
         .get(
-          "http://localhost:5000/api/documents/documentOfUser/" + this.$route.query.id
+          "http://localhost:5000/api/documents/documentOfUser/" +
+            this.$route.query.id
         )
         .then((res) => {
-            this.documents = res.data.allDocument;
-            console.log("****************************")
-
-        })
+          this.documents = res.data.allDocument;
+          console.log("****************************");
+        });
     },
   },
   mounted() {
     this.getUser();
     this.getUserDocument();
   },
-
-}
+};
 </script>
 <style scoped>
 .section-title h2 {
@@ -226,72 +243,75 @@ export default {
   color: #cda45e;
 }
 /************************************** */
-.contact-information, .basic-information {
-	margin: 10px 0px;
+.contact-information,
+.basic-information {
+  margin: 10px 0px;
 }
-.contact-information h4, .basic-information h4 {
-	font-size: 12px;
-	text-transform: uppercase;
-	padding-top: 15px;
-	padding-bottom: 20px;
-	font-family: 'Roboto', sans-serif;
+.contact-information h4,
+.basic-information h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  font-family: "Roboto", sans-serif;
 }
 .contact-title {
-	display: inline-block;
-	padding-bottom: 15px;
-	width: 170px;
-	font-size: 16px;
-	color: #868e96;
+  display: inline-block;
+  padding-bottom: 15px;
+  width: 170px;
+  font-size: 16px;
+  color: #868e96;
 }
 .details {
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	color: #373757;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #373757;
 }
 /**************************** */
-.user-work h4, .user-skill h4 {
-	font-size: 14px;
-	position: relative;
-	margin-bottom: 15px;
-	padding: 5px 0px;
-	border-bottom: 1px solid #e7e7e7;
-	font-family: 'Roboto', sans-serif;
+.user-work h4,
+.user-skill h4 {
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 15px;
+  padding: 5px 0px;
+  border-bottom: 1px solid #e7e7e7;
+  font-family: "Roboto", sans-serif;
 }
 .work-content {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .work-content h3 {
-	font-size: 15px;
-	margin-bottom: 5px;
+  font-size: 15px;
+  margin-bottom: 5px;
 }
 /************************************ */
 .user-profile-name {
-	display: inline-block;
-	font-size: 22px;
-	font-weight: 500;
-	padding: 0px 15px;
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 500;
+  padding: 0px 15px;
 }
 .user-Location {
-	display: inline-block;
-	font-size: 12px;
-	margin-left: 10px;
-	font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 10px;
+  font-family: "Roboto", sans-serif;
 }
 .user-job-title {
-	font-size: 14px;
-	padding-bottom: 5px;
-	padding-left: 15px;
-	color: #5873fe;
+  font-size: 14px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  color: #5873fe;
 }
 .user-send-message {
-	margin-top: 15px;
-	padding-left: 15px;
+  margin-top: 15px;
+  padding-left: 15px;
 }
 .m-b-30 {
-	margin-bottom: 30px !important;
+  margin-bottom: 30px !important;
 }
 .btn-addon {
-	position: relative;
-	padding-left: 40px;
+  position: relative;
+  padding-left: 40px;
 }
 </style>

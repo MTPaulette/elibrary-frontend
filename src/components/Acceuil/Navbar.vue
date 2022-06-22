@@ -8,8 +8,15 @@
           <a class="navbar-brand" href="/">
             <img src="../../../public/static/homePage/images/logo.png" alt="" />
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host"
-            aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbars-host"
+            aria-controls="navbars-rs-food"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -21,29 +28,41 @@
               </li>
               <!-- <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li> -->
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">Faculté des Sciences
+                <a
+                  class="nav-link dropdown-toggle"
+                  id="dropdown-a"
+                  data-toggle="dropdown"
+                  >Faculté des Sciences
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown-a">
-
-                  <router-link class="dropdown-item" v-for="filiere in filiereSciences" :key="filiere.id"
-                    :to="{ path: '/niveau', query: {  filiere: filiere.id  }}">{{ filiere.nom }}
+                  <router-link
+                    class="dropdown-item"
+                    v-for="filiere in filiereSciences"
+                    :key="filiere.id"
+                    :to="{ path: '/niveau', query: { filiere: filiere.id } }"
+                    >{{ filiere.nom }}
                   </router-link>
-
                 </div>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">Faculté des Lettres
+                <a
+                  class="nav-link dropdown-toggle"
+                  id="dropdown-a"
+                  data-toggle="dropdown"
+                  >Faculté des Lettres
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown-a">
-
-
                   <!-- <a class="dropdown-item" v-for="filiere in filiereLettres" @click="handleFiliere(filiere.id)"
                     :key="filiere.id">{{ filiere.nom}}
                   </a> -->
 
-
-                  <router-link class="dropdown-item" v-for="filiere in filiereLettres" @click="location.reload(true);"
-                    :key="filiere.id" :to="{ path: '/niveau', query: {  filiere: filiere.id  }}">{{ filiere.nom}}
+                  <router-link
+                    class="dropdown-item"
+                    v-for="filiere in filiereLettres"
+                    @click="location.reload(true)"
+                    :key="filiere.id"
+                    :to="{ path: '/niveau', query: { filiere: filiere.id } }"
+                    >{{ filiere.nom }}
                   </router-link>
                 </div>
               </li>
@@ -53,14 +72,28 @@
               <!-- <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Profil</a></li> -->
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ path: '/profile', query: { id: currentUser.id }}">Profil
+                <router-link
+                  class="nav-link"
+                  :to="{ path: '/profile', query: { id: currentUser.id } }"
+                  >Profil
                 </router-link>
               </li>
             </ul>
             <div id="header">
-              <form action="/search" method="get" @submit="handleSearch" id="search">
+              <form
+                action="/search"
+                method="get"
+                @submit="handleSearch"
+                id="search"
+              >
                 <p>
-                  <input type="text" v-model="recherche" name="keyword" id="keyword" value="" />
+                  <input
+                    type="text"
+                    v-model="recherche"
+                    name="keyword"
+                    id="keyword"
+                    value=""
+                  />
                 </p>
                 <p>
                   <input type="submit" id="go" value="" />
@@ -84,7 +117,7 @@ export default {
   data() {
     return {
       recherche: "",
-    }
+    };
   },
   props: {
     user: {},
@@ -109,25 +142,27 @@ export default {
       return this.$store.state.fetchData.enseignants;
     },
     filiereSciences() {
-      if(this.filieres) {
+      if (this.filieres) {
         return this.filieres.filter((filiere) => {
-          if(filiere.FaculteId == 1) {
-              return filiere;
-          };
+          if (filiere.FaculteId == 1) {
+            return filiere;
+          }
         });
-      }else {
-      return {}}
+      } else {
+        return {};
+      }
     },
     filiereLettres() {
-      if(this.filieres) {
+      if (this.filieres) {
         return this.filieres.filter((filiere) => {
-          if(filiere.FaculteId == 2) {
-              return filiere;
-          };
+          if (filiere.FaculteId == 2) {
+            return filiere;
+          }
         });
-      }else {
-      return {}}
-    }
+      } else {
+        return {};
+      }
+    },
   },
   mounted() {
     this.$store.dispatch("fetchData/getFacultes");
@@ -137,15 +172,14 @@ export default {
     this.$store.dispatch("fetchData/getEnseignants");
   },
   methods: {
-    handleSearch(){
-      this.$router.push({ path: '/search',query: { q: this.recherche }})
+    handleSearch() {
+      this.$router.push({ path: "/search", query: { q: this.recherche } });
     },
     // handleFiliere(filiereId){
     //   location.reload(true);
     //   this.$router.push({ path: '/niveau', query: { filiere: filiereId } });
     // }
   },
-
 };
 </script>
 

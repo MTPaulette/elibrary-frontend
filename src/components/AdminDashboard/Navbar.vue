@@ -10,31 +10,33 @@
       <div class="header-left">
         <button class="search-trigger"><i class="fa fa-search"></i></button>
         <div class="form-inline">
-
-          <form class="search-form" 
-                action="/search"
-                method="get"
-          
-          @submit="handleSearch">
+          <form
+            class="search-form"
+            action="/search"
+            method="get"
+            @submit="handleSearch"
+          >
             <input
               class="form-control mr-sm-2"
-              type="text" v-model="recherche"
+              type="text"
+              v-model="recherche"
               placeholder="Search ..."
               aria-label="Search"
             />
 
-                                 <!-- <button class="bg-secondary" type="">
+            <!-- <button class="bg-secondary" type="">
 
                                 
                             <i class="fa fa-search"></i></router-link></button> -->
-            
+
             <button class="search-close bg-secondary" type="">
-              <router-link :to="{ path: '/search', query: { q: this.recherche }}">
-              <i class="fa fa-close"></i>
+              <router-link
+                :to="{ path: '/search', query: { q: this.recherche } }"
+              >
+                <i class="fa fa-close"></i>
               </router-link>
             </button>
           </form>
-
         </div>
 
         <div class="dropdown for-notification">
@@ -78,9 +80,7 @@
           data-bs-auto-close="false"
           aria-expanded="false"
         >
-          <span class="fw-bold"
-            >{{ currentUser.user.username }}</span
-          >
+          <span class="fw-bold">{{ currentUser.user.username }}</span>
         </a>
 
         <div
@@ -110,7 +110,7 @@ export default {
   data() {
     return {
       recherche: "",
-    }
+    };
   },
   props: {
     user: {},
@@ -122,9 +122,9 @@ export default {
     },
   },
   methods: {
-    handleSearch(){
-      this.$router.push({ path: '/search',query: { q: this.recherche }})
-    }
+    handleSearch() {
+      this.$router.push({ path: "/search", query: { q: this.recherche } });
+    },
   },
 };
 </script>

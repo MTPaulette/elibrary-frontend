@@ -1,16 +1,12 @@
 <template>
   <div>
-
     <div class="container-fluid mt-5">
       <div class="animated">
-
         <div class="row">
           <div class="section-title ml-5">
             <h2>Notification</h2>
             <p>Tous les notifications</p>
-
           </div>
-
         </div>
 
         <div class="row">
@@ -18,15 +14,24 @@
             <div class="card">
               <div class="card-body">
                 <div class="row">
-                  <table id="bootstrap-data-table-export" class="table table-striped">
+                  <table
+                    id="bootstrap-data-table-export"
+                    class="table table-striped"
+                  >
                     <tbody>
-                      <tr class="" v-for="notification in notifications" :key="notification.id">
+                      <tr
+                        class=""
+                        v-for="notification in notifications"
+                        :key="notification.id"
+                      >
                         <td class="text-center">
-                          <input type="checkbox" class="mail-checkbox">
+                          <input type="checkbox" class="mail-checkbox" />
                         </td>
                         <td class="text-center"><i class="fa fa-star"></i></td>
-                        <td> {{ notification.contenu }} </td>
-                        <td v-if="notification.FiliereId"> {{ notification.Filiere.nom }}</td>
+                        <td>{{ notification.contenu }}</td>
+                        <td v-if="notification.FiliereId">
+                          {{ notification.Filiere.nom }}
+                        </td>
                         <td v-else>Toutes les filières</td>
                         <!-- <td class="text-center">
                           <router-link :to="{ path: '/profile', query: { id:notification.UserId }}">{{
@@ -58,43 +63,39 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-	data() {
-		return {
-			loading: false,
-			notifications: {}
-		}
-	},
-	mounted() {
-		this.getNotifications()
-	},
-	methods: {
-		async getNotifications() {
-			await axios
-				.get(
-					"http://localhost:5000/api/notifications/notifications"
-				)
-				.then((res) => {
-					console.log(res.data);
-					this.notifications = res.data.notifications;
-					// this.loading = false;
-					// if (res.data.success) {
-					// 	this.successful = true;
-					// }
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		},
-	},
-	
-}
+  data() {
+    return {
+      loading: false,
+      notifications: {},
+    };
+  },
+  mounted() {
+    this.getNotifications();
+  },
+  methods: {
+    async getNotifications() {
+      await axios
+        .get("http://localhost:5000/api/notifications/notifications")
+        .then((res) => {
+          console.log(res.data);
+          this.notifications = res.data.notifications;
+          // this.loading = false;
+          // if (res.data.success) {
+          // 	this.successful = true;
+          // }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -160,21 +161,21 @@ export default {
   margin: 250px !important;
   padding: 500px !important;
 }
-.table>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th {
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
   line-height: 32px;
   vertical-align: top;
 }
-.table-inbox>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th {
+.table-inbox > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
   border-top: 1px solid #e7e7e7;
   line-height: 1.42857;
   padding: 8px;
@@ -185,7 +186,7 @@ export default {
 }
 
 tbody tr td {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #868e96;
 }
 </style>

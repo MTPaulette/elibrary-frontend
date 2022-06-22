@@ -1,7 +1,12 @@
 <template>
   <div>
-    <div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel"
-      data-pause="hover" data-interval="false">
+    <div
+      id="carouselExampleControls"
+      class="carousel slide bs-slider box-slider"
+      data-ride="carousel"
+      data-pause="hover"
+      data-interval="false"
+    >
       <!-- Indicators 
 		<ol class="carousel-indicators">
 			<li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
@@ -47,37 +52,40 @@
       <section>
         <div class="content mt-3 mb-5">
           <div class="animated fadeIn">
-            
-
             <div class="row">
-
               <!-- /# column -->
               <div class="col-lg-12 mx-auto">
                 <div class="mycard">
                   <div class="card-title section-title mt-5">
-                    <h4>Quelques documents selon votre filière </h4>
-
+                    <h4>Quelques documents selon votre filière</h4>
                   </div>
 
                   <div class="row">
                     <!-- .if notfound -->
                     <div class="col-lg-11 mx-auto" v-if="notFound">
-                      <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!</div>
+                      <div class="alert alert-danger" role="alert">
+                        Aucun document ne correspond à cette recherche!
+                      </div>
                     </div>
                   </div>
 
-                  <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
+                  <div
+                    class="recent-comment"
+                    v-if="!notFound"
+                    data-wow-duration="0.75s"
+                    data-wow-delay="0s"
+                  >
                     <DocumentList :documents="documents"></DocumentList>
                   </div>
                 </div>
                 <!-- /# card -->
               </div>
-
-            </div><!-- .row -->
-          </div><!-- .animated -->
-        </div><!-- .content -->
-
-
+            </div>
+            <!-- .row -->
+          </div>
+          <!-- .animated -->
+        </div>
+        <!-- .content -->
       </section>
     </div>
   </div>
@@ -90,12 +98,12 @@ import io from "socket.io-client";
 export default {
   name: "",
   components: {
-    DocumentList
+    DocumentList,
   },
   computed: {
     currentUser() {
       return this.$store.state.auth.user.user;
-    }
+    },
   },
 
   data() {
@@ -104,27 +112,26 @@ export default {
 
       notFound: false,
       loading: false,
-      socket: io('http://localhost:5000/')
+      socket: io("http://localhost:5000/"),
     };
   },
   beforeMount() {
     this.handleSearchFiliere(this.$route.query.q);
   },
   mounted() {
-    this.socket.on('login', (user) => {
-      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
+    this.socket.on("login", (user) => {
+      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@");
       this.messages = [...this.messages, user];
       // you can also do this.messages.push(data)
     });
-    this.socket.on('newUser', (user) => {
-      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@")
+    this.socket.on("newUser", (user) => {
+      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@");
       this.messages = [...this.messages, user];
       // you can also do this.messages.push(data)
     });
   },
 
   methods: {
-
     handleSearchFiliere() {
       this.loading = true;
       this.notFound = false;
@@ -133,7 +140,8 @@ export default {
       axios
         .get(
           // "http://localhost:5000/api/documents/documentActif/" + this.recherche
-          "http://localhost:5000/api/documents/documentActifFiliere/" + this.currentUser.FiliereId
+          "http://localhost:5000/api/documents/documentActifFiliere/" +
+            this.currentUser.FiliereId
         )
         .then((res) => {
           const n = res.data.allDocument.length;
@@ -146,7 +154,7 @@ export default {
         })
         .catch((err) => {
           this.loading = false;
-            this.notFound = true;
+          this.notFound = true;
           console.log(err);
         });
     },
@@ -165,7 +173,7 @@ export default {
 }
 
 div {
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 
 .field-icon {
@@ -226,7 +234,7 @@ div {
 .media-body .comment-date {
   width: 100%;
   height: 20px;
-  font-weight:300;
+  font-weight: 300;
   font-size: small;
 }
 /*--------------------------------------------------------------
@@ -278,4 +286,3 @@ section {
 
 @import "../../../public/static/homePage3/style.css";
 </style>
-

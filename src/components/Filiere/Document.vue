@@ -5,7 +5,9 @@
         <div class="container text-center">
           <div class="mu-book-overview-area py-auto">
             <div class="mu-heading-area">
-              <h2 class="mu-heading-title">Liste des Unités d'enseignement de: {{ filiere }} {{ niveau }} </h2>
+              <h2 class="mu-heading-title">
+                Liste des Unités d'enseignement de: {{ filiere }} {{ niveau }}
+              </h2>
               <span class="mu-header-dot"></span>
             </div>
           </div>
@@ -192,44 +194,49 @@
 </div> -->
           <div class="content mt-3">
             <div class="animated fadeIn">
-
               <div class="row">
-
                 <!-- /# column -->
                 <div class="col-lg-12 mx-auto">
                   <div class="mycard">
                     <div class="card-title section-title mt-2">
-                      <h4>Resultat pour la recherche: {{recherche}} </h4>
-
+                      <h4>Resultat pour la recherche: {{ recherche }}</h4>
                     </div>
                     <div class="row">
                       <!-- .if notfound -->
                       <div class="col-lg-11 mx-auto" v-if="notFound">
-                        <img class="w-50 h-50" src="../../assets/404.jpeg" alt="...">
-                        <div class="alert alert-danger" role="alert">Aucun document ne correspond à cette recherche!
+                        <img
+                          class="w-50 h-50"
+                          src="../../assets/404.jpeg"
+                          alt="..."
+                        />
+                        <div class="alert alert-danger" role="alert">
+                          Aucun document ne correspond à cette recherche!
                         </div>
                       </div>
                     </div>
 
-                    <div class="recent-comment" v-if="!notFound" data-wow-duration="0.75s" data-wow-delay="0s">
+                    <div
+                      class="recent-comment"
+                      v-if="!notFound"
+                      data-wow-duration="0.75s"
+                      data-wow-delay="0s"
+                    >
                       <DocumentList :documents="documents"></DocumentList>
-
                     </div>
                   </div>
                   <!-- /# card -->
                 </div>
-
-              </div><!-- .row -->
-            </div><!-- .animated -->
-          </div><!-- .content -->
-
-
+              </div>
+              <!-- .row -->
+            </div>
+            <!-- .animated -->
+          </div>
+          <!-- .content -->
         </section>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -237,12 +244,12 @@ import DocumentList from "./../Base/DocumentList.vue";
 export default {
   name: "",
   components: {
-    DocumentList
+    DocumentList,
   },
   computed: {
     currentUser() {
       return this.$store.state.auth.user.user;
-    }
+    },
   },
 
   data() {
@@ -258,7 +265,6 @@ export default {
   },
 
   methods: {
-
     handleSearchUe(ue) {
       this.loading = true;
       this.notFound = false;
@@ -273,9 +279,9 @@ export default {
           const n = res.data.allDocument.length;
           this.loading = false;
           if (n != 0) {
-          console.log(
-            "---------------------------------ue--------------------------------------------"
-          );
+            console.log(
+              "---------------------------------ue--------------------------------------------"
+            );
             console.log(ue);
             console.log(res.data.allDocument);
             //return res.data.allDocument;
@@ -286,7 +292,7 @@ export default {
         })
         .catch((err) => {
           this.loading = false;
-            this.notFound = true;
+          this.notFound = true;
           console.log(err);
         });
     },
@@ -296,7 +302,7 @@ export default {
 
 <style scoped>
 div {
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 
 .field-icon {
@@ -357,7 +363,7 @@ div {
 .media-body .comment-date {
   width: 100%;
   height: 20px;
-  font-weight:300;
+  font-weight: 300;
   font-size: small;
 }
 /*--------------------------------------------------------------

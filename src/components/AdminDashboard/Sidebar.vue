@@ -1,6 +1,5 @@
 <template lang="">
   <div>
-
     <div class="navbar-header">
       <button
         class="navbar-toggler"
@@ -76,7 +75,10 @@
           </ul>
         </li>
 
-        <li class="menu-item-has-children dropright" v-if="currentUser.RoleId == 1">
+        <li
+          class="menu-item-has-children dropright"
+          v-if="currentUser.RoleId == 1"
+        >
           <a
             href="#"
             class="dropdown-toggle"
@@ -101,7 +103,10 @@
           </ul>
         </li>
 
-        <li class="menu-item-has-children dropright"  v-if="currentUser.RoleId == 1">
+        <li
+          class="menu-item-has-children dropright"
+          v-if="currentUser.RoleId == 1"
+        >
           <a
             href="#"
             class="dropdown-toggle"
@@ -121,7 +126,10 @@
             </li>
           </ul>
         </li>
-        <li class="menu-item-has-children dropright" v-if="currentUser.RoleId == 1 || currentUser.RoleId == 2">
+        <li
+          class="menu-item-has-children dropright"
+          v-if="currentUser.RoleId == 1 || currentUser.RoleId == 2"
+        >
           <a
             href="#"
             class="dropdown-toggle"
@@ -144,10 +152,9 @@
             </li>
           </ul>
         </li>
-        
 
         <h3 class="menu-title">Notifications</h3>
-        <li  v-if="currentUser.RoleId == 1" @click="showModal = true;">
+        <li v-if="currentUser.RoleId == 1" @click="showModal = true">
           <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Nouveau</a>
         </li>
         <li>
@@ -161,14 +168,18 @@
           >
         </li>
 
-
         <div v-if="currentUser.RoleId == 1">
-        <h3 class="menu-title">Signalement</h3>
-        <li>
-          <a href="/signalements"> <i class="menu-icon fa fa-line-chart"></i>signalements</a>
-        </li></div>
+          <h3 class="menu-title">Signalement</h3>
+          <li>
+            <a href="/signalements">
+              <i class="menu-icon fa fa-line-chart"></i>signalements</a
+            >
+          </li>
+        </div>
 
-        <h3 class="menu-title" v-if="currentUser.RoleId == 1">Analyse & Rapport</h3>
+        <h3 class="menu-title" v-if="currentUser.RoleId == 1">
+          Analyse & Rapport
+        </h3>
         <li v-if="currentUser.RoleId == 1">
           <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Analyse</a>
         </li>
@@ -178,7 +189,11 @@
 
         <h3 class="menu-title">Paramètres</h3>
         <li>
-          <router-link :to="{ path: '/profile', query: { id:currentUser.id }}"> <i class="menu-icon fa fa-user"></i>Profil</router-link>
+          <router-link
+            :to="{ path: '/profile', query: { id: currentUser.id } }"
+          >
+            <i class="menu-icon fa fa-user"></i>Profil</router-link
+          >
           <!-- <a href="/profile"> <i class="menu-icon fa fa-user"></i>Profil</a> -->
         </li>
         <li>
@@ -191,17 +206,15 @@
         </li>
       </ul>
     </div>
-    
-			<Notification :show="showModal" @close="showModal = false;">
-			</Notification>
 
+    <Notification :show="showModal" @close="showModal = false"> </Notification>
   </div>
 </template>
 <script>
 import Notification from "../Notification/New.vue";
 export default {
   components: {
-    Notification
+    Notification,
   },
   data() {
     return {
@@ -231,6 +244,5 @@ export default {
 </script>
 <style>
 @media (max-width: 575.99px) {
-
-  }
+}
 </style>

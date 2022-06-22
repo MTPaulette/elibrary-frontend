@@ -1,12 +1,12 @@
 <template lang="">
   <div class="content mt-3">
     <div class="animated fadeIn">
-    <!-- .if success -->
-    <div class="row" v-if="successful">
-      <div class="alert alert-success" role="alert">
-        Document enregistré avec succès!
+      <!-- .if success -->
+      <div class="row" v-if="successful">
+        <div class="alert alert-success" role="alert">
+          Document enregistré avec succès!
+        </div>
       </div>
-    </div>
 
       <div class="row" v-else>
         <div class="col-lg-11 mx-auto my-5">
@@ -195,10 +195,8 @@
                     <label class="form-control-label">Type</label>
                   </div>
 
-
                   <div class="col col-md-9" v-if="currentUser.RoleId == 3">
                     <div class="form-check">
-                      
                       <div class="radio">
                         <label for="1" class="form-check-label">
                           <input
@@ -214,12 +212,11 @@
                     </div>
                   </div>
 
-
-
-
-                  <div class="col col-md-9" v-if="currentUser.RoleId == 1 || currentUser.RoleId == 2">
+                  <div
+                    class="col col-md-9"
+                    v-if="currentUser.RoleId == 1 || currentUser.RoleId == 2"
+                  >
                     <div class="form-check">
-                      
                       <div class="radio" v-if="currentUser.RoleId == 1">
                         <label for="1" class="form-check-label">
                           <input
@@ -348,13 +345,14 @@
                   </div>
                 </div>
 
-						<div class="modal-footer">
-							<button type="reset" class="btn btn-secondary">
-                            <i class="fa fa-ban mr-2 pl-0"></i>Annuler</button>
-							<button type="submit" class="btn btn-primary">
-                  <i class="fa fa-dot-circle-o  mr-2 pl-0"></i>Enregistrer</button>
-						</div>
-
+                <div class="modal-footer">
+                  <button type="reset" class="btn btn-secondary">
+                    <i class="fa fa-ban mr-2 pl-0"></i>Annuler
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-dot-circle-o mr-2 pl-0"></i>Enregistrer
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -440,9 +438,8 @@ export default {
             this.successful = false;
           } else {
             this.successful = true;
-
           }
-            this.successful = true;
+          this.successful = true;
         })
         .catch((err) => {
           console.log(err);

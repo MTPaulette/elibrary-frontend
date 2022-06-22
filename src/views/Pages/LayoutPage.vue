@@ -2,7 +2,7 @@
   <div>
     <Navbar></Navbar>
     <router-view></router-view>
-        <!-- <Livres></Livres> -->
+    <!-- <Livres></Livres> -->
     <Footer></Footer>
   </div>
 </template>
