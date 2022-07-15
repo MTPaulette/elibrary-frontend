@@ -9,7 +9,7 @@
                 alt="speed learn logo"
                 width="20%"
                 height="20%"
-                src="../../assets/fille-logo.jpg"
+                src="../../assets/avatar2.jpg"
               />
             </h2>
           </div>

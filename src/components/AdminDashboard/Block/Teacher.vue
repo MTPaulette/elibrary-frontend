@@ -1,6 +1,13 @@
 <template lang="">
   <div class="content mt-3">
     <div class="animated fadeIn">
+
+        <div class="row">
+          <div class="section-title ml-5">
+            <h2>Enseignant</h2>
+            <p>Blocage d'enseignant</p>
+          </div>
+        </div>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -155,4 +162,25 @@ export default {
   mounted() {},
 };
 </script>
-<style scoped></style>
+<style scoped>
+.section-title h2::after,
+.section-title h4::after {
+  content: "";
+  width: 120px;
+  height: 1px;
+  display: inline-block;
+  background: rgba(16, 14, 14, 0.2);
+
+  /* background: rgba(255, 255, 255, 0.2); */
+  margin: 4px 10px;
+}
+
+.section-title p {
+  margin: 0;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+  color: #eea412;
+}
+</style>

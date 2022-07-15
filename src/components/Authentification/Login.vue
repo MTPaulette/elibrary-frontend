@@ -8,7 +8,7 @@
               <img
                 alt="speed learn logo"
                 class="logo"
-                src="../../assets/fille-logo.jpg"
+                src="../../assets/logo-final.png"
               />
             </h2>
           </div>
@@ -82,25 +82,7 @@
                   </div>
                 </div>
 
-                <!--div class="form-group">
-                  <button type="submit" class="form-control submit px-3 signin">
-                    Login
-                  </button>
-                </div-->
-
                 <div class="form-group d-md-flex">
-                  <!-- <div class="w-50">
-                    <label for="remember" class="checkbox-wrap">
-                      <input
-                        type="checkbox"
-                        name="remember"
-                        v-model="rememberMe"
-                        id=""
-                        class="mx-3"
-                      />
-                      <span class="rememberme">Remember Me</span>
-                    </label>
-                  </div> -->
                   <div class="w-50 text-md-right">
                     <router-link to="/resetPassword"
                       >Forgot Password</router-link
@@ -205,14 +187,14 @@ primary = #fbceb5
 
 a {
   transition: 0.3s all ease;
-  color: #fbceb5;
+  color: #eea412;
 }
 
 a:hover {
   text-decoration: none !important;
   outline: none !important;
   box-shadow: none;
-  color: #9f4636;
+  color: #fff;
 }
 
 #link {
@@ -227,7 +209,7 @@ a:hover {
 
 /*COVER BG*/
 .img {
-  background-image: url("../../../public/static/images/bg_book_noir_et_blanc.jpeg");
+  background-image: url("../../../public/static/images/bg2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -272,21 +254,6 @@ a:hover {
 .login-wrap .social .twitter:hover {
   background: #00acee;
 }
-/*
-.login-wrap .social a {
-  width: 100%;
-  display: block;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #000;
-  background: #fff;
-}
-
-.login-wrap .social a:hover {
-  background: rgba(255, 255, 255, 0.4);
-  color: #fff;
-  border-color: rgb(221, 219, 219);
-}
-*/
 .form-group {
   position: relative;
 }
@@ -344,25 +311,21 @@ textarea.form-control {
 }
 
 /*BUTTON*/
-.signin {
-  background: #fbceb5;
-  border: 1px solid #fbceb5;
-  color: #000;
+.signin:hover {
+  background-color: transparent !important;
+  color: #878787 !important;
 }
 
-.signin:hover {
-  border: 1px solid #fbceb5;
-  background: transparent;
-  color: #fbceb5;
+.signin {
+  background-color: #eea412 !important;
+  border-color: #eea412 !important;
+  color: #fff !important;
 }
+
 
 .logo {
-  width: 96px;
-  height: 96px;
   margin: 0 auto 10px;
   display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
+  border-radius: 20%;
 }
 </style>

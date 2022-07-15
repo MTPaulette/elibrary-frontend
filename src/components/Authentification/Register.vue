@@ -7,9 +7,7 @@
             <h2 class="heading-section">
               <img
                 alt="speed learn logo"
-                width="15%"
-                height="15%"
-                src="../../assets/fille-logo.jpg"
+                src="../../assets/logo-final.png"
               />
             </h2>
           </div>
@@ -286,14 +284,14 @@ primary = #fbceb5
 
 a {
   transition: 0.3s all ease;
-  color: #fbceb5;
+  color: #eea412;
 }
 
 a:hover {
   text-decoration: none !important;
   outline: none !important;
   box-shadow: none;
-  color: #9f4636;
+  color: #fff;
 }
 
 #link {
@@ -308,7 +306,7 @@ a:hover {
 
 /*COVER BG*/
 .img {
-  background-image: url("../../../public/static/images/bg_book_noir_et_blanc.jpeg");
+  background-image: url("../../../public/static/images/bg2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -425,15 +423,21 @@ textarea.form-control {
 }
 
 /*BUTTON*/
-.signin {
-  background: #fbceb5;
-  border: 1px solid #fbceb5;
-  color: #000;
+.signin:hover {
+  background-color: transparent !important;
+  color: #878787 !important;
 }
 
-.signin:hover {
-  border: 1px solid #fbceb5;
-  background: transparent;
-  color: #fbceb5;
+.signin {
+  background-color: #eea412 !important;
+  border-color: #eea412 !important;
+  color: #fff !important;
+}
+
+
+.logo {
+  /* margin: 0 auto 10px; */
+  display: block;
+  border-radius: 20%;
 }
 </style>

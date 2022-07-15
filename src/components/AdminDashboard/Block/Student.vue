@@ -1,6 +1,13 @@
 <template lang="">
   <div class="content mt-3">
     <div class="animated fadeIn">
+
+        <div class="row">
+          <div class="section-title ml-5">
+            <h2>Etudiant</h2>
+            <p>Blocage d'étudiant</p>
+          </div>
+        </div>
       <div class="row">
         <div class="col-md-12">
           <div class="card">

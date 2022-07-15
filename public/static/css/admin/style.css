@@ -1001,7 +1001,7 @@ textarea {
   width: 100%; }
 
 aside.left-panel {
-  background: #272c33;
+  background: #4c5a7d;
   display: table-cell;
   height: 100vh;
   min-height: 100%;
@@ -1012,7 +1012,7 @@ aside.left-panel {
   transition: width 0.3s ease; }
 
 .navbar {
-  background: #272c33;
+  background: #4c5a7d;
   border-radius: 0;
   border: none;
   display: block;
@@ -1053,7 +1053,7 @@ aside.left-panel {
       display: none; }
   .navbar .menu-title {
     border-bottom: 1px solid #4e4e52;
-    color: #9496a1;
+    color: #cdcdcf;
     clear: both;
     display: block;
     font-family: 'Open Sans';
@@ -1121,7 +1121,7 @@ aside.left-panel {
           .navbar .navbar-nav li.menu-item-has-children a:hover:before {
             color: #fff; }
         .navbar .navbar-nav li.menu-item-has-children .sub-menu {
-          background: #272c33;
+          background: #4c5a7d;
           border: none;
           box-shadow: none;
           overflow-y: hidden;
@@ -1329,7 +1329,7 @@ header.fixed-top {
 .search-trigger {
   background: transparent;
   border: none;
-  color: #272c33;
+  color: #4c5a7d;
   cursor: pointer;
   font-size: 16px;
   height: 41px;
@@ -1394,7 +1394,7 @@ header .form-inline {
   .header-left .dropdown .dropdown-toggle {
     background: transparent;
     border: none;
-    color: #272c33;
+    color: #4c5a7d;
     font-size: 16px; }
     .header-left .dropdown .dropdown-toggle:after {
       display: none; }
@@ -1411,7 +1411,7 @@ header .form-inline {
     .header-left .dropdown .dropdown-toggle:active, .header-left .dropdown .dropdown-toggle:focus, .header-left .dropdown .dropdown-toggle:visited {
       background: none !important;
       border-color: transparent !important;
-      color: #272c33 !important; }
+      color: #4c5a7d !important; }
   .header-left .dropdown .dropdown-menu {
     background: #fff;
     border: none;
@@ -1423,7 +1423,7 @@ header .form-inline {
       margin: 0;
       padding: 5px 15px; }
     .header-left .dropdown .dropdown-menu .dropdown-item {
-      color: #272c33;
+      color: #4c5a7d;
       font-size: 13px;
       padding: 10px 15px 3px;
       text-overflow: ellipsis; }
@@ -1482,7 +1482,7 @@ header .form-inline {
     z-index: 999;
     min-width: 150px; }
     .user-area .user-menu .nav-link {
-      color: #272c33;
+      color: #4c5a7d;
       display: block;
       font-size: 14px;
       line-height: 22px;
@@ -2316,14 +2316,14 @@ header .form-inline {
     border-radius: 0 !important; }
     .dataTables_paginate .pagination li a {
       border-radius: 0 !important;
-      color: #272c33; }
+      color: #4c5a7d; }
     .dataTables_paginate .pagination li.active a {
-      background: #272c33;
-      border-color: #272c33;
+      background: #4c5a7d;
+      border-color: #4c5a7d;
       color: #fff; }
     .dataTables_paginate .pagination li:hover a {
-      background: #272c33;
-      border-color: #272c33;
+      background: #4c5a7d;
+      border-color: #4c5a7d;
       color: #fff; }
 
 @media (max-width: 1368px) {
