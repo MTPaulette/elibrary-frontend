@@ -5,7 +5,7 @@
         <div class="row">
           <div class="section-title ml-5">
             <h2>Notification</h2>
-            <p>Tous les notifications</p>
+            <p>Toutes les notifications</p>
           </div>
         </div>
 
@@ -99,18 +99,6 @@ export default {
 </script>
 
 <style scoped>
-/****csss de la card*****/
-/* .card {
-  background: #ffffff;
-  margin: 7.5px 0;
-  padding: 20px;
-  border: 1px solid #e7e7e7;
-  border-radius: 3px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-.card-body {
-  padding: 0;
-} */
 /*** le grand titre ***/
 .section-title h2,
 .section-title h4 {

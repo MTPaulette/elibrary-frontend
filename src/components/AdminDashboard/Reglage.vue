@@ -21,7 +21,7 @@
                   >
                     <span
                       style="color: rgb(166, 168, 170); font: bold 8pt Arial"
-                      ><img src=../../assets/fille-logo.jpg alt="" /></span
+                      ><img src=../../assets/avatar2.jpg alt="" /></span
                     >
                   </div>
                 </div>

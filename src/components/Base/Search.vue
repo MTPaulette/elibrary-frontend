@@ -440,6 +440,6 @@ section {
   font-size: 36px;
   font-weight: 700;
   font-family: "Playfair Display", serif;
-  color: #cda45e;
+  color: #eea412;
 }
 </style>

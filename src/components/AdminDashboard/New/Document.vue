@@ -1,6 +1,13 @@
 <template lang="">
   <div class="content mt-3">
     <div class="animated fadeIn">
+
+        <div class="row">
+          <div class="section-title ml-5">
+            <h2>Document</h2>
+            <p>Creation de document</p>
+          </div>
+        </div>
       <!-- .if success -->
       <div class="row" v-if="successful">
         <div class="alert alert-success" role="alert">
@@ -9,8 +16,8 @@
       </div>
 
       <div class="row" v-else>
-        <div class="col-lg-11 mx-auto my-5">
-          <div class="card">
+        <div class="col-lg-12">
+          <div class="card container">
             <div class="card-header">NOUVEAU DOCUMENT</div>
             <div class="card-body card-block">
               <form
@@ -448,4 +455,30 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style>
+.card-header {
+  background-color: #4c5a7d;
+  color: #fff;
+  margin: 0 -10px;
+}
+.section-title h2::after,
+.section-title h4::after {
+  content: "";
+  width: 120px;
+  height: 1px;
+  display: inline-block;
+  background: rgba(16, 14, 14, 0.2);
+
+  /* background: rgba(255, 255, 255, 0.2); */
+  margin: 4px 10px;
+}
+
+.section-title p {
+  margin: 0;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+  color: #eea412;
+}
+</style>

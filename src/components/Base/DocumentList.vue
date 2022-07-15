@@ -183,6 +183,7 @@ export default {
         documentId,
       };
       console.log("****************************");
+      console.log(req)
       axios
         .post("http://localhost:5000/api/chat/requetes/create", req)
         .then((res) => {

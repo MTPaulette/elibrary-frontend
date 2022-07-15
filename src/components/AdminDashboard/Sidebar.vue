@@ -13,7 +13,7 @@
         <i class="fa fa-bars"></i>
       </button>
       <a class="navbar-brand" href="./"
-        ><img src="../../assets/fille-logo.jpg" class="w-25 h-25" alt="Logo"
+        ><img src="../../assets/logo-final.png" class="" alt="Logo"
       /></a>
       <a class="navbar-brand hidden" href="./"
         ><img src="images/logo2.png"
@@ -23,7 +23,7 @@
     <div id="main-menu" class="main-menu collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active">
-          <a href="index.html">
+          <a href="/">
             <i class="menu-icon fa fa-dashboard"></i>Accueil
           </a>
         </li>
@@ -153,6 +153,11 @@
           </ul>
         </li>
 
+        <h3 class="menu-title">Requetes</h3>
+        <li>
+          <a href="/chat"> <i class="menu-icon fa fa-line-chart"></i>Requete</a>
+        </li>
+
         <h3 class="menu-title">Notifications</h3>
         <li v-if="currentUser.RoleId == 1" @click="showModal = true">
           <a href="#"> <i class="menu-icon fa fa-line-chart"></i>Nouveau</a>
@@ -160,11 +165,6 @@
         <li>
           <a href="/notifications">
             <i class="menu-icon fa fa-line-chart"></i>Notifications</a
-          >
-        </li>
-        <li>
-          <a href="#">
-            <i class="menu-icon fa fa-line-chart"></i>Boite de reception</a
           >
         </li>
 

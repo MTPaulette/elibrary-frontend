@@ -49,7 +49,8 @@
             aria-expanded="false"
           >
             <i class="fa fa-bell"></i>
-            <span class="count bg-danger">5</span>
+            
+          <a href="/notifications" class=""><span class="count bg-danger">5</span></a>
           </button>
           <div class="dropdown-menu" aria-labelledby="notification">
             <p class="red">You have 3 Notification</p>
