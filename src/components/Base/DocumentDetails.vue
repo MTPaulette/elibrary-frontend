@@ -15,31 +15,21 @@
                 <div class="row">
                   <div class="col-lg-4">
                     <div class="user-photo m-b-30">
-                      <img
-                        class="img-fluid"
-                        v-if="document.TypeId == 1"
-                        src="../../assets/logo-book.png"
-                        alt="..."
-                      />
-                      <img
-                        class="img-fluid"
-                        v-else
-                        src="../../assets/logo-pdf.png"
-                        alt="..."
-                      />
+                      <img class="img-fluid" v-if="document.TypeId == 1" src="../../assets/logo-book.png" alt="..." />
+                      <img class="img-fluid" v-else src="../../assets/logo-pdf.png" alt="..." />
                     </div>
                     <div class="user-work mt-lg-5">
                       <h4>CARACTERISTIQUES</h4>
                       <div class="work-content">
-                        <h3>{{ document.Type.nom }}</h3>
+                        <h3 v-if="document.Type">{{ document.Type.nom }}</h3>
                         <p class="details" v-if="document.Ue">
                           {{ document.Ue.nom }}
                         </p>
                         <p class="details" v-if="document.Specialite">
                           {{ document.Specialite.nom }}
                         </p>
-                        <p class="details">{{ document.Filiere.nom }}</p>
-                        <p class="details">{{ document.Faculte.nom }}</p>
+                        <p class="details" v-if="document.Filiere">{{ document.Filiere.nom }}</p>
+                        <p class="details" v-if="document.Faculte">{{ document.Faculte.nom }}</p>
                       </div>
                     </div>
                     <!-- <div class="user-skill">
@@ -82,28 +72,18 @@
                             <i class="ti-star"></i>
                           </div>
                         </div> -->
-                    <a
-                      class="user-send-message"
-                      target="_blanc"
-                      :href="
-                        'http://localhost:5000/api/documents/telecharger/' +
-                        document.id
-                      "
-                    >
-                      <button
-                        class="btn btn-primary btn-addon px-3"
-                        type="button"
-                      >
+                    <a class="user-send-message" target="_blanc" :href="
+                      'http://localhost:5000/api/documents/telecharger/' +
+                      document.id
+                    ">
+                      <button class="btn btn-primary btn-addon px-3" type="button">
                         <i class="bi bi-download mr-2 pl-0"></i>
-                        telecharger</button
-                      >{{ document.contenu }}
+                        telecharger</button>{{ document.contenu }}
                     </a>
                     <div class="custom-tab user-profile-tab">
                       <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active mt-3">
-                          <span aria-controls="1" role="tab" data-toggle="tab"
-                            >A propos</span
-                          >
+                          <span aria-controls="1" role="tab" data-toggle="tab">A propos</span>
                         </li>
                       </ul>
                       <div class="tab-content">
@@ -120,57 +100,37 @@
                               <div class="phone-content">
                                 <span class="contact-title">Publieur:</span>
                                 <span class="details" v-if="document.UserId">
-                                  <router-link
-                                    :to="{
-                                      path: '/profile',
-                                      query: { id: document.User.id },
-                                    }"
-                                    >{{ document.User.username }}</router-link
-                                  >
+                                  <router-link :to="{
+                                    path: '/profile',
+                                    query: { id: document.User.id },
+                                  }">{{ document.User.username }}</router-link>
                                 </span>
                                 <span class="details" v-else>Non défini</span>
                               </div>
                               <div class="address-content">
                                 <span class="contact-title">Fonction:</span>
-                                <span
-                                  class="details"
-                                  v-if="document.User.RoleId === 2"
-                                  >Enseignant</span
-                                >
-                                <span
-                                  class="details"
-                                  v-if="document.User.RoleId === 3"
-                                  >Etudiant</span
-                                >
+                                <span class="details" v-if="document.User.RoleId === 2">Enseignant</span>
+                                <span class="details" v-if="document.User.RoleId === 3">Etudiant</span>
                               </div>
                               <div class="email-content">
                                 <span class="contact-title">Email:</span>
                                 <span class="details">{{
-                                  document.User.email
+                                document.User.email
                                 }}</span>
                               </div>
                               <div class="website-content">
                                 <span class="contact-title">Etat:</span>
-                                <span
-                                  class="badge badge-success"
-                                  v-if="document.User.etat == 'actif'"
-                                  >{{ document.User.etat }}</span
-                                >
-                                <span
-                                  class="badge badge-warming"
-                                  v-if="document.User.etat === 'bloqué'"
-                                  >{{ document.User.etat }}</span
-                                >
-                                <span
-                                  class="badge badge-danger"
-                                  v-if="document.User.etat === 'supprimé'"
-                                  >{{ document.User.etat }}</span
-                                >
+                                <span class="badge badge-success" v-if="document.User.etat == 'actif'">{{
+                                document.User.etat }}</span>
+                                <span class="badge badge-warming" v-if="document.User.etat === 'bloqué'">{{
+                                document.User.etat }}</span>
+                                <span class="badge badge-danger" v-if="document.User.etat === 'supprimé'">{{
+                                document.User.etat }}</span>
                               </div>
                               <div class="skype-content">
                                 <span class="contact-title">Auteur:</span>
                                 <span class="details" v-if="document.auteur">{{
-                                  document.auteur
+                                document.auteur
                                 }}</span>
                                 <span class="details" v-else>Non défini</span>
                               </div>
@@ -181,21 +141,19 @@
                             <div class="birthday-content">
                               <span class="contact-title">Publié le:</span>
                               <span class="details">{{
-                                document.createdAt
+                              document.createdAt
                               }}</span>
                             </div>
                             <div class="birthday-content">
                               <span class="contact-title">Modifié le:</span>
                               <span class="details">{{
-                                document.updatedAt
+                              document.updatedAt
                               }}</span>
                             </div>
                             <div class="birthday-content">
-                              <span class="contact-title"
-                                >Nombre de téléchargement:</span
-                              >
+                              <span class="contact-title">Nombre de téléchargement:</span>
                               <span class="badge badge-secondary">{{
-                                document.nbTelechargement
+                              document.nbTelechargement
                               }}</span>
                             </div>
                           </div>

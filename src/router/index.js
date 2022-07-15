@@ -174,12 +174,6 @@ const routes = [
         name: "Signalement",
         component: () => import("../components/Signalement/Show.vue"),
       },
-      // {
-      //   path: "/chat/:enseignantId",
-      //   name: "Chat",
-      //   component: () => import("../components/Base/Chat.vue"),
-      //   props: true,
-      // },
     ],
   },
 
@@ -225,42 +219,6 @@ const routes = [
     path: "*",
     component: () => import("../components/Filiere/NotFound.vue"),
   },
-
-  // {
-  //   path: "/chat",
-  //   component: () => import("../views/Chat/Chat.vue"),
-  // },
-  /*************************
-  {
-    path: "/myHome",
-    name: "MyHome",
-    // lazy-loaded
-    component: () => import("../views/MyHome.vue"),
-  },
-  {
-    path: "/profile",
-    name: "profile",
-    // lazy-loaded
-    component: () => import("../views/Profile.vue"),
-  },
-  {
-    path: "/admin",
-    name: "admin",
-    // lazy-loaded
-    component: () => import("../views/BoardAdmin.vue"),
-  },
-  {
-    path: "/mod",
-    name: "moderator",
-    // lazy-loaded
-    component: () => import("../views/BoardTeacher.vue"),
-  },
-  {
-    path: "/user",
-    name: "user",
-    // lazy-loaded
-    component: () => import("../views/BoardStudent.vue"),
-  },*****************************/
 ];
 
 const router = new VueRouter({

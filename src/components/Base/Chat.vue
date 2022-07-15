@@ -243,7 +243,6 @@ export default {
     console.log(this.requete);
 
     this.socket.on("NEW_MESSAGE", (data) => {
-      console.log("++++++++++++++++++++++++++++@@@@@@@@@@@@@@@@@@@@@@@");
       this.messages = [...this.messages, data];
       console.log(this.messages);
     });
